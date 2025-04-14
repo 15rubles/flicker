@@ -8,7 +8,7 @@ namespace Controller
     {
         [SerializeField] private int startHandCount = 5;
         [SerializeField] private Deck deck;
-        [SerializeField] private CardController cardController;
+        [SerializeField] private CardGroupController cardGroupController;
         [SerializeField] private MonsterController monsterController;
         [SerializeField] private Battle currentBattle;
         
@@ -18,10 +18,10 @@ namespace Controller
             for (int i = 0; i < startHandCount; i++)
             {
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
-                cardController.SpawnCard(deck.CardsInDeck[randomIndex]);
+                cardGroupController.SpawnCard(deck.CardsInDeck[randomIndex]);
                 deck.CardsInDeck.RemoveAt(randomIndex);
             }
-
+        
             foreach (var monster in currentBattle.MonsterSet)
             {
                 monsterController.SpawnMonster(monster);

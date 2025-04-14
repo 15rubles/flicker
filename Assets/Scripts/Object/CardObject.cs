@@ -12,6 +12,8 @@ namespace Object
         private TextMeshProUGUI power;
         [SerializeField]
         private TextMeshProUGUI cardName;
+
+        [SerializeField] private CardSlot cardSlot;
         
         [SerializeField]
         private Card card;
@@ -20,6 +22,12 @@ namespace Object
         {
             get => card;
             set => card = value;
+        }
+
+        public CardSlot CardSlot
+        {
+            get => cardSlot;
+            set => cardSlot = value;
         }
 
         void OnEnable()

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Object;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Controller
 {
