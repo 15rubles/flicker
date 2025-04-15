@@ -8,8 +8,6 @@ namespace Controller
 {
     public class CardGroupController: MonoBehaviour
     {
-        [SerializeField] private List<CardSlot> cardsInHand;
-
         [SerializeField] private int startCardsInHand = 5;
         
         [SerializeField] 
@@ -22,6 +20,7 @@ namespace Controller
 
         [SerializeField] private Card cardToSpawn;
         
+        private LinkedList<CardSlot> cardsInHand = new LinkedList<CardSlot>();
         
         public void SpawnCard(Card card)
         {
@@ -43,7 +42,8 @@ namespace Controller
 
         private void SpawnCardSlot(CardSlot cardSlot, Card card)
         {
-            cardController.SpawnCard(card, cardSlot);
+            var node = cardsInHand.AddLast(cardSlot);
+            cardController.SpawnCard(card, cardSlot, node);
             cardSlot.gameObject.SetActive(true);
         }
 
