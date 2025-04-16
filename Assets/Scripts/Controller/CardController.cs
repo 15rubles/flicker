@@ -3,7 +3,6 @@ using System.Linq;
 using Entity.Card;
 using Object;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Controller
 {
@@ -14,6 +13,9 @@ namespace Controller
 
         [SerializeField] 
         private GameObject cardObjectPrefab;
+        
+        [SerializeField] 
+        private RectTransform playCardZone;
 
         [SerializeField] private CardGroupController cardGroupController;
         
@@ -37,6 +39,7 @@ namespace Controller
         private void ChangeCardValuesAndEnable(CardObject cardObj, Card cardData, CardSlot cardSlot,
             LinkedListNode<CardSlot> cardSlotNode)
         {
+            cardObj.PlayCardZone = playCardZone;
             cardObj.Card = cardData;
             cardObj.CardSlotNode = cardSlotNode;
             cardObj.gameObject.transform.SetParent(cardSlot.transform);

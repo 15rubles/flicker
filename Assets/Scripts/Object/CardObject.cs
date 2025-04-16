@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Entity.Card;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 namespace Object
@@ -21,6 +19,8 @@ namespace Object
         private LinkedListNode<CardSlot> cardSlotNode;
 
         private RectTransform rectTransform;
+
+        private RectTransform playCardZone;
 
         private void Awake()
         {
@@ -48,6 +48,12 @@ namespace Object
             set => cardSlotNode = value;
         }
 
+        public RectTransform PlayCardZone
+        {
+            get => playCardZone;
+            set => playCardZone = value;
+        }
+
         void OnEnable()
         {
             cardName.text = card.cardName.ToString();
@@ -61,7 +67,14 @@ namespace Object
         }
         public void OnEndDrag(PointerEventData eventData)
         {
-            gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            if (playCardZone.rect.Contains(playCardZone.InverseTransformPoint(eventData.position)))
+            {
+                Debug.Log("test");
+            }
+            else
+            {
+                gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            }
         }
 
         public void OnDrag(PointerEventData eventData)
