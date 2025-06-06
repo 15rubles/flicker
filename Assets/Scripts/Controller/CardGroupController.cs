@@ -34,12 +34,20 @@ namespace Controller
             {
                 var newCardSlotObject = Instantiate(cardSlotPrefab, gameObject.transform);
                 var newCardSlot = newCardSlotObject.GetComponent<CardSlot>();
+                newCardSlot.SetCardGroupController(this);
                 cardSlotsPool.Add(newCardSlot);
                 SpawnCardSlot(newCardSlot, card);
             }
             
         }
 
+        public void DeleteCard(CardSlot slot)
+        {
+            cardController.DeleteCard(slot.CardObject);
+            cardSlotsPool.Remove(slot);
+            Destroy(slot.gameObject);
+        }
+        
         private void SpawnCardSlot(CardSlot cardSlot, Card card)
         {
             var node = cardsInHand.AddLast(cardSlot);

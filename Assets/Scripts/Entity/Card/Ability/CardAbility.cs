@@ -5,6 +5,6 @@ namespace Entity.Card.Ability
     [Serializable]
     public abstract class CardAbility
     {
-        public abstract CardAbility UseAbility();
+        public abstract CardAbility UseAbility(Card card);
     }
 }

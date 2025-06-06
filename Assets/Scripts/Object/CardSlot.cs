@@ -14,6 +14,11 @@ namespace Object
             set => cardObject = value;
         }
 
+        public void SetCardGroupController(CardGroupController controller)
+        {
+            cardGroupController = controller;
+        }
+
         public void Setup(CardObject cardObj)
         {
             cardObject = cardObj;
@@ -24,5 +29,11 @@ namespace Object
         {
             cardObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         }
+
+        public void Delete()
+        {
+            cardGroupController.DeleteCard(this);
+        }
+        
     }
 }

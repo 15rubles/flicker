@@ -69,7 +69,8 @@ namespace Object
         {
             if (playCardZone.rect.Contains(playCardZone.InverseTransformPoint(eventData.position)))
             {
-                Debug.Log("test");
+                Card.CardAbility.UseAbility(Card);
+                Delete();
             }
             else
             {
@@ -108,5 +109,10 @@ namespace Object
         //     cardSlotToSwap.CardObject = this;
         //     cardSlotSafe.Reset();
         // }
+
+        private void Delete()
+        {
+            cardSlot.Delete();
+        }
     }
 }

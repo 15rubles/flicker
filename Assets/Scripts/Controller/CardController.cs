@@ -36,6 +36,11 @@ namespace Controller
             }
         }
 
+        public void DeleteCard(CardObject cardObj)
+        {
+            cardsPool.Remove(cardObj);
+        }
+
         private void ChangeCardValuesAndEnable(CardObject cardObj, Card cardData, CardSlot cardSlot,
             LinkedListNode<CardSlot> cardSlotNode)
         {
