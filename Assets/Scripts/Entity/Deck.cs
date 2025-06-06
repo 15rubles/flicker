@@ -6,6 +6,8 @@ namespace Entity
     [CreateAssetMenu(fileName = "Deck", menuName = "SOs/Deck", order = 1)]
     public class Deck: ScriptableObject
     {
+        public int StartHealth { get; set; }
+        
         [SerializeField]
         private List<Card.Card> allCards;
 
