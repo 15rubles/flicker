@@ -2,7 +2,7 @@
 
 namespace Controller
 {
-    public class MonsterZoneController: MonoBehaviour
+    public class BlockZoneController : ZoneController
     {
     }
 }

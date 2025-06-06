@@ -15,7 +15,10 @@ namespace Controller
         private GameObject cardObjectPrefab;
         
         [SerializeField] 
-        private RectTransform playCardZone;
+        private AttackZoneController attackCardZone;
+        [SerializeField] 
+        private BlockZoneController blockCardZone;
+        
 
         [SerializeField] private CardGroupController cardGroupController;
         
@@ -44,7 +47,8 @@ namespace Controller
         private void ChangeCardValuesAndEnable(CardObject cardObj, Card cardData, CardSlot cardSlot,
             LinkedListNode<CardSlot> cardSlotNode)
         {
-            cardObj.PlayCardZone = playCardZone;
+            cardObj.AttackCardZone = attackCardZone;
+            cardObj.BlockCardZone = blockCardZone;
             cardObj.Card = cardData;
             cardObj.CardSlotNode = cardSlotNode;
             cardObj.gameObject.transform.SetParent(cardSlot.transform);

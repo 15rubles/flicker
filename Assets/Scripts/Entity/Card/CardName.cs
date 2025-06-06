@@ -5,6 +5,10 @@ namespace Entity.Card
     [Serializable]
     public enum CardName
     {
-        PlainSoldier
+        PlainSoldier,
+        Wizard,
+        Mage,
+        Lizard,
+        Knight
     }
 }

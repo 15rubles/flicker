@@ -10,7 +10,7 @@ namespace Entity.Card
         private int power;
         [SerializeField]
         private int toughness;
-
+//  convert to one stat
         public CardStats(int power, int toughness)
         {
             this.power = power;

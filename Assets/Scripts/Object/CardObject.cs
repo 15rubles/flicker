@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Controller;
 using Entity.Card;
 using UnityEngine;
 using TMPro;
@@ -16,11 +17,7 @@ namespace Object
 
         [SerializeField] private CardSlot cardSlot;
 
-        private LinkedListNode<CardSlot> cardSlotNode;
-
         private RectTransform rectTransform;
-
-        private RectTransform playCardZone;
 
         private void Awake()
         {
@@ -42,17 +39,11 @@ namespace Object
             set => cardSlot = value;
         }
 
-        public LinkedListNode<CardSlot> CardSlotNode
-        {
-            get => cardSlotNode;
-            set => cardSlotNode = value;
-        }
+        public LinkedListNode<CardSlot> CardSlotNode { get; set; }
 
-        public RectTransform PlayCardZone
-        {
-            get => playCardZone;
-            set => playCardZone = value;
-        }
+        public AttackZoneController AttackCardZone { get; set; }
+
+        public BlockZoneController BlockCardZone { get; set; }
 
         void OnEnable()
         {
@@ -67,10 +58,13 @@ namespace Object
         }
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (playCardZone.rect.Contains(playCardZone.InverseTransformPoint(eventData.position)))
+            if (AttackCardZone.rectTransform.rect.Contains(AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
             {
-                Card.CardAbility.UseAbility(Card);
-                Delete();
+                PlayCard(AttackCardZone);
+            }
+            else if (BlockCardZone.rectTransform.rect.Contains(BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
+            {
+                PlayCard(BlockCardZone);
             }
             else
             {
@@ -78,24 +72,24 @@ namespace Object
             }
         }
 
+        private void PlayCard(ZoneController cardZone)
+        {
+            Card.CardAbility.UseAbility(Card);
+            Delete();
+            cardZone.creatureController.SpawnCreature(cardZone, card);
+        }
+        
         public void OnDrag(PointerEventData eventData)
         {
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-            // TODO
-            // if (cardSlotNode.Next?.Value is not null)
+            //todo add hover text when card will be played in hovered zone if stop holding
+            // if (AttackCardZone.rect.Contains(AttackCardZone.InverseTransformPoint(eventData.position)))
             // {
-            //     Debug.Log("1: " + gameObject.name+ " 2: " + cardSlotNode.Next.Value.CardObject.gameObject.name);
-            //     if (gameObject.transform.position.x > cardSlotNode.Next.Value.CardObject.transform.position.x)
-            //     {
-            //         Swap(cardSlotNode.Next.Value);
-            //     }
+            //    
             // }
-            // else if (cardSlotNode.Previous?.Value is not null)
+            // else if (BlockCardZone.rect.Contains(BlockCardZone.InverseTransformPoint(eventData.position)))
             // {
-            //     if (gameObject.transform.position.x < cardSlotNode.Previous.Value.CardObject.transform.position.x)
-            //     {
-            //         Swap(cardSlotNode.Previous.Value);
-            //     }
+            //     
             // }
         }
         

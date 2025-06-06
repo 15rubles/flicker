@@ -38,7 +38,7 @@ namespace Controller
         {
             monster.Monster = monsterData;
             monster.gameObject.SetActive(true);
-            monsterZoneController.AddNewMonster(monster);
+            monster.transform.SetParent(monsterZoneController.transform);
         }
     }
 }
