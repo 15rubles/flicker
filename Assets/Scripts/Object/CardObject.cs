@@ -44,14 +44,14 @@ namespace Object
         public AttackZoneController AttackCardZone { get; set; }
 
         public BlockZoneController BlockCardZone { get; set; }
-
-        void OnEnable()
+        
+        public void UpdateText()
         {
             cardName.text = card.cardName.ToString();
             toughness.text = card.cardStats.Toughness.ToString();
             power.text = card.cardStats.Power.ToString();
         }
-
+        
         public void OnBeginDrag(PointerEventData eventData)
         {
             //

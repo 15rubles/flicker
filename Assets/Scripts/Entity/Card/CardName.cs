@@ -9,6 +9,7 @@ namespace Entity.Card
         Wizard,
         Mage,
         Lizard,
-        Knight
+        Knight,
+        HealthTower
     }
 }

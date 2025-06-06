@@ -14,6 +14,7 @@ namespace Controller
     {
         [SerializeField] private CardGroupController cardGroupController;
         [SerializeField] private MonsterController monsterController;
+        [SerializeField] private CreatureController creatureController;
                 
         [SerializeField] private TextMeshProUGUI currStepText;
         [SerializeField] private TextMeshProUGUI nextStepText;
@@ -42,6 +43,7 @@ namespace Controller
             {
                 monsterController.SpawnMonster(monster);
             }
+            creatureController.SpawnHealthCard(deck.HealthCard);
         }
 
         private void CreateTurnStepsOrder()

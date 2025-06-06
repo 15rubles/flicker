@@ -43,5 +43,10 @@ namespace Controller
             zone.AddCreature(creatureObj);
             creatureObj.UpdateText();
         }
+        
+        public void SpawnHealthCard(Card healthCard)
+        {
+            SpawnCreature(blockZone, healthCard);
+        }
     }
 }

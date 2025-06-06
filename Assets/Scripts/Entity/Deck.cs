@@ -6,7 +6,8 @@ namespace Entity
     [CreateAssetMenu(fileName = "Deck", menuName = "SOs/Deck", order = 1)]
     public class Deck: ScriptableObject
     {
-        public int StartHealth { get; set; }
+        [SerializeField]
+        private Card.Card healthCard;
         
         [SerializeField]
         private List<Card.Card> allCards;
@@ -26,7 +27,12 @@ namespace Entity
             set => allCards = value;
         }
         
-
+        public Card.Card HealthCard
+        {
+            get => healthCard;
+            set => healthCard = value;
+        }
+        
         public List<Card.Card> CardsInDeck
         {
             get => cardsInDeck;
