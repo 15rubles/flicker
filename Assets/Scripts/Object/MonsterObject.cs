@@ -2,32 +2,38 @@
 using Entity.Monster;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace Object
 {
     public class MonsterObject: MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI toughness;
-        [SerializeField]
-        private TextMeshProUGUI power;
+        private TextMeshProUGUI powerText;
         [SerializeField]
         private TextMeshProUGUI cardName;
         
         [SerializeField]
         private Monster monster;
 
+        public int Power { get; set; }
+
         public Monster Monster
         {
             get => monster;
-            set => monster = value;
+            set
+            {
+                monster = value;
+                Power = value.Power;
+            }
+            
         }
+        
 
-        void OnEnable()
+        public void UpdateText()
         {
             cardName.text = monster.MonsterName.ToString();
-            toughness.text = monster.Stats.Toughness.ToString();
-            power.text = monster.Stats.Power.ToString();
+            powerText.text = Power.ToString();
         }
     }
 }

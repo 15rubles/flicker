@@ -11,6 +11,8 @@ namespace Controller
         [SerializeField] 
         private List<MonsterObject> monstersPool;
 
+        public List<MonsterObject> MonstersPool => monstersPool;
+
         [SerializeField] 
         private GameObject monsterObjectPrefab;
 
@@ -39,6 +41,7 @@ namespace Controller
             monster.Monster = monsterData;
             monster.gameObject.SetActive(true);
             monster.transform.SetParent(monsterZoneController.transform);
+            monster.UpdateText();
         }
     }
 }

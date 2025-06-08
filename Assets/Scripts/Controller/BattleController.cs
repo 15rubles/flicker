@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Entity;
 using Entity.Battle;
+using Object;
 using TMPro;
 using UnityEngine;
 using Utils;
@@ -31,19 +33,36 @@ namespace Controller
         private void Awake()
         {
             CreateTurnStepsOrder();
+            
             deck.ResetDeck();
+            DealHand();
+            creatureController.SpawnHealthCard(deck.HealthCard);
+
+            foreach (var monster in currentBattle.MonsterSet)
+            {
+                monsterController.SpawnMonster(monster);
+            }
+        }
+
+        private void DealHand()
+        {
             for (int i = 0; i < startHandCount; i++)
             {
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
                 cardGroupController.SpawnCard(deck.CardsInDeck[randomIndex]);
                 deck.CardsInDeck.RemoveAt(randomIndex);
             }
-        
-            foreach (var monster in currentBattle.MonsterSet)
-            {
-                monsterController.SpawnMonster(monster);
-            }
-            creatureController.SpawnHealthCard(deck.HealthCard);
+        }
+
+        private void DiscardHand()
+        {
+            cardGroupController.CardsInHand = new LinkedList<CardSlot>();
+            //TODO add to discard
+        }
+
+        private void ResetCreatureZones()
+        {
+            creatureController.ResetZones(deck.HealthCard);
         }
 
         private void CreateTurnStepsOrder()
@@ -72,14 +91,16 @@ namespace Controller
             switch (nextStep?.Value)
             {
                 case TurnStep.PlayCards:
+                    ResetCreatureZones();
+                    DealHand();
                     turnText.text = (Int32.Parse(turnText.text) + 1).ToString();
                     coverScreen.SetActive(false);
                     nextStepButtonText.text = "Next Step";
                     break;
                 case TurnStep.Attack:
-                    //TODO
-                   // CreaturesAttack();
-                   // MonstersAttack();
+                    DiscardHand();
+                    CreaturesAttack();
+                    MonstersAttack();
                     coverScreen.SetActive(true);
                     break;
                 case TurnStep.Flick:
@@ -92,6 +113,71 @@ namespace Controller
 
             currentStep = nextStep;
             UpdateStepsText();
+        }
+
+        private void CreaturesAttack()
+        {
+            MonsterObject monster = monsterController.MonstersPool.FirstOrDefault();
+            if (monster == null)
+            {
+                //TODO
+                Debug.Log("WON!!!");
+                return;
+            }
+            
+            foreach (var creature in creatureController.AttackZone.Creatures)
+            {
+                if (monster.Power - creature.Power <= 0)
+                { 
+                    Destroy(monster.gameObject);
+                    monsterController.MonstersPool.RemoveAt(0);
+                    monster = monsterController.MonstersPool.FirstOrDefault();
+                    if (monster == null)
+                    {
+                        //TODO
+                        Debug.Log("WON!!!");
+                        return;
+                    }
+                }
+                else
+                {
+                    monster.Power -= creature.Power;
+                    monster.UpdateText();
+                }
+            }
+        }
+        
+        private void MonstersAttack()
+        {
+            CreatureObj creature = creatureController.BlockZone.Creatures.FirstOrDefault();
+            if (creature == null)
+            {
+                //TODO
+                Debug.Log("GAME OVER!!!");
+                return;
+            }
+            foreach (var monster in monsterController.MonstersPool)
+            {
+                if (creature.Power - monster.Power <= 0)
+                { 
+                    Destroy(creature.gameObject);
+                    creatureController.BlockZone.Creatures.RemoveAt(0);
+                    creature = creatureController.BlockZone.Creatures.FirstOrDefault();
+                    if (creature == null)
+                    {
+                        
+                        //TODO
+                        Debug.Log("GAME OVER!!!");
+                        return;
+
+                    }
+                }
+                else
+                {
+                    creature.Power -= monster.Power;
+                    creature.UpdateText();
+                }
+            }
         }
     }
 }

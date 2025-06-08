@@ -12,27 +12,18 @@ namespace Controller
         [SerializeField] 
         private BlockZoneController blockZone;
         
+        public AttackZoneController AttackZone => attackZone;
+
+        public BlockZoneController BlockZone => blockZone;
+        
         [SerializeField] 
         private GameObject creaturePrefab;
 
-        private List<CreatureObj> attackCreatures = new List<CreatureObj>();
-
-        private List<CreatureObj> blockCreatures = new List<CreatureObj>();
 
         public void SpawnCreature(ZoneController zone, Card cardData)
         {
             var creature = Instantiate(creaturePrefab, gameObject.transform.parent);
             var creatureObj = creature.GetComponent<CreatureObj>();
-            if (zone == attackZone)
-            {
-                Debug.Log("attack");
-                attackCreatures.Add(creatureObj);
-            }
-            else
-            {
-                Debug.Log("block");
-                blockCreatures.Add(creatureObj);
-            }
             ChangeCreatureValuesAndEnable(creatureObj, cardData, zone);
         }
         
@@ -47,6 +38,23 @@ namespace Controller
         public void SpawnHealthCard(Card healthCard)
         {
             SpawnCreature(blockZone, healthCard);
+        }
+
+        public void ResetZones(Card healthCard)
+        {
+            foreach (var creature in attackZone.Creatures)
+            {
+                Destroy(creature.gameObject);
+            }
+            attackZone.Creatures = new List<CreatureObj>();
+            
+            foreach (var creature in blockZone.Creatures)
+            {
+                Destroy(creature.gameObject);
+            }
+            blockZone.Creatures = new List<CreatureObj>();
+            
+            SpawnHealthCard(healthCard);
         }
     }
 }

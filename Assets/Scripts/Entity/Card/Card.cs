@@ -7,7 +7,7 @@ namespace Entity.Card
     public class Card : ScriptableObject
     {
         public CardName cardName;
-        public CardStats cardStats;
+        public int power;
         [SerializeReference]
         public CardAbility CardAbility;
         public CardCost cardCost;

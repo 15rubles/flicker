@@ -9,12 +9,19 @@ namespace Controller
         public RectTransform rectTransform;
         public CreatureController creatureController;
 
-        protected List<CreatureObj> creatures = new List<CreatureObj>();
+        private List<CreatureObj> creatures = new List<CreatureObj>();
+
+        public List<CreatureObj> Creatures
+        {
+            get => creatures;
+            set => creatures = value;
+        }
 
         public void AddCreature(CreatureObj creatureObj)
         {
             creatureObj.transform.SetParent(transform);
             creatures.Add(creatureObj);
         }
+        
     }
 }

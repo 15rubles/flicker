@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   cardName: 1
-  cardStats:
-    power: 1
-    toughness: 1
+  power: 2
   CardAbility:
     rid: 8966283168897827026
   cardCost:

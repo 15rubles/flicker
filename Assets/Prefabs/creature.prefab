@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c58dc05b95a44b38d90fcc15df3a4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: {fileID: 8385407354203636419}
+  powerText: {fileID: 8385407354203636419}
   cardName: {fileID: 3081787139797507857}
 --- !u!1 &3804682226232524316
 GameObject:

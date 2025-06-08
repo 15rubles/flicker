@@ -21,7 +21,13 @@ namespace Controller
         [SerializeField] private Card cardToSpawn;
         
         private LinkedList<CardSlot> cardsInHand = new LinkedList<CardSlot>();
-        
+
+        public LinkedList<CardSlot> CardsInHand
+        {
+            get => cardsInHand;
+            set => cardsInHand = value;
+        }
+
         public void SpawnCard(Card card)
         {
             var firstDisabled = cardSlotsPool

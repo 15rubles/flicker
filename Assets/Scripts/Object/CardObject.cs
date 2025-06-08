@@ -48,8 +48,7 @@ namespace Object
         public void UpdateText()
         {
             cardName.text = card.cardName.ToString();
-            toughness.text = card.cardStats.Toughness.ToString();
-            power.text = card.cardStats.Power.ToString();
+            power.text = card.power.ToString();
         }
         
         public void OnBeginDrag(PointerEventData eventData)

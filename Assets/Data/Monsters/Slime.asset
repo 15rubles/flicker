@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   monsterName: 0
-  stats:
-    power: 1
-    toughness: 1
+  power: 3
   ability:
     rid: 8966283404157911108
   visual: {fileID: 0}

@@ -8,7 +8,7 @@ namespace Entity.Monster
     public class Monster: ScriptableObject
     {
         [SerializeField] private MonsterName monsterName;
-        [SerializeField] private CardStats stats;
+        [SerializeField] private int power;
         [SerializeField] [SerializeReference] private MonsterAbility ability;
         [SerializeField] private Sprite visual;
         [SerializeField] [SerializeReference] private Attack.AttackPattern attackPattern;
@@ -19,10 +19,10 @@ namespace Entity.Monster
             set => monsterName = value;
         }
 
-        public CardStats Stats
+        public int Power
         {
-            get => stats;
-            set => stats = value;
+            get => power;
+            set => power = value;
         }
 
         public MonsterAbility Ability

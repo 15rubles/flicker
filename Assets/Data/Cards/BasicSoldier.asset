@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: BasicSoldier
   m_EditorClassIdentifier: 
   cardName: 0
-  cardStats:
-    power: 2
-    toughness: 2
+  power: 1
   CardAbility:
     rid: 8966283168897827026
   cardCost:

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   cardName: 4
-  cardStats:
-    power: 4
-    toughness: 4
+  power: 3
   CardAbility:
     rid: 8966283168897827026
   cardCost:

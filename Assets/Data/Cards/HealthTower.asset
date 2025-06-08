@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: HealthTower
   m_EditorClassIdentifier: 
   cardName: 5
-  cardStats:
-    power: 5
-    toughness: 5
+  power: 5
   CardAbility:
     rid: 8966283168897827026
   cardCost:
