@@ -1,21 +1,26 @@
 ﻿using Controller;
-using Entity.Card;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Object
+namespace Object.Creature
 {
     public class CreatureObj : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private TextMeshProUGUI cardName;
+        
+        [SerializeField] private CreatureSlot slot;
 
+        public CreatureSlot Slot
+        {
+            get => slot;
+            set => slot = value;
+        }
         public int Power { get; set; }
 
-        private Card card;
+        private Entity.Card.Card card;
         
-        public Card Card
+        public Entity.Card.Card Card
         {
             get => card;
             set

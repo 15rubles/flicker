@@ -4,8 +4,12 @@ using System.Linq;
 using Entity;
 using Entity.Battle;
 using Object;
+using Object.Card;
+using Object.Creature;
+using Object.Monster;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -14,7 +18,7 @@ namespace Controller
     
     public class BattleController : MonoBehaviour
     {
-        [SerializeField] private CardGroupController cardGroupController;
+        [FormerlySerializedAs("cardGroupController")] [SerializeField] private CardSlotController cardSlotController;
         [SerializeField] private MonsterController monsterController;
         [SerializeField] private CreatureController creatureController;
                 
@@ -49,14 +53,14 @@ namespace Controller
             for (int i = 0; i < startHandCount; i++)
             {
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
-                cardGroupController.SpawnCard(deck.CardsInDeck[randomIndex]);
+                cardSlotController.SpawnCard(deck.CardsInDeck[randomIndex]);
                 deck.CardsInDeck.RemoveAt(randomIndex);
             }
         }
 
         private void DiscardHand()
         {
-            cardGroupController.CardsInHand = new LinkedList<CardSlot>();
+            cardSlotController.CardsInHand = new LinkedList<CardSlot>();
             //TODO add to discard
         }
 
@@ -117,27 +121,30 @@ namespace Controller
 
         private void CreaturesAttack()
         {
-            MonsterObject monster = monsterController.MonstersPool.FirstOrDefault();
-            if (monster == null)
+            MonsterSlot slot = monsterController.MonsterSlots.FirstOrDefault();
+            if (slot == null)
             {
                 //TODO
                 Debug.Log("WON!!!");
                 return;
             }
+            MonsterObject monster = slot.MonsterObj;
+            
             
             foreach (var creature in creatureController.AttackZone.Creatures)
             {
                 if (monster.Power - creature.Power <= 0)
                 { 
-                    Destroy(monster.gameObject);
-                    monsterController.MonstersPool.RemoveAt(0);
-                    monster = monsterController.MonstersPool.FirstOrDefault();
-                    if (monster == null)
+                    Destroy(slot.gameObject);
+                    monsterController.MonsterSlots.RemoveAt(0);
+                    slot = monsterController.MonsterSlots.FirstOrDefault();
+                    if (slot == null)
                     {
                         //TODO
                         Debug.Log("WON!!!");
                         return;
                     }
+                    monster = slot.MonsterObj;
                 }
                 else
                 {
@@ -149,28 +156,23 @@ namespace Controller
         
         private void MonstersAttack()
         {
-            CreatureObj creature = creatureController.BlockZone.Creatures.FirstOrDefault();
-            if (creature == null)
-            {
-                //TODO
-                Debug.Log("GAME OVER!!!");
-                return;
-            }
+            CreatureSlot slot;
+            CreatureObj creature;
+            
             foreach (var monster in monsterController.MonstersPool)
             {
+                slot = creatureController.BlockZone.CreatureSlots.FirstOrDefault();
+                if (slot == null)
+                {
+                    //TODO
+                    Debug.Log("GAME OVER!!!");
+                    return;
+                }
+                creature = slot.CreatureObj;
                 if (creature.Power - monster.Power <= 0)
                 { 
-                    Destroy(creature.gameObject);
-                    creatureController.BlockZone.Creatures.RemoveAt(0);
-                    creature = creatureController.BlockZone.Creatures.FirstOrDefault();
-                    if (creature == null)
-                    {
-                        
-                        //TODO
-                        Debug.Log("GAME OVER!!!");
-                        return;
-
-                    }
+                    Destroy(slot.gameObject);
+                    creatureController.BlockZone.CreatureSlots.RemoveAt(0);
                 }
                 else
                 {

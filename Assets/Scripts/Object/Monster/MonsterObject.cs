@@ -1,10 +1,7 @@
-﻿using Entity.Card;
-using Entity.Monster;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
-using UnityEngine.Serialization;
 
-namespace Object
+namespace Object.Monster
 {
     public class MonsterObject: MonoBehaviour
     {
@@ -12,13 +9,21 @@ namespace Object
         private TextMeshProUGUI powerText;
         [SerializeField]
         private TextMeshProUGUI cardName;
-        
+
+        [SerializeField] private MonsterSlot slot;
+
+        public MonsterSlot Slot
+        {
+            get => slot;
+            set => slot = value;
+        }
+
         [SerializeField]
-        private Monster monster;
+        private Entity.Monster.Monster monster;
 
         public int Power { get; set; }
 
-        public Monster Monster
+        public Entity.Monster.Monster Monster
         {
             get => monster;
             set

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Object;
+using Object.Creature;
 using UnityEngine;
 
 namespace Controller
@@ -9,18 +11,26 @@ namespace Controller
         public RectTransform rectTransform;
         public CreatureController creatureController;
 
-        private List<CreatureObj> creatures = new List<CreatureObj>();
+        private List<CreatureSlot> creatureSlots = new List<CreatureSlot>();
+
+        public List<CreatureSlot> CreatureSlots
+        {
+            get => creatureSlots;
+            set => creatureSlots = value;
+        }
 
         public List<CreatureObj> Creatures
         {
-            get => creatures;
-            set => creatures = value;
+            get
+            {
+                return creatureSlots.Select(slot => slot.CreatureObj).ToList();
+            }
         }
 
-        public void AddCreature(CreatureObj creatureObj)
+        public void AddCreature(CreatureSlot creatureSlot)
         {
-            creatureObj.transform.SetParent(transform);
-            creatures.Add(creatureObj);
+            creatureSlot.transform.SetParent(transform);
+            creatureSlots.Add(creatureSlot);
         }
         
     }

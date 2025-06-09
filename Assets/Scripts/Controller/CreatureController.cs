@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entity.Card;
 using Object;
+using Object.Creature;
 using UnityEngine;
 
 namespace Controller
@@ -17,21 +18,22 @@ namespace Controller
         public BlockZoneController BlockZone => blockZone;
         
         [SerializeField] 
-        private GameObject creaturePrefab;
+        private GameObject creatureSlotPrefab;
 
 
         public void SpawnCreature(ZoneController zone, Card cardData)
         {
-            var creature = Instantiate(creaturePrefab, gameObject.transform.parent);
-            var creatureObj = creature.GetComponent<CreatureObj>();
-            ChangeCreatureValuesAndEnable(creatureObj, cardData, zone);
+            var creature = Instantiate(creatureSlotPrefab, gameObject.transform.parent);
+            var creatureSlot = creature.GetComponent<CreatureSlot>();
+            ChangeCreatureValuesAndEnable(creatureSlot, cardData, zone);
         }
         
-        private void ChangeCreatureValuesAndEnable(CreatureObj creatureObj, Card cardData, ZoneController zone)
+        private void ChangeCreatureValuesAndEnable(CreatureSlot creatureSlot, Card cardData, ZoneController zone)
         {
+            var creatureObj = creatureSlot.CreatureObj;
             creatureObj.Card = cardData;
             creatureObj.Zone = zone;
-            zone.AddCreature(creatureObj);
+            zone.AddCreature(creatureSlot);
             creatureObj.UpdateText();
         }
         
@@ -42,17 +44,17 @@ namespace Controller
 
         public void ResetZones(Card healthCard)
         {
-            foreach (var creature in attackZone.Creatures)
+            foreach (var creature in attackZone.CreatureSlots)
             {
                 Destroy(creature.gameObject);
             }
-            attackZone.Creatures = new List<CreatureObj>();
+            attackZone.CreatureSlots = new List<CreatureSlot>();
             
-            foreach (var creature in blockZone.Creatures)
+            foreach (var creature in blockZone.CreatureSlots)
             {
                 Destroy(creature.gameObject);
             }
-            blockZone.Creatures = new List<CreatureObj>();
+            blockZone.CreatureSlots = new List<CreatureSlot>();
             
             SpawnHealthCard(healthCard);
         }

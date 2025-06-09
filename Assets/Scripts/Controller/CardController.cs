@@ -2,7 +2,9 @@
 using System.Linq;
 using Entity.Card;
 using Object;
+using Object.Card;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
@@ -20,7 +22,7 @@ namespace Controller
         private BlockZoneController blockCardZone;
         
 
-        [SerializeField] private CardGroupController cardGroupController;
+        [FormerlySerializedAs("cardGroupController")] [SerializeField] private CardSlotController cardSlotController;
         
         public void SpawnCard(Card cardData, CardSlot cardSlot, LinkedListNode<CardSlot> cardSlotNode)
         {

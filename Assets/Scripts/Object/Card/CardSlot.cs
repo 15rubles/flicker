@@ -1,12 +1,12 @@
 ﻿using Controller;
 using UnityEngine;
 
-namespace Object
+namespace Object.Card
 {
     public class CardSlot : MonoBehaviour
     {
         [SerializeField] private CardObject cardObject;
-        private CardGroupController cardGroupController;
+        private CardSlotController cardSlotController;
 
         public CardObject CardObject
         {
@@ -14,9 +14,9 @@ namespace Object
             set => cardObject = value;
         }
 
-        public void SetCardGroupController(CardGroupController controller)
+        public void SetCardGroupController(CardSlotController controller)
         {
-            cardGroupController = controller;
+            cardSlotController = controller;
         }
 
         public void Setup(CardObject cardObj)
@@ -32,7 +32,7 @@ namespace Object
 
         public void Delete()
         {
-            cardGroupController.DeleteCard(this);
+            cardSlotController.DeleteCard(this);
         }
         
     }

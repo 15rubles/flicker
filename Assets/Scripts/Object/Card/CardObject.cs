@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Controller;
-using Entity.Card;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Object
+namespace Object.Card
 {
     public class CardObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
@@ -25,9 +24,9 @@ namespace Object
             rectTransform = gameObject.GetComponent<RectTransform>();
         }
 
-        [SerializeField] private Card card;
+        [SerializeField] private Entity.Card.Card card;
 
-        public Card Card
+        public Entity.Card.Card Card
         {
             get => card;
             set => card = value;

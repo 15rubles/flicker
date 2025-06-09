@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entity.Card;
-using Object;
+using Object.Card;
 using UnityEngine;
 
 namespace Controller
 {
-    public class CardGroupController: MonoBehaviour
+    public class CardSlotController: MonoBehaviour
     {
         [SerializeField] private int startCardsInHand = 5;
         

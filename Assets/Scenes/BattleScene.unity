@@ -469,7 +469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &470757397
@@ -540,12 +540,12 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &519420028
 GameObject:
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackZone: {fileID: 1081224449}
   blockZone: {fileID: 884335804}
-  creaturePrefab: {fileID: 237070472225916229, guid: 8e5ed5449b51bd943b94a4e4879568b1, type: 3}
+  creatureSlotPrefab: {fileID: 527353725685524961, guid: 010917abafa7fc4438cc2a13c455fccd, type: 3}
 --- !u!114 &786262276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,8 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b598ef4b01b443b8821e33889007cf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monstersPool: []
-  monsterObjectPrefab: {fileID: 237070472225916229, guid: 9c7942b9f5b41f747959190950c70381, type: 3}
+  monsterSlots: []
+  monsterSlotPrefab: {fileID: 527353725685524961, guid: bb3705f356fad7647b9792b8a737269c, type: 3}
   monsterZoneController: {fileID: 470757399}
 --- !u!114 &786262277
 MonoBehaviour:
@@ -1164,7 +1164,7 @@ MonoBehaviour:
   cardObjectPrefab: {fileID: 237070472225916229, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
   attackCardZone: {fileID: 1081224449}
   blockCardZone: {fileID: 884335804}
-  cardGroupController: {fileID: 1043867048}
+  cardSlotController: {fileID: 1043867048}
 --- !u!114 &786262278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817027b886584c85a26d265f29a493e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardGroupController: {fileID: 1043867048}
+  cardSlotController: {fileID: 1043867048}
   monsterController: {fileID: 786262276}
   creatureController: {fileID: 786262275}
   currStepText: {fileID: 301221739}
@@ -1260,12 +1260,12 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!114 &884335806
 MonoBehaviour:
@@ -1593,12 +1593,12 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!114 &1081224451
 MonoBehaviour:
@@ -2292,7 +2292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.00012207, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807

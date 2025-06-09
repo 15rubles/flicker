@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entity.Monster;
-using Object;
+using Object.Monster;
 using UnityEngine;
 
 namespace Controller
@@ -9,18 +9,26 @@ namespace Controller
     public class MonsterController: MonoBehaviour
     {
         [SerializeField] 
-        private List<MonsterObject> monstersPool;
+        private List<MonsterSlot> monsterSlots;
 
-        public List<MonsterObject> MonstersPool => monstersPool;
+        public List<MonsterSlot> MonsterSlots => monsterSlots;
+
+        public List<MonsterObject> MonstersPool
+        {
+            get
+            {
+                return monsterSlots.Select(slot => slot.MonsterObj).ToList();
+            }
+        }
 
         [SerializeField] 
-        private GameObject monsterObjectPrefab;
+        private GameObject monsterSlotPrefab;
 
         [SerializeField] private MonsterZoneController monsterZoneController;
 
         public void SpawnMonster(Monster monsterData)
         {
-            var firstDisabled = monstersPool
+            var firstDisabled = monsterSlots
                                 .FirstOrDefault(monster => !monster.gameObject.activeInHierarchy);
             if (firstDisabled is not null)
             {
@@ -28,19 +36,18 @@ namespace Controller
             }
             else
             {
-                var newMonster = Instantiate(monsterObjectPrefab, gameObject.transform.parent);
-                newMonster.SetActive(false);
-                var newMonsterObject = newMonster.GetComponent<MonsterObject>();
-                monstersPool.Add(newMonsterObject);
-                ChangeCardValuesAndEnable(newMonsterObject, monsterData);
+                var newMonster = Instantiate(monsterSlotPrefab, gameObject.transform.parent);
+                var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
+                monsterSlots.Add(newMonsterSlot);
+                ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
             }
         }
 
-        private void ChangeCardValuesAndEnable(MonsterObject monster, Monster monsterData)
+        private void ChangeCardValuesAndEnable(MonsterSlot monsterSlot, Monster monsterData)
         {
+            var monster = monsterSlot.MonsterObj;
+            monsterSlot.transform.SetParent(monsterZoneController.transform);
             monster.Monster = monsterData;
-            monster.gameObject.SetActive(true);
-            monster.transform.SetParent(monsterZoneController.transform);
             monster.UpdateText();
         }
     }
