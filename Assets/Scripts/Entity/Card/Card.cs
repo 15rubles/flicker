@@ -8,6 +8,7 @@ namespace Entity.Card
     {
         public CardName cardName;
         public int power;
+        public bool isDraggable = true;
         [SerializeReference]
         public CardAbility CardAbility;
         public CardCost cardCost;

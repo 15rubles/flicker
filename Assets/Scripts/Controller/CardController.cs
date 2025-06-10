@@ -13,6 +13,12 @@ namespace Controller
         [SerializeField] 
         private List<CardObject> cardsPool;
 
+        public List<CardObject> CardsPool
+        {
+            get => cardsPool;
+            set => cardsPool = value;
+        }
+
         [SerializeField] 
         private GameObject cardObjectPrefab;
         
@@ -22,7 +28,7 @@ namespace Controller
         private BlockZoneController blockCardZone;
         
 
-        [FormerlySerializedAs("cardGroupController")] [SerializeField] private CardSlotController cardSlotController;
+        [SerializeField] private CardSlotController cardSlotController;
         
         public void SpawnCard(Card cardData, CardSlot cardSlot, LinkedListNode<CardSlot> cardSlotNode)
         {

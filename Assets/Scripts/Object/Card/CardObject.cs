@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Object.Card
 {
-    public class CardObject : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+    public class CardObject : MonoBehaviour, IEndDragHandler, IDragHandler
     {
         [SerializeField] private TextMeshProUGUI toughness;
         [SerializeField] private TextMeshProUGUI power;
@@ -50,10 +50,6 @@ namespace Object.Card
             power.text = card.power.ToString();
         }
         
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            //
-        }
         public void OnEndDrag(PointerEventData eventData)
         {
             if (AttackCardZone.rectTransform.rect.Contains(AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))

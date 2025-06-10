@@ -33,6 +33,8 @@ namespace Controller
             var creatureObj = creatureSlot.CreatureObj;
             creatureObj.Card = cardData;
             creatureObj.Zone = zone;
+            creatureObj.AttackCardZone = attackZone;
+            creatureObj.BlockCardZone = blockZone;
             zone.AddCreature(creatureSlot);
             creatureObj.UpdateText();
         }

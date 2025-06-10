@@ -30,7 +30,7 @@ namespace Controller
 
         public void SpawnCard(Card card)
         {
-            var firstDisabled = cardSlotsPool
+            var firstDisabled = cardsInHand
                 .FirstOrDefault(cardSlot => !cardSlot.gameObject.activeInHierarchy);
             if (firstDisabled is not null)
             {
@@ -51,7 +51,19 @@ namespace Controller
         {
             cardController.DeleteCard(slot.CardObject);
             cardSlotsPool.Remove(slot);
+            cardsInHand.Remove(slot);
             Destroy(slot.gameObject);
+        }
+
+        public void DiscardHand()
+        {
+            foreach (var card in CardsInHand)
+            {
+                Destroy(card.gameObject);
+            }
+            cardsInHand = new LinkedList<CardSlot>();
+            cardSlotsPool = new List<CardSlot>();
+            cardController.CardsPool = new List<CardObject>();
         }
         
         private void SpawnCardSlot(CardSlot cardSlot, Card card)

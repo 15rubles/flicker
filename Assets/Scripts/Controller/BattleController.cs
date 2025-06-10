@@ -18,7 +18,7 @@ namespace Controller
     
     public class BattleController : MonoBehaviour
     {
-        [FormerlySerializedAs("cardGroupController")] [SerializeField] private CardSlotController cardSlotController;
+        [SerializeField] private CardSlotController cardSlotController;
         [SerializeField] private MonsterController monsterController;
         [SerializeField] private CreatureController creatureController;
                 
@@ -60,7 +60,7 @@ namespace Controller
 
         private void DiscardHand()
         {
-            cardSlotController.CardsInHand = new LinkedList<CardSlot>();
+            cardSlotController.DiscardHand();
             //TODO add to discard
         }
 

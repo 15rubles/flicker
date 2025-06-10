@@ -11,6 +11,7 @@ namespace Controller
         public RectTransform rectTransform;
         public CreatureController creatureController;
 
+        [SerializeField]
         private List<CreatureSlot> creatureSlots = new List<CreatureSlot>();
 
         public List<CreatureSlot> CreatureSlots
@@ -31,6 +32,11 @@ namespace Controller
         {
             creatureSlot.transform.SetParent(transform);
             creatureSlots.Add(creatureSlot);
+        }
+
+        public void RemoveCreature(CreatureSlot creatureSlot)
+        {
+            creatureSlots.Remove(creatureSlot);
         }
         
     }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 5
   power: 5
+  isDraggable: 0
   CardAbility:
     rid: 8966283168897827026
   cardCost:
