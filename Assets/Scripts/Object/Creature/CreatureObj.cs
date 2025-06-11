@@ -1,7 +1,10 @@
-﻿using Controller;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Controller;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 namespace Object.Creature
 {
@@ -39,6 +42,9 @@ namespace Object.Creature
         public AttackZoneController AttackCardZone { get; set; }
 
         public BlockZoneController BlockCardZone { get; set; }
+
+        private int indexToInsert;
+        private ZoneController zoneToInsert;
         
         private void Awake()
         {
@@ -53,9 +59,50 @@ namespace Object.Creature
         }
         public void OnDrag(PointerEventData eventData)
         {
-            if (card.isDraggable)
+            if (!card.isDraggable) return;
+
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            List<CreatureSlotViewInfo> list = GetListOfAllCardsRectTransforms();
+            for (int index = 0; index < list.Count; index++)
             {
-                rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+                RectTransform rect = list[index].Rect;
+                if (RectTransformUtility.RectangleContainsScreenPoint(rect, eventData.position, eventData.enterEventCamera))
+                {
+                    // Convert to local space
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        rect, eventData.position, eventData.enterEventCamera, out Vector2 localPoint
+                    );
+
+                    UtilitiesFunctions.SetSameParent(slot.gameObject, rect.gameObject);
+                    
+                    // Check which side
+                    if (localPoint.x < 0)
+                    {
+                        UtilitiesFunctions.MoveBefore(slot.gameObject, rect.gameObject);
+                        indexToInsert = list[index].Index;
+                    }
+                    else
+                    {
+                        UtilitiesFunctions.MoveAfter(slot.gameObject, rect.gameObject);
+                        indexToInsert = list[index].Index + 1;
+                    }
+                    zoneToInsert = list[index].Zone;
+                    return;
+                }
+            }
+            
+            indexToInsert = 0;
+            if (AttackCardZone.rectTransform.rect.Contains(
+                    AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
+            {
+                slot.transform.SetParent(AttackCardZone.transform);
+                zoneToInsert = AttackCardZone;
+            }
+            else if (BlockCardZone.rectTransform.rect.Contains(
+                         BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
+            {
+                slot.transform.SetParent(BlockCardZone.transform);
+                zoneToInsert = BlockCardZone;
             }
         }
         public void OnEndDrag(PointerEventData eventData)
@@ -64,28 +111,20 @@ namespace Object.Creature
 
             transform.SetParent(slot.transform);
             gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            zoneToInsert.CreatureSlots.Insert(indexToInsert, slot);
+            Zone = zoneToInsert;
+        }
 
-            if (AttackCardZone.rectTransform.rect.Contains(
-                    AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
-            {
-                BlockCardZone.RemoveCreature(slot);
-                AttackCardZone.AddCreature(slot);
-                Zone = AttackCardZone;
-            }
-            else if (BlockCardZone.rectTransform.rect.Contains(
-                         BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
-            {
-                AttackCardZone.RemoveCreature(slot);
-                BlockCardZone.AddCreature(slot);
-                Zone = BlockCardZone;
-            }
+        private List<CreatureSlotViewInfo> GetListOfAllCardsRectTransforms()
+        {
+            return AttackCardZone.CreatureSlotsViewInfos.Concat(BlockCardZone.CreatureSlotsViewInfos).ToList();
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (card.isDraggable)
-            {
-                transform.SetParent(canvas.transform);
-            }
+            if (!card.isDraggable) return;
+
+            transform.SetParent(canvas.transform);
+            Zone.CreatureSlots.Remove(slot);
         }
     }
 }

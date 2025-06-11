@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Object;
 using Object.Creature;
 using UnityEngine;
+using Utils;
 
 namespace Controller
 {
@@ -25,6 +25,20 @@ namespace Controller
             get
             {
                 return creatureSlots.Select(slot => slot.CreatureObj).ToList();
+            }
+        }
+        
+        public List<CreatureSlotViewInfo> CreatureSlotsViewInfos
+        {
+            get
+            { 
+                return creatureSlots.Select((slot, index) =>
+                    new CreatureSlotViewInfo(
+                        slot.gameObject.GetComponent<RectTransform>(), 
+                        this, 
+                        index
+                    )
+                ).ToList();
             }
         }
 
