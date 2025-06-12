@@ -66,6 +66,33 @@ namespace Controller
             cardController.CardsPool = new List<CardObject>();
         }
         
+        public int DiscardSelectedForMulligan()
+        {
+            int discardedQuantity = 0;
+            var newCardsInHand = new LinkedList<CardSlot>();
+            var newCardSlotsPool =  new List<CardSlot>();
+            var newCardsPool = new List<CardObject>();
+            foreach (var card in CardsInHand)
+            {
+                if (card.CardObject.IsSelected)
+                {
+                    Destroy(card.gameObject);
+                    discardedQuantity++;
+                }
+                else
+                {
+                    newCardsInHand.AddLast(card);
+                    newCardSlotsPool.Add(card);
+                    newCardsPool.Add(card.CardObject);
+                }
+            }
+            cardsInHand = newCardsInHand;
+            cardSlotsPool = newCardSlotsPool;
+            cardController.CardsPool = newCardsPool;
+            
+            return discardedQuantity;
+        }
+        
         private void SpawnCardSlot(CardSlot cardSlot, Card card)
         {
             var node = cardsInHand.AddLast(cardSlot);

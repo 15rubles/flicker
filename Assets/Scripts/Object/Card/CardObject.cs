@@ -18,6 +18,8 @@ namespace Object.Card
 
         private RectTransform rectTransform;
 
+        [SerializeField] private Vector2 selectedPosition;
+
         private void Awake()
         {
             canvas = GetComponentInParent<Canvas>();
@@ -37,6 +39,8 @@ namespace Object.Card
             get => cardSlot;
             set => cardSlot = value;
         }
+        
+        public bool IsSelected { get; set; }
 
         public LinkedListNode<CardSlot> CardSlotNode { get; set; }
 
@@ -52,6 +56,8 @@ namespace Object.Card
         
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (StateController.IsMulliganStep)
+                return;
             if (AttackCardZone.rectTransform.rect.Contains(AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
             {
                 PlayCard(AttackCardZone);
@@ -62,7 +68,7 @@ namespace Object.Card
             }
             else
             {
-                gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                rectTransform.anchoredPosition = Vector2.zero;
             }
         }
 
@@ -75,6 +81,8 @@ namespace Object.Card
         
         public void OnDrag(PointerEventData eventData)
         {
+            if (StateController.IsMulliganStep) 
+                return;
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
             //todo add hover text when card will be played in hovered zone if stop holding
             // if (AttackCardZone.rect.Contains(AttackCardZone.InverseTransformPoint(eventData.position)))
@@ -97,6 +105,19 @@ namespace Object.Card
         //     cardSlotToSwap.CardObject = this;
         //     cardSlotSafe.Reset();
         // }
+
+        public void Select()
+        {
+            if (!StateController.IsMulliganStep)
+                return;
+                
+            IsSelected = !IsSelected;
+
+            rectTransform.anchoredPosition = 
+                IsSelected 
+                    ? selectedPosition 
+                    : Vector2.zero;
+        }
 
         private void Delete()
         {

@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Entity;
 using Entity.Battle;
-using Object;
-using Object.Card;
 using Object.Creature;
 using Object.Monster;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -38,6 +34,8 @@ namespace Controller
         {
             CreateTurnStepsOrder();
             
+            StateController.IsMulliganStep = true;
+            
             deck.ResetDeck();
             DealHand();
             creatureController.SpawnHealthCard(deck.HealthCard);
@@ -50,7 +48,12 @@ namespace Controller
 
         private void DealHand()
         {
-            for (int i = 0; i < startHandCount; i++)
+            DealCards(startHandCount);
+        }
+        
+        private void DealCards(int quantity)
+        {
+            for (int i = 0; i < quantity; i++)
             {
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
                 cardSlotController.SpawnCard(deck.CardsInDeck[randomIndex]);
@@ -71,9 +74,9 @@ namespace Controller
 
         private void CreateTurnStepsOrder()
         {
-            var firstNode = new CircularNode<TurnStep>(TurnStep.PlayCards);
-            var middleNode = new CircularNode<TurnStep>(TurnStep.Attack);
-            var lastNode = new CircularNode<TurnStep>(TurnStep.Flick);
+            var firstNode = new CircularNode<TurnStep>(TurnStep.Mulligan);
+            var middleNode = new CircularNode<TurnStep>(TurnStep.PlayCards);
+            var lastNode = new CircularNode<TurnStep>(TurnStep.Attack);
             firstNode.Next = middleNode;
             middleNode.Next = lastNode;
             lastNode.Next = firstNode;
@@ -94,10 +97,17 @@ namespace Controller
             
             switch (nextStep?.Value)
             {
-                case TurnStep.PlayCards:
+                case TurnStep.Mulligan:
+                    StateController.IsMulliganStep = true;
                     ResetCreatureZones();
-                    DealHand();
                     turnText.text = (Int32.Parse(turnText.text) + 1).ToString();
+                    DealHand();
+                    coverScreen.SetActive(true);
+                    nextStepButtonText.text = "Mulligan";
+                    break;
+                case TurnStep.PlayCards:
+                    Mulligan();
+                    StateController.IsMulliganStep = false;
                     coverScreen.SetActive(false);
                     nextStepButtonText.text = "Next Step";
                     break;
@@ -105,11 +115,6 @@ namespace Controller
                     DiscardHand();
                     CreaturesAttack();
                     MonstersAttack();
-                    coverScreen.SetActive(true);
-                    break;
-                case TurnStep.Flick:
-                    //TODO
-                    //Flick();
                     coverScreen.SetActive(true);
                     nextStepButtonText.text = "Next Turn";
                     break;
@@ -119,6 +124,12 @@ namespace Controller
             UpdateStepsText();
         }
 
+        private void Mulligan()
+        {
+            int discardedQuantity = cardSlotController.DiscardSelectedForMulligan();
+            DealCards(discardedQuantity);
+        }
+        
         private void CreaturesAttack()
         {
             MonsterSlot slot = monsterController.MonsterSlots.FirstOrDefault();
