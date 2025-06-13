@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Controller;
+using Entity.Card.Ability;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -59,7 +60,7 @@ namespace Object.Creature
         }
         public void OnDrag(PointerEventData eventData)
         {
-            if (!card.isDraggable) return;
+            if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
             List<CreatureSlotViewInfo> list = GetListOfAllCardsRectTransforms();
@@ -107,7 +108,7 @@ namespace Object.Creature
         }
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (!card.isDraggable) return;
+            if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             transform.SetParent(slot.transform);
             gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -121,7 +122,7 @@ namespace Object.Creature
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (!card.isDraggable) return;
+            if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             transform.SetParent(canvas.transform);
             Zone.CreatureSlots.Remove(slot);

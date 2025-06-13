@@ -3,10 +3,11 @@ using Entity.Card;
 using Object;
 using Object.Creature;
 using UnityEngine;
+using Utils;
 
 namespace Controller
 {
-    public class CreatureController : MonoBehaviour
+    public class CreatureController : RegisteredMonoBehaviour
     {
         [SerializeField] 
         private AttackZoneController attackZone;

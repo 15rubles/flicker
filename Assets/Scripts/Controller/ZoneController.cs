@@ -6,7 +6,7 @@ using Utils;
 
 namespace Controller
 {
-    public class ZoneController : MonoBehaviour
+    public class ZoneController : RegisteredMonoBehaviour
     {
         public RectTransform rectTransform;
         public CreatureController creatureController;

@@ -3,10 +3,11 @@ using System.Linq;
 using Entity.Card;
 using Object.Card;
 using UnityEngine;
+using Utils;
 
 namespace Controller
 {
-    public class CardSlotController: MonoBehaviour
+    public class CardSlotController: RegisteredMonoBehaviour
     {
         [SerializeField] private int startCardsInHand = 5;
         

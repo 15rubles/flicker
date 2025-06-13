@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Controller;
+using Entity.Card.Ability;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -74,9 +75,12 @@ namespace Object.Card
 
         private void PlayCard(ZoneController cardZone)
         {
-            Card.CardAbility.UseAbility(Card);
-            Delete();
             cardZone.creatureController.SpawnCreature(cardZone, card);
+            if (Card.cardAbility.AbilityType == AbilityType.EnterTheBattlefield)
+            {
+                Card.cardAbility.UseAbility(this);
+            }
+            Delete();
         }
         
         public void OnDrag(PointerEventData eventData)

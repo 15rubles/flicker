@@ -1,5 +1,7 @@
-﻿using Entity.Card.Ability;
+﻿using System.Collections.Generic;
+using Entity.Card.Ability;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Entity.Card
 {
@@ -8,10 +10,16 @@ namespace Entity.Card
     {
         public CardName cardName;
         public int power;
-        public bool isDraggable = true;
-        [SerializeReference]
-        public CardAbility CardAbility;
+        [SerializeField] public List<KeywordType> keywords = new List<KeywordType>();
+        [SerializeReference] public CardAbility cardAbility;
+        [SerializeField] public List<CardType> cardTypes = new List<CardType>();
         public CardCost cardCost;
         public Sprite visual;
+        public CardType type;
+
+        public bool CheckKeyword(KeywordType keywordToCheck)
+        {
+            return keywords.Contains(keywordToCheck);
+        }
     }
 }

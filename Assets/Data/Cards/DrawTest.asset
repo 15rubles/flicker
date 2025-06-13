@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
-  m_Name: Knight
+  m_Name: DrawTest
   m_EditorClassIdentifier: 
-  cardName: 4
-  power: 3
+  cardName: 7
+  power: 2
   keywords: 
   cardAbility:
-    rid: 3275667538002313285
-  cardTypes: 01000000
+    rid: 3275667538002313292
+  cardTypes: 
   cardCost:
     cost: 0
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
@@ -25,7 +25,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 3275667538002313285
-      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+    - rid: 3275667538002313292
+      type: {class: DrawCardAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0

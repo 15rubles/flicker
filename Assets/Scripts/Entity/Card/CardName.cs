@@ -11,6 +11,7 @@ namespace Entity.Card
         Lizard,
         Knight,
         HealthTower,
-        BigGuy
+        BigGuy,
+        DrawTest
     }
 }

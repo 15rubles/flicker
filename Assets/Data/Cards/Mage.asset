@@ -14,15 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 2
   power: 1
-  isDraggable: 1
-  CardAbility:
-    rid: 8966283168897827026
+  keywords: 
+  cardAbility:
+    rid: 3275667538002313290
+  cardTypes: 
   cardCost:
     cost: 0
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
+  type: 0
   references:
     version: 2
     RefIds:
-    - rid: 8966283168897827026
+    - rid: 3275667538002313290
       type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
-      data: 
+      data:
+        abilityType: 0

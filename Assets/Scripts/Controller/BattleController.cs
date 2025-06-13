@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 namespace Controller
 {
     
-    public class BattleController : MonoBehaviour
+    public class BattleController : RegisteredMonoBehaviour
     {
         [SerializeField] private CardSlotController cardSlotController;
         [SerializeField] private MonsterController monsterController;
@@ -30,8 +30,9 @@ namespace Controller
         
         private CircularNode<TurnStep> currentStep;
         
-        private void Awake()
+        override protected void Awake()
         {
+            base.Awake();
             CreateTurnStepsOrder();
             
             StateController.IsMulliganStep = true;
@@ -51,7 +52,7 @@ namespace Controller
             DealCards(startHandCount);
         }
         
-        private void DealCards(int quantity)
+        public void DealCards(int quantity)
         {
             for (int i = 0; i < quantity; i++)
             {

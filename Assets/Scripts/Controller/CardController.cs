@@ -5,10 +5,11 @@ using Object;
 using Object.Card;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Controller
 {
-    public class CardController: MonoBehaviour
+    public class CardController: RegisteredMonoBehaviour
     { 
         [SerializeField] 
         private List<CardObject> cardsPool;
