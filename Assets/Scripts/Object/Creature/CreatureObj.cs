@@ -37,8 +37,6 @@ namespace Object.Creature
                 Power = value.power;
             }
         }
-
-        // public ZoneController Zone { get; set; }
         
         public AttackZoneController AttackCardZone { get; set; }
 
@@ -77,14 +75,11 @@ namespace Object.Creature
                     if (localPoint.x < 0)
                     {
                         UtilitiesFunctions.MoveBefore(slot.gameObject, rect.gameObject);
-                        // indexToInsert = list[index].Index;
                     }
                     else
                     {
                         UtilitiesFunctions.MoveAfter(slot.gameObject, rect.gameObject);
-                        // indexToInsert = list[index].Index + 1;
                     }
-                    // zoneToInsert = list[index].Zone;
                     return;
                 }
             }
@@ -106,8 +101,6 @@ namespace Object.Creature
 
             transform.SetParent(slot.transform);
             gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            // zoneToInsert.CreatureSlots.Insert(indexToInsert, slot);
-            // Zone = zoneToInsert;
         }
 
         private List<GameObject> GetListOfAllCardSlotsGOs()
@@ -119,7 +112,6 @@ namespace Object.Creature
             if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             transform.SetParent(canvas.transform);
-            // Zone.CreatureSlots.Remove(slot);
         }
     }
 }
