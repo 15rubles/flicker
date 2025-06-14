@@ -38,14 +38,11 @@ namespace Object.Creature
             }
         }
 
-        public ZoneController Zone { get; set; }
+        // public ZoneController Zone { get; set; }
         
         public AttackZoneController AttackCardZone { get; set; }
 
         public BlockZoneController BlockCardZone { get; set; }
-
-        private int indexToInsert;
-        private ZoneController zoneToInsert;
         
         private void Awake()
         {
@@ -63,10 +60,10 @@ namespace Object.Creature
             if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-            List<CreatureSlotViewInfo> list = GetListOfAllCardsRectTransforms();
+            List<GameObject> list = GetListOfAllCardSlotsGOs();
             for (int index = 0; index < list.Count; index++)
             {
-                RectTransform rect = list[index].Rect;
+                RectTransform rect = list[index].GetComponent<RectTransform>();
                 if (RectTransformUtility.RectangleContainsScreenPoint(rect, eventData.position, eventData.enterEventCamera))
                 {
                     // Convert to local space
@@ -80,30 +77,27 @@ namespace Object.Creature
                     if (localPoint.x < 0)
                     {
                         UtilitiesFunctions.MoveBefore(slot.gameObject, rect.gameObject);
-                        indexToInsert = list[index].Index;
+                        // indexToInsert = list[index].Index;
                     }
                     else
                     {
                         UtilitiesFunctions.MoveAfter(slot.gameObject, rect.gameObject);
-                        indexToInsert = list[index].Index + 1;
+                        // indexToInsert = list[index].Index + 1;
                     }
-                    zoneToInsert = list[index].Zone;
+                    // zoneToInsert = list[index].Zone;
                     return;
                 }
             }
             
-            indexToInsert = 0;
             if (AttackCardZone.rectTransform.rect.Contains(
                     AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
             {
                 slot.transform.SetParent(AttackCardZone.transform);
-                zoneToInsert = AttackCardZone;
             }
             else if (BlockCardZone.rectTransform.rect.Contains(
                          BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
             {
                 slot.transform.SetParent(BlockCardZone.transform);
-                zoneToInsert = BlockCardZone;
             }
         }
         public void OnEndDrag(PointerEventData eventData)
@@ -112,20 +106,20 @@ namespace Object.Creature
 
             transform.SetParent(slot.transform);
             gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            zoneToInsert.CreatureSlots.Insert(indexToInsert, slot);
-            Zone = zoneToInsert;
+            // zoneToInsert.CreatureSlots.Insert(indexToInsert, slot);
+            // Zone = zoneToInsert;
         }
 
-        private List<CreatureSlotViewInfo> GetListOfAllCardsRectTransforms()
+        private List<GameObject> GetListOfAllCardSlotsGOs()
         {
-            return AttackCardZone.CreatureSlotsViewInfos.Concat(BlockCardZone.CreatureSlotsViewInfos).ToList();
+            return AttackCardZone.CreatureGOs.Concat(BlockCardZone.CreatureGOs).ToList();
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             transform.SetParent(canvas.transform);
-            Zone.CreatureSlots.Remove(slot);
+            // Zone.CreatureSlots.Remove(slot);
         }
     }
 }

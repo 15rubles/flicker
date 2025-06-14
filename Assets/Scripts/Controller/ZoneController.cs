@@ -12,45 +12,73 @@ namespace Controller
         public CreatureController creatureController;
 
         [SerializeField]
-        private List<CreatureSlot> creatureSlots = new List<CreatureSlot>();
+        private Dictionary<GameObject, CreatureSlot> gOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
 
-        public List<CreatureSlot> CreatureSlots
+        public Dictionary<GameObject, CreatureSlot> GOsToCreatureSlots
         {
-            get => creatureSlots;
-            set => creatureSlots = value;
+            get => gOsToCreatureSlots;
+            set => gOsToCreatureSlots = value;
         }
 
         public List<CreatureObj> Creatures
         {
             get
             {
-                return creatureSlots.Select(slot => slot.CreatureObj).ToList();
+                List<CreatureObj> list = new List<CreatureObj>();
+                int children = transform.childCount;
+
+                for (int i = 0; i < children; i++)
+                {
+                    list.Add(gOsToCreatureSlots[transform.GetChild(i).gameObject].CreatureObj);
+                }
+                return list;
             }
         }
         
-        public List<CreatureSlotViewInfo> CreatureSlotsViewInfos
+        public List<CreatureSlot> CreatureSlots
         {
             get
-            { 
-                return creatureSlots.Select((slot, index) =>
-                    new CreatureSlotViewInfo(
-                        slot.gameObject.GetComponent<RectTransform>(), 
-                        this, 
-                        index
-                    )
-                ).ToList();
+            {
+                List<CreatureSlot> list = new List<CreatureSlot>();
+                int children = transform.childCount;
+
+                for (int i = 0; i < children; i++)
+                {
+                    list.Add(gOsToCreatureSlots[transform.GetChild(i).gameObject]);
+                }
+                return list;
             }
         }
+        
+
+        public Dictionary<GameObject, CreatureObj> GOsToCreatureObjs
+        {
+            get
+            {
+                return gOsToCreatureSlots.ToDictionary(slot => slot.Key,
+                    slot => slot.Value.CreatureObj);
+            }
+        }
+        
+        public List<GameObject> CreatureGOs
+        {
+            get
+            {
+                return gOsToCreatureSlots.Select(slot => slot.Key).ToList();
+            }
+        }
+        
+       
 
         public void AddCreature(CreatureSlot creatureSlot)
         {
             creatureSlot.transform.SetParent(transform);
-            creatureSlots.Add(creatureSlot);
+            GOsToCreatureSlots.Add(creatureSlot.gameObject, creatureSlot);
         }
 
         public void RemoveCreature(CreatureSlot creatureSlot)
         {
-            creatureSlots.Remove(creatureSlot);
+            gOsToCreatureSlots.Remove(creatureSlot.gameObject);
         }
         
     }

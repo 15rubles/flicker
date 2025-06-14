@@ -54,6 +54,12 @@ namespace Controller
         
         public void DealCards(int quantity)
         {
+            if (deck.CardsInDeck.Count < quantity)
+            {
+                //TODO
+                Debug.Log("Deck is empty");
+                quantity = deck.CardsInDeck.Count;
+            }
             for (int i = 0; i < quantity; i++)
             {
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);

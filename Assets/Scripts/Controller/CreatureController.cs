@@ -33,7 +33,7 @@ namespace Controller
         {
             var creatureObj = creatureSlot.CreatureObj;
             creatureObj.Card = cardData;
-            creatureObj.Zone = zone;
+            // creatureObj.Zone = zone;
             creatureObj.AttackCardZone = attackZone;
             creatureObj.BlockCardZone = blockZone;
             zone.AddCreature(creatureSlot);
@@ -51,13 +51,13 @@ namespace Controller
             {
                 Destroy(creature.gameObject);
             }
-            attackZone.CreatureSlots = new List<CreatureSlot>();
+            attackZone.GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
             
             foreach (var creature in blockZone.CreatureSlots)
             {
                 Destroy(creature.gameObject);
             }
-            blockZone.CreatureSlots = new List<CreatureSlot>();
+            blockZone.GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
             
             SpawnHealthCard(healthCard);
         }
