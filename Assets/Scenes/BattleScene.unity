@@ -1186,6 +1186,7 @@ MonoBehaviour:
   startHandCount: 5
   deck: {fileID: 11400000, guid: ad4b1774f36656b48bd15aeaf5993b2c, type: 2}
   currentBattle: {fileID: 11400000, guid: 17db69f2d68e00749bb03d3ffe138ddb, type: 2}
+  animationSpeed: 0.5
 --- !u!1 &884335802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 884335803}
   creatureController: {fileID: 786262275}
-  creatureSlots: []
 --- !u!114 &884335805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1573,7 +1573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1081224448}
   creatureController: {fileID: 786262275}
-  creatureSlots: []
 --- !u!114 &1081224450
 MonoBehaviour:
   m_ObjectHideFlags: 0
