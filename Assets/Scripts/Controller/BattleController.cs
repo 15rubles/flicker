@@ -31,6 +31,8 @@ namespace Controller
         [SerializeField] private Battle currentBattle;
 
         [SerializeField] private float animationSpeed = 0.5f;
+
+        public float AnimationSpeed => animationSpeed;
         
         private CircularNode<TurnStep> currentStep;
         
@@ -163,7 +165,10 @@ namespace Controller
             foreach (var creature in creatureController.AttackZone.Creatures)
             {
                 await creature.GetComponent<RectTransform>()
-                              .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
+                              .DOAnchorPos(
+                                  UtilitiesFunctions.ConvertAnchoredPosition(monster.GetComponent<RectTransform>(),
+                                                                                    creature.GetComponent<RectTransform>()),
+                                  animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
                 if (monster.Power - creature.Power <= 0)
                 { 
                     Sequence explosion = DOTween.Sequence();
@@ -175,6 +180,8 @@ namespace Controller
                     await explosion.AsyncWaitForCompletion();
                     
                     Destroy(slot.gameObject);
+                    await Task.Yield();
+                    
                     monsterController.MonsterSlots.RemoveAt(0);
                     slot = monsterController.MonsterSlots.FirstOrDefault();
                     if (slot == null)
@@ -193,7 +200,7 @@ namespace Controller
                     monster.UpdateText();
                 }
                 creature.GetComponent<RectTransform>()
-                        .DOAnchorPosY(0, animationSpeed).SetEase(Ease.InOutExpo);
+                        .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }
         }
         
@@ -205,8 +212,7 @@ namespace Controller
             foreach (var monster in monsterController.MonstersPool)
             {
                 slot = creatureController.BlockZone.CreatureSlots.FirstOrDefault();
-                monster.GetComponent<RectTransform>()
-                       .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo);
+                
                 if (slot == null)
                 {
                     //TODO
@@ -214,6 +220,10 @@ namespace Controller
                     return;
                 }
                 creature = slot.CreatureObj;
+                monster.GetComponent<RectTransform>()
+                       .DOAnchorPos(UtilitiesFunctions.ConvertAnchoredPosition(creature.GetComponent<RectTransform>(),
+                           monster.GetComponent<RectTransform>()), animationSpeed).SetEase(Ease.InOutExpo);
+                
                 await creature.GetComponent<RectTransform>()
                               .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
                 if (creature.Power - monster.Power <= 0)
@@ -236,7 +246,7 @@ namespace Controller
                     creature.UpdateText();
                 }
                 monster.GetComponent<RectTransform>()
-                       .DOAnchorPosY(0, animationSpeed).SetEase(Ease.InOutExpo);
+                       .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }
         }
     }

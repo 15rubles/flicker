@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace Object.Card
 {
-    public class CardObject : MonoBehaviour, IEndDragHandler, IDragHandler
+    public class CardObject : MonoBehaviour, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private TextMeshProUGUI toughness;
         [SerializeField] private TextMeshProUGUI power;
@@ -21,6 +21,10 @@ namespace Object.Card
 
         [SerializeField] private Vector2 selectedPosition;
 
+        [SerializeField] private GameObject keywordExplainPrefab;
+
+        [SerializeField] private GameObject keywordExplainPool;
+
         private void Awake()
         {
             canvas = GetComponentInParent<Canvas>();
@@ -32,7 +36,19 @@ namespace Object.Card
         public Entity.Card.Card Card
         {
             get => card;
-            set => card = value;
+            set
+            {
+                card = value;
+                foreach (Transform child in keywordExplainPool.transform) {
+                    Destroy(child.gameObject);
+                }
+                foreach (var keyword in card.keywords)
+                {
+                    var newKeyword = Instantiate(keywordExplainPrefab.gameObject, keywordExplainPool.transform);
+                    newKeyword.GetComponent<KeywordExplain>().UpdateText(keyword);
+                    newKeyword.SetActive(false);
+                }
+            }
         }
 
         public CardSlot CardSlot
@@ -126,6 +142,21 @@ namespace Object.Card
         private void Delete()
         {
             cardSlot.Delete();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            foreach (Transform child in keywordExplainPool.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            foreach (Transform child in keywordExplainPool.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Entity.Card;
 using Object.Card;
 using UnityEngine;
@@ -20,6 +23,8 @@ namespace Controller
         [SerializeField] private CardController cardController;
 
         [SerializeField] private Card cardToSpawn;
+        
+        [SerializeField] private RectTransform discardPile;
         
         private LinkedList<CardSlot> cardsInHand = new LinkedList<CardSlot>();
 
@@ -60,7 +65,7 @@ namespace Controller
         {
             foreach (var card in CardsInHand)
             {
-                Destroy(card.gameObject);
+                StartCoroutine(DiscardCardAnimation(card, () => { Destroy(card.gameObject); }));
             }
             cardsInHand = new LinkedList<CardSlot>();
             cardSlotsPool = new List<CardSlot>();
@@ -77,7 +82,7 @@ namespace Controller
             {
                 if (card.CardObject.IsSelected)
                 {
-                    Destroy(card.gameObject);
+                    StartCoroutine(DiscardCardAnimation(card, () => { Destroy(card.gameObject); }));
                     discardedQuantity++;
                 }
                 else
@@ -92,6 +97,20 @@ namespace Controller
             cardController.CardsPool = newCardsPool;
             
             return discardedQuantity;
+        }
+
+        private IEnumerator DiscardCardAnimation(CardSlot cardSlot, Action onComplete = null)
+        {
+            var card = cardSlot.CardObject.gameObject;
+            RectTransform cardRT = card.GetComponent<RectTransform>();
+            Vector2 targetPos = UtilitiesFunctions.ConvertAnchoredPosition(discardPile, cardRT);
+
+            Tween tween = cardRT.DOAnchorPos(targetPos,
+                ControllerLocator.GetService<BattleController>().AnimationSpeed).SetEase(Ease.InOutExpo);
+
+            yield return tween.WaitForCompletion();
+            
+            onComplete?.Invoke();
         }
         
         private void SpawnCardSlot(CardSlot cardSlot, Card card)

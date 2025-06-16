@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 2
   power: 1
-  keywords: 
+  keywords: 00000000
   cardAbility:
     rid: 3275667538002313290
   cardTypes: 

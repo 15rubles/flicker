@@ -23,5 +23,16 @@ namespace Utils
                 toChange.transform.SetParent(target.transform.parent);
             }
         }
+        
+        public static Vector2 ConvertAnchoredPosition(RectTransform from, RectTransform to)
+        {
+            // Get world position of 'from'
+            Vector3 worldPos = from.TransformPoint(from.anchoredPosition);
+
+            // Convert world position to local position of 'to'
+            Vector3 localPos = to.InverseTransformPoint(worldPos);
+
+            return localPos;
+        }
     }
 }
