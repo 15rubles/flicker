@@ -9,9 +9,9 @@ namespace Object.Card
 {
     public class CardObject : MonoBehaviour, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private TextMeshProUGUI toughness;
         [SerializeField] private TextMeshProUGUI power;
         [SerializeField] private TextMeshProUGUI cardName;
+        [SerializeField] private TextMeshProUGUI description;
 
         private Canvas canvas;
 
@@ -48,6 +48,7 @@ namespace Object.Card
                     newKeyword.GetComponent<KeywordExplain>().UpdateText(keyword);
                     newKeyword.SetActive(false);
                 }
+                UpdateText();
             }
         }
 
@@ -65,10 +66,11 @@ namespace Object.Card
 
         public BlockZoneController BlockCardZone { get; set; }
         
-        public void UpdateText()
+        private void UpdateText()
         {
             cardName.text = card.cardName.ToString();
             power.text = card.power.ToString();
+            description.text = card.Description;
         }
         
         public void OnEndDrag(PointerEventData eventData)

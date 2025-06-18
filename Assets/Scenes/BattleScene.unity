@@ -1095,6 +1095,7 @@ GameObject:
   - component: {fileID: 786262278}
   - component: {fileID: 786262277}
   - component: {fileID: 786262276}
+  - component: {fileID: 786262279}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -1176,6 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817027b886584c85a26d265f29a493e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 786262279}
   cardSlotController: {fileID: 1043867048}
   monsterController: {fileID: 786262276}
   creatureController: {fileID: 786262275}
@@ -1188,6 +1190,23 @@ MonoBehaviour:
   deck: {fileID: 11400000, guid: ad4b1774f36656b48bd15aeaf5993b2c, type: 2}
   currentBattle: {fileID: 11400000, guid: 17db69f2d68e00749bb03d3ffe138ddb, type: 2}
   animationSpeed: 0.5
+--- !u!114 &786262279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786262273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021eeae1065c43758bc2700905ee58de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleController: {fileID: 786262278}
+  battles:
+  - {fileID: 11400000, guid: 54bdeebf5df3fdd4a9f612e5de19bd03, type: 2}
+  - {fileID: 11400000, guid: 2e093634fca7610428307c65c212289f, type: 2}
+  currentBattle: {fileID: 0}
 --- !u!1 &884335802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1454,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 3804682226232524316, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
     - {fileID: 5900729562532091387, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
+    - {fileID: 4604299494434497577, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
@@ -1492,12 +1512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3438c280e58a43c3a607b8b5c0a124f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCardsInHand: 15
-  cardSlotsPool: []
   cardSlotPrefab: {fileID: 527353725685524961, guid: b21ded9766fd86640b4caaee9f910f96, type: 3}
   cardController: {fileID: 786262277}
-  cardToSpawn: {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
   discardPile: {fileID: 985488664}
+  cardSlotsPool: []
 --- !u!114 &1043867049
 MonoBehaviour:
   m_ObjectHideFlags: 0

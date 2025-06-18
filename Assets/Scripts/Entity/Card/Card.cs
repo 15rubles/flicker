@@ -21,5 +21,18 @@ namespace Entity.Card
         {
             return keywords.Contains(keywordToCheck);
         }
+
+        public string Description
+        {
+            get
+            {
+                string keywordStr = "";
+                foreach (var keyword in keywords)
+                {
+                    keywordStr += keyword.ToString() + '\n';
+                }
+                return keywordStr + '\n' + cardAbility.Description;
+            }
+        }
     }
 }

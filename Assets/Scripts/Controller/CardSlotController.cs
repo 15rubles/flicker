@@ -12,20 +12,12 @@ namespace Controller
 {
     public class CardSlotController: RegisteredMonoBehaviour
     {
-        [SerializeField] private int startCardsInHand = 5;
-        
-        [SerializeField] 
-        private List<CardSlot> cardSlotsPool;
-
-        [SerializeField] 
-        private GameObject cardSlotPrefab;
-
+        [SerializeField] private GameObject cardSlotPrefab;
         [SerializeField] private CardController cardController;
-
-        [SerializeField] private Card cardToSpawn;
-        
         [SerializeField] private RectTransform discardPile;
         
+        //TODO delete one: cardSlotsPool or cardsInHans
+        [SerializeField] private List<CardSlot> cardSlotsPool;
         private LinkedList<CardSlot> cardsInHand = new LinkedList<CardSlot>();
 
         public LinkedList<CardSlot> CardsInHand
@@ -120,5 +112,20 @@ namespace Controller
             cardSlot.gameObject.SetActive(true);
         }
 
+
+        public void Reset()
+        {
+            foreach (var cardSlot in CardsInHand)
+            {
+                Destroy(cardSlot.gameObject);
+            }
+            foreach (var cardSlot in cardSlotsPool)
+            {
+                Destroy(cardSlot.gameObject);
+            }
+            cardsInHand = new LinkedList<CardSlot>();
+            cardSlotsPool = new List<CardSlot>();
+        }
+        
     }
 }

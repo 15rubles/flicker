@@ -1,5 +1,4 @@
-﻿using Entity.Card;
-using Entity.Monster.Ability;
+﻿using Entity.Monster.Ability;
 using UnityEngine;
 
 namespace Entity.Monster

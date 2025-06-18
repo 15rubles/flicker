@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 939b0bff538c93f4195e3979051bbdac, type: 3}
-  m_Name: firstBattle
+  m_Name: SecondBattle
   m_EditorClassIdentifier: 
-  battleName: 0
+  battleName: 1
   monsterSet:
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  difficulty: 2
+  difficulty: 0

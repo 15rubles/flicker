@@ -1,15 +1,16 @@
-﻿using TMPro;
+﻿using System;
+using Entity.Card.Ability;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Object.Monster
 {
-    public class MonsterObject: MonoBehaviour
+    public class MonsterObject: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField]
-        private TextMeshProUGUI powerText;
-        [SerializeField]
-        private TextMeshProUGUI cardName;
-
+        [SerializeField] private TextMeshProUGUI powerText;
+        [SerializeField] private TextMeshProUGUI cardName;
+        [SerializeField] private MonsterDescription monsterDescription;
         [SerializeField] private MonsterSlot slot;
 
         public MonsterSlot Slot
@@ -30,6 +31,7 @@ namespace Object.Monster
             {
                 monster = value;
                 Power = value.Power;
+                monsterDescription.Description = monster.Ability.Description;
             }
             
         }
@@ -39,6 +41,22 @@ namespace Object.Monster
         {
             cardName.text = monster.MonsterName.ToString();
             powerText.text = Power.ToString();
+        }
+
+        private void OnDestroy()
+        {
+            if (monster.Ability.AbilityType == AbilityType.DeathRattle)
+            {
+                monster.Ability.UseAbility();
+            }
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            monsterDescription.gameObject.SetActive(true);
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            monsterDescription.gameObject.SetActive(false);
         }
     }
 }

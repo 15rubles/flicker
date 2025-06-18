@@ -45,7 +45,7 @@ namespace Controller
             SpawnCreature(blockZone, healthCard);
         }
 
-        public void ResetZones(Card healthCard)
+        public void ResetZones()
         {
             foreach (var creature in attackZone.CreatureSlots)
             {
@@ -58,8 +58,6 @@ namespace Controller
                 Destroy(creature.gameObject);
             }
             blockZone.GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
-            
-            SpawnHealthCard(healthCard);
         }
     }
 }

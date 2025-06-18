@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
-  m_Name: Slime
+  m_Name: SmallSlime
   m_EditorClassIdentifier: 
-  monsterName: 0
-  power: 3
+  monsterName: 1
+  power: 1
   ability:
-    rid: 3275667648190611528
+    rid: 3275667648190611527
   visual: {fileID: 0}
   attackPattern:
     rid: 8966283404157911109
   references:
     version: 2
     RefIds:
-    - rid: 3275667648190611528
-      type: {class: SpawnMonsterAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
+    - rid: 3275667648190611527
+      type: {class: DefaultAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 2
-        description: When dies, spawn Small Slime
-        monstersToSpawn:
-        - {fileID: 11400000, guid: 8c7f9e1781c46eb4ca44ab02ebd3b552, type: 2}
+        abilityType: 0
+        description: ~~~~
     - rid: 8966283404157911109
       type: {class: DefaultAttack, ns: Entity.Monster.AttackPattern, asm: Assembly-CSharp}
       data: 

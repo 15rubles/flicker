@@ -1,8 +1,7 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entity.Battle
+namespace Entity.Encounter.Battle
 {
     [CreateAssetMenu(fileName = "Battle", menuName = "SOs/Battle", order = 1)]
     public class Battle : ScriptableObject

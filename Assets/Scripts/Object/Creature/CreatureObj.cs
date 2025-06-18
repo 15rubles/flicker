@@ -9,12 +9,15 @@ using Utils;
 
 namespace Object.Creature
 {
-    public class CreatureObj : MonoBehaviour, IEndDragHandler, IDragHandler, IBeginDragHandler
+    public class CreatureObj : MonoBehaviour, IEndDragHandler, IDragHandler, IBeginDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private TextMeshProUGUI cardName;
         
         [SerializeField] private CreatureSlot slot;
+        
+        [SerializeField] private CardHint cardHintLeft;
+        [SerializeField] private CardHint cardHintRight;
 
         public CreatureSlot Slot
         {
@@ -35,6 +38,8 @@ namespace Object.Creature
             {
                 card = value;
                 Power = value.power;
+                cardHintLeft.Card = card;
+                cardHintRight.Card = card;
             }
         }
         
@@ -112,6 +117,22 @@ namespace Object.Creature
             if (card.CheckKeyword(KeywordType.Untouchable)) return;
 
             transform.SetParent(canvas.transform);
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (UtilitiesFunctions.IsRectTransformFullyOnScreen(cardHintRight.Boundaries))
+            {
+                cardHintRight.gameObject.SetActive(true);
+            }
+            else
+            {
+                cardHintLeft.gameObject.SetActive(true);
+            }
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            cardHintLeft.gameObject.SetActive(false);
+            cardHintRight.gameObject.SetActive(false);
         }
     }
 }

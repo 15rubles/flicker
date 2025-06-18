@@ -1,4 +1,4 @@
-﻿namespace Entity.Battle
+﻿namespace Entity.Encounter.Battle
 {
     public enum TurnStep
     {

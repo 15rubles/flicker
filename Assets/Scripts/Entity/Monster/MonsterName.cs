@@ -2,6 +2,7 @@
 {
     public enum MonsterName
     {
-        Slime
+        Slime,
+        SmallSlime
     }
 }

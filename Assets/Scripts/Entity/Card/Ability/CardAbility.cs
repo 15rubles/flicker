@@ -9,7 +9,10 @@ namespace Entity.Card.Ability
     {
         [SerializeField] private AbilityType abilityType;
         
+        [SerializeField] private string description = "!!description is undefined!!";
+        
         public AbilityType AbilityType => abilityType;
+        public string Description => description;
 
         public abstract CardAbility UseAbility(CardObject cardObj);
     }

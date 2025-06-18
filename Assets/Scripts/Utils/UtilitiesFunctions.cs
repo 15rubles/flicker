@@ -26,13 +26,31 @@ namespace Utils
         
         public static Vector2 ConvertAnchoredPosition(RectTransform from, RectTransform to)
         {
-            // Get world position of 'from'
             Vector3 worldPos = from.TransformPoint(from.anchoredPosition);
-
-            // Convert world position to local position of 'to'
             Vector3 localPos = to.InverseTransformPoint(worldPos);
 
             return localPos;
         }
+        
+        public static bool IsRectTransformFullyOnScreen(RectTransform target)
+        {
+            Vector3[] corners = new Vector3[4];
+            target.GetWorldCorners(corners);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector3 screenPoint = corners[i]; // in world space
+
+                // Since root canvas is Overlay, this behaves like screen space
+                if (screenPoint.x < 0 || screenPoint.x > Screen.width ||
+                    screenPoint.y < 0 || screenPoint.y > Screen.height)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     }
 }

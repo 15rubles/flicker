@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DG.DemiLib;
 using Entity;
-using Entity.Battle;
 using Object.Creature;
 using Object.Monster;
 using TMPro;
@@ -10,12 +10,14 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using DG.Tweening;
+using Entity.Encounter.Battle;
 
 namespace Controller
 {
     
     public class BattleController : RegisteredMonoBehaviour
     {
+        [SerializeField] private GameController gameController;
         [SerializeField] private CardSlotController cardSlotController;
         [SerializeField] private MonsterController monsterController;
         [SerializeField] private CreatureController creatureController;
@@ -32,18 +34,19 @@ namespace Controller
 
         [SerializeField] private float animationSpeed = 0.5f;
 
+        private bool isBattleWon = false;
+
         public float AnimationSpeed => animationSpeed;
         
         private CircularNode<TurnStep> currentStep;
-        
-        override protected void Awake()
+
+        public void StartBattle(Battle newBattle)
         {
-            base.Awake();
-            CreateTurnStepsOrder();
+            ResetBattleScene();
+            currentBattle = newBattle;
             
             StateController.IsMulliganStep = true;
             
-            deck.ResetDeck();
             DealHand();
             creatureController.SpawnHealthCard(deck.HealthCard);
 
@@ -52,6 +55,21 @@ namespace Controller
                 monsterController.SpawnMonster(monster);
             }
         }
+
+        public void ResetBattleScene()
+        {
+            isBattleWon = false;
+            CreateTurnStepsOrder();
+            UpdateStepsText();
+            deck.ResetDeck();
+            nextStepButtonText.text = "Mulligan";
+            turnText.text = "1";
+            coverScreen.SetActive(false);
+            cardSlotController.Reset();
+            monsterController.Reset();
+            creatureController.ResetZones();
+        }
+        
 
         private void DealHand()
         {
@@ -82,7 +100,8 @@ namespace Controller
 
         private void ResetCreatureZones()
         {
-            creatureController.ResetZones(deck.HealthCard);
+            creatureController.ResetZones();
+            creatureController.SpawnHealthCard(deck.HealthCard);
         }
 
         private void CreateTurnStepsOrder()
@@ -127,9 +146,16 @@ namespace Controller
                 case TurnStep.Attack:
                     DiscardHand();
                     await CreaturesAttack();
-                    MonstersAttack();
-                    coverScreen.SetActive(true);
-                    nextStepButtonText.text = "Next Turn";
+                    if (isBattleWon)
+                    {
+                        gameController.StartNewBattle();
+                    }
+                    else
+                    {
+                        MonstersAttack();
+                        coverScreen.SetActive(true);
+                        nextStepButtonText.text = "Next Turn";
+                    }
                     break;
             }
 
@@ -150,6 +176,7 @@ namespace Controller
             {
                 //TODO
                 Debug.Log("WON!!!");
+                isBattleWon = true;
                 return;
             }
             if (creatureController.AttackZone.Creatures.Count == 0)
@@ -178,16 +205,17 @@ namespace Controller
                              .Join(rect.DOShakePosition(0.2f, strength: 20f, vibrato: 10)) // Shake violently
                              .Append(rect.DOScale(0f, 0.15f).SetEase(Ease.InBack));
                     await explosion.AsyncWaitForCompletion();
-                    
+                    monsterController.MonsterSlots.RemoveAt(0);
                     Destroy(slot.gameObject);
                     await Task.Yield();
                     
-                    monsterController.MonsterSlots.RemoveAt(0);
+                    
                     slot = monsterController.MonsterSlots.FirstOrDefault();
                     if (slot == null)
                     {
                         //TODO
                         Debug.Log("WON!!!");
+                        isBattleWon = true;
                         return;
                     }
                     monster = slot.MonsterObj;

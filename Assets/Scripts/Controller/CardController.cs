@@ -63,7 +63,6 @@ namespace Controller
             cardObj.gameObject.transform.SetParent(cardSlot.transform);
             cardObj.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             cardObj.gameObject.SetActive(true);
-            cardObj.UpdateText();
             cardSlot.Setup(cardObj);
         }
     }

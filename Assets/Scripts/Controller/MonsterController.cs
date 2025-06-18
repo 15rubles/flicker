@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Entity.Monster;
 using Object.Monster;
 using UnityEngine;
+using Utils;
 
 namespace Controller
 {
-    public class MonsterController: MonoBehaviour
+    public class MonsterController: RegisteredMonoBehaviour
     {
         [SerializeField] 
         private List<MonsterSlot> monsterSlots;
@@ -49,6 +51,28 @@ namespace Controller
             monsterSlot.transform.SetParent(monsterZoneController.transform);
             monster.Monster = monsterData;
             monster.UpdateText();
+            SpawnMonsterAnimation(monsterSlot.gameObject);
+        }
+
+        private void SpawnMonsterAnimation(GameObject monster)
+        {
+            RectTransform rectTransform = monster.GetComponent<RectTransform>();
+
+            float duration = 0.4f;
+            float overshoot = 1.2f;
+            
+            rectTransform.localScale = Vector3.zero;
+            rectTransform.DOScale(Vector3.one, duration)
+                         .SetEase(Ease.OutBack, overshoot);
+        }
+
+        public void Reset()
+        {
+            foreach (var monster in monsterSlots)
+            {
+                Destroy(monster);
+            }
+            monsterSlots = new List<MonsterSlot>();
         }
     }
 }
