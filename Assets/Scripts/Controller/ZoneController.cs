@@ -11,14 +11,7 @@ namespace Controller
         public RectTransform rectTransform;
         public CreatureController creatureController;
 
-        [SerializeField]
-        private Dictionary<GameObject, CreatureSlot> gOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
-
-        public Dictionary<GameObject, CreatureSlot> GOsToCreatureSlots
-        {
-            get => gOsToCreatureSlots;
-            set => gOsToCreatureSlots = value;
-        }
+        public Dictionary<GameObject, CreatureSlot> GOsToCreatureSlots => creatureController.GOsToCreatureSlots;
 
         public List<CreatureObj> Creatures
         {
@@ -29,7 +22,7 @@ namespace Controller
 
                 for (int i = 0; i < children; i++)
                 {
-                    list.Add(gOsToCreatureSlots[transform.GetChild(i).gameObject].CreatureObj);
+                    list.Add(GOsToCreatureSlots[transform.GetChild(i).gameObject].CreatureObj);
                 }
                 return list;
             }
@@ -44,18 +37,17 @@ namespace Controller
 
                 for (int i = 0; i < children; i++)
                 {
-                    list.Add(gOsToCreatureSlots[transform.GetChild(i).gameObject]);
+                    list.Add(GOsToCreatureSlots[transform.GetChild(i).gameObject]);
                 }
                 return list;
             }
         }
-        
 
         public Dictionary<GameObject, CreatureObj> GOsToCreatureObjs
         {
             get
             {
-                return gOsToCreatureSlots.ToDictionary(slot => slot.Key,
+                return GOsToCreatureSlots.ToDictionary(slot => slot.Key,
                     slot => slot.Value.CreatureObj);
             }
         }
@@ -64,21 +56,8 @@ namespace Controller
         {
             get
             {
-                return gOsToCreatureSlots.Select(slot => slot.Key).ToList();
+                return GOsToCreatureSlots.Select(slot => slot.Key).ToList();
             }
-        }
-        
-       
-
-        public void AddCreature(CreatureSlot creatureSlot)
-        {
-            creatureSlot.transform.SetParent(transform);
-            GOsToCreatureSlots.Add(creatureSlot.gameObject, creatureSlot);
-        }
-
-        public void RemoveCreature(CreatureSlot creatureSlot)
-        {
-            gOsToCreatureSlots.Remove(creatureSlot.gameObject);
         }
         
     }

@@ -95,6 +95,7 @@ MonoBehaviour:
   cardName: {fileID: 3081787139797507857}
   monsterDescription: {fileID: 8434374378175479543}
   slot: {fileID: 0}
+  rect: {fileID: 5011100157756482991}
   monster: {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
 --- !u!1 &3804682226232524316
 GameObject:

@@ -10,6 +10,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using DG.Tweening;
+using Entity.Card.Ability;
 using Entity.Encounter.Battle;
 
 namespace Controller
@@ -149,16 +150,14 @@ namespace Controller
                     if (isBattleWon)
                     {
                         gameController.StartNewBattle();
+                        return;
                     }
-                    else
-                    {
-                        MonstersAttack();
-                        coverScreen.SetActive(true);
-                        nextStepButtonText.text = "Next Turn";
-                    }
+                   
+                    MonstersAttack();
+                    coverScreen.SetActive(true);
+                    nextStepButtonText.text = "Next Turn";
                     break;
             }
-
             currentStep = nextStep;
             UpdateStepsText();
         }
@@ -186,7 +185,7 @@ namespace Controller
             }
              
             MonsterObject monster = slot.MonsterObj;
-            monster.GetComponent<RectTransform>()
+            monster.Rect
                    .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo);
             
             foreach (var creature in creatureController.AttackZone.Creatures)
@@ -196,37 +195,24 @@ namespace Controller
                                   UtilitiesFunctions.ConvertAnchoredPosition(monster.GetComponent<RectTransform>(),
                                                                                     creature.GetComponent<RectTransform>()),
                                   animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
-                if (monster.Power - creature.Power <= 0)
-                { 
-                    Sequence explosion = DOTween.Sequence();
-                    var rect = monster.GetComponent<RectTransform>();
-                    
-                    explosion.Append(rect.DOScale(1.5f, 0.1f).SetEase(Ease.OutQuad)) // Quick expand
-                             .Join(rect.DOShakePosition(0.2f, strength: 20f, vibrato: 10)) // Shake violently
-                             .Append(rect.DOScale(0f, 0.15f).SetEase(Ease.InBack));
-                    await explosion.AsyncWaitForCompletion();
-                    monsterController.MonsterSlots.RemoveAt(0);
-                    Destroy(slot.gameObject);
-                    await Task.Yield();
-                    
-                    
-                    slot = monsterController.MonsterSlots.FirstOrDefault();
-                    if (slot == null)
-                    {
-                        //TODO
-                        Debug.Log("WON!!!");
-                        isBattleWon = true;
-                        return;
-                    }
-                    monster = slot.MonsterObj;
-                    monster.GetComponent<RectTransform>()
+
+                bool isMonsterDied = await creature.Attack(monster);
+                
+                slot = monsterController.MonsterSlots.FirstOrDefault();
+                if (slot == null)
+                {
+                    //TODO
+                    Debug.Log("WON!!!");
+                    isBattleWon = true;
+                    return;
+                }
+                monster = slot.MonsterObj;
+                if (isMonsterDied)
+                {
+                    monster.Rect
                            .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo);
                 }
-                else
-                {
-                    monster.Power -= creature.Power;
-                    monster.UpdateText();
-                }
+               
                 creature.GetComponent<RectTransform>()
                         .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }

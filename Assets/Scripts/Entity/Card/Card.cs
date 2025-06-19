@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entity.Card.Ability;
+using Entity.Card.Attack;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Entity.Card
 {
@@ -13,6 +13,7 @@ namespace Entity.Card
         [SerializeField] public List<KeywordType> keywords = new List<KeywordType>();
         [SerializeReference] public CardAbility cardAbility;
         [SerializeField] public List<CardType> cardTypes = new List<CardType>();
+        [SerializeReference] public CardAttack cardAttack = new DefaultAttack();
         public CardCost cardCost;
         public Sprite visual;
         public CardType type;

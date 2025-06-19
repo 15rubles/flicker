@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Controller;
 using Entity.Card.Ability;
+using Object.Monster;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -133,6 +135,11 @@ namespace Object.Creature
         {
             cardHintLeft.gameObject.SetActive(false);
             cardHintRight.gameObject.SetActive(false);
+        }
+
+        public async Task<bool> Attack(MonsterObject monsterObject)
+        {
+           return await card.cardAttack.Attack(this, monsterObject);
         }
     }
 }

@@ -28,6 +28,11 @@ namespace Controller
 
         [SerializeField] private MonsterZoneController monsterZoneController;
 
+        public void RemoveSlotFromMonsterSlots(MonsterSlot monsterSlot)
+        {
+            monsterSlots.Remove(monsterSlot);
+        }
+        
         public void SpawnMonster(Monster monsterData)
         {
             var firstDisabled = monsterSlots
@@ -50,6 +55,7 @@ namespace Controller
             var monster = monsterSlot.MonsterObj;
             monsterSlot.transform.SetParent(monsterZoneController.transform);
             monster.Monster = monsterData;
+            monster.MonsterController = this;
             monster.UpdateText();
             SpawnMonsterAnimation(monsterSlot.gameObject);
         }

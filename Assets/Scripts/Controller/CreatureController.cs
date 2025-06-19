@@ -14,12 +14,21 @@ namespace Controller
         [SerializeField] 
         private BlockZoneController blockZone;
         
+        [SerializeField]
+        private Dictionary<GameObject, CreatureSlot> gOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
+        
         public AttackZoneController AttackZone => attackZone;
 
         public BlockZoneController BlockZone => blockZone;
         
         [SerializeField] 
         private GameObject creatureSlotPrefab;
+        
+        public Dictionary<GameObject, CreatureSlot> GOsToCreatureSlots
+        {
+            get => gOsToCreatureSlots;
+            set => gOsToCreatureSlots = value;
+        }
 
 
         public void SpawnCreature(ZoneController zone, Card cardData)
@@ -33,11 +42,16 @@ namespace Controller
         {
             var creatureObj = creatureSlot.CreatureObj;
             creatureObj.Card = cardData;
-            // creatureObj.Zone = zone;
             creatureObj.AttackCardZone = attackZone;
             creatureObj.BlockCardZone = blockZone;
-            zone.AddCreature(creatureSlot);
+            AddCreature(zone, creatureSlot);
             creatureObj.UpdateText();
+        }
+
+        private void AddCreature(ZoneController zone, CreatureSlot creatureSlot)
+        {
+            creatureSlot.transform.SetParent(zone.transform);
+            GOsToCreatureSlots.Add(creatureSlot.gameObject, creatureSlot);
         }
         
         public void SpawnHealthCard(Card healthCard)
@@ -51,13 +65,12 @@ namespace Controller
             {
                 Destroy(creature.gameObject);
             }
-            attackZone.GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
-            
             foreach (var creature in blockZone.CreatureSlots)
             {
                 Destroy(creature.gameObject);
             }
-            blockZone.GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
+            
+            GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
         }
     }
 }
