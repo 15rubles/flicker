@@ -240,25 +240,9 @@ namespace Controller
                 
                 await creature.GetComponent<RectTransform>()
                               .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
-                if (creature.Power - monster.Power <= 0)
-                {
-                    Sequence explosion = DOTween.Sequence();
-                    var rect = creature.GetComponent<RectTransform>();
-                    
-                    explosion.Append(rect.DOScale(1.5f, 0.1f).SetEase(Ease.OutQuad)) // Quick expand
-                             .Join(rect.DOShakePosition(0.2f, strength: 20f, vibrato: 10)) // Shake violently
-                             .Append(rect.DOScale(0f, 0.15f).SetEase(Ease.InBack));
-                    await explosion.AsyncWaitForCompletion();
-                    
-                    Destroy(slot.gameObject);
-                    await Task.Yield();
-                    // creatureController.BlockZone.CreatureSlots.RemoveAt(0);
-                }
-                else
-                {
-                    creature.Power -= monster.Power;
-                    creature.UpdateText();
-                }
+                
+                await monster.Attack(creature);
+                
                 monster.GetComponent<RectTransform>()
                        .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }

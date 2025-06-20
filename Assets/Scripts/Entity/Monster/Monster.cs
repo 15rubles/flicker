@@ -1,4 +1,5 @@
 ﻿using Entity.Monster.Ability;
+using Entity.Monster.Attack;
 using UnityEngine;
 
 namespace Entity.Monster
@@ -10,7 +11,7 @@ namespace Entity.Monster
         [SerializeField] private int power;
         [SerializeField] [SerializeReference] private MonsterAbility ability;
         [SerializeField] private Sprite visual;
-        [SerializeField] [SerializeReference] private Attack.AttackPattern attackPattern;
+        [SerializeField] [SerializeReference] private MonsterAttack monsterAttack = new DefaultAttack();
 
         public MonsterName MonsterName
         {
@@ -36,10 +37,10 @@ namespace Entity.Monster
             set => visual = value;
         }
 
-        public Attack.AttackPattern AttackPattern
+        public Attack.MonsterAttack MonsterAttack
         {
-            get => attackPattern;
-            set => attackPattern = value;
+            get => monsterAttack;
+            set => monsterAttack = value;
         }
     }
 }

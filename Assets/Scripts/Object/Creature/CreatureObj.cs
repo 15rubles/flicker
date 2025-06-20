@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Controller;
+using DG.Tweening;
 using Entity.Card.Ability;
 using Object.Monster;
 using TMPro;
@@ -32,7 +33,9 @@ namespace Object.Creature
         
         private Canvas canvas;
         private RectTransform rectTransform;
-        
+
+        public RectTransform Rect => rectTransform;
+
         public Entity.Card.Card Card
         {
             get => card;
@@ -140,6 +143,17 @@ namespace Object.Creature
         public async Task<bool> Attack(MonsterObject monsterObject)
         {
            return await card.cardAttack.Attack(this, monsterObject);
+        }
+        
+        public async Task DestroyCreature()
+        {
+            Sequence explosion = DOTween.Sequence();
+            
+            explosion.Append(Rect.DOScale(1.5f, 0.1f).SetEase(Ease.OutQuad)) // Quick expand
+                     .Join(Rect.DOShakePosition(0.2f, strength: 20f, vibrato: 10)) // Shake violently
+                     .Append(Rect.DOScale(0f, 0.15f).SetEase(Ease.InBack));
+            await explosion.AsyncWaitForCompletion();
+            Destroy(slot.gameObject);
         }
     }
 }

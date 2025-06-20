@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Controller;
 using DG.Tweening;
 using Entity.Card.Ability;
+using Object.Creature;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -70,6 +70,11 @@ namespace Object.Monster
         public void OnPointerExit(PointerEventData eventData)
         {
             monsterDescription.gameObject.SetActive(false);
+        }
+        
+        public async Task<bool> Attack(CreatureObj creatureObj)
+        {
+            return await monster.MonsterAttack.Attack(this, creatureObj);
         }
 
         public async Task DestroyMonster()

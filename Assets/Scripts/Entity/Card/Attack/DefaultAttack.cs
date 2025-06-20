@@ -1,11 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Controller;
-using DG.Tweening;
 using Entity.Card.Ability;
 using Object.Creature;
 using Object.Monster;
-using UnityEngine;
-using Utils;
 
 namespace Entity.Card.Attack
 {
