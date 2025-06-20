@@ -6,15 +6,13 @@ namespace Entity
     [CreateAssetMenu(fileName = "Deck", menuName = "SOs/Deck", order = 1)]
     public class Deck: ScriptableObject
     {
-        [SerializeField]
-        private Card.Card healthCard;
+        [SerializeField] private Card.Card healthCard;
         
-        [SerializeField]
-        private List<Card.Card> allCards;
+        [SerializeField] private List<Card.Card> allCards;
 
-        private List<Card.Card> cardsInDeck;
+        [SerializeField] private List<Card.Card> cardsInDeck;
 
-        private List<Card.Card> cardsInDiscard;
+        [SerializeField] private List<Card.Card> cardsInDiscard;
 
         public Deck(List<Card.Card> allCards)
         {
@@ -45,6 +43,11 @@ namespace Entity
             set => cardsInDiscard = value;
         }
 
+        public void DiscardCard(Card.Card card)
+        {
+            cardsInDiscard.Add(card);
+        }
+        
         public void ResetDeck()
         {
             cardsInDiscard.Clear();

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Entity;
 using Entity.Card;
 using Object.Card;
 using UnityEngine;
@@ -53,10 +54,11 @@ namespace Controller
             Destroy(slot.gameObject);
         }
 
-        public void DiscardHand()
+        public void DiscardHand(Deck deck)
         {
             foreach (var card in CardsInHand)
             {
+                deck.DiscardCard(card.CardObject.Card);
                 StartCoroutine(DiscardCardAnimation(card, () => { Destroy(card.gameObject); }));
             }
             cardsInHand = new LinkedList<CardSlot>();
@@ -64,7 +66,7 @@ namespace Controller
             cardController.CardsPool = new List<CardObject>();
         }
         
-        public int DiscardSelectedForMulligan()
+        public int DiscardSelectedForMulligan(Deck deck)
         {
             int discardedQuantity = 0;
             var newCardsInHand = new LinkedList<CardSlot>();
@@ -74,6 +76,7 @@ namespace Controller
             {
                 if (card.CardObject.IsSelected)
                 {
+                    deck.DiscardCard(card.CardObject.Card);
                     StartCoroutine(DiscardCardAnimation(card, () => { Destroy(card.gameObject); }));
                     discardedQuantity++;
                 }

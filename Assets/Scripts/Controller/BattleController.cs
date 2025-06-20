@@ -35,6 +35,8 @@ namespace Controller
 
         [SerializeField] private float animationSpeed = 0.5f;
 
+        public Deck Deck => deck;
+        
         private bool isBattleWon = false;
 
         public float AnimationSpeed => animationSpeed;
@@ -79,14 +81,14 @@ namespace Controller
         
         public void DealCards(int quantity)
         {
-            if (deck.CardsInDeck.Count < quantity)
+            while (quantity > 0)
             {
-                //TODO
-                Debug.Log("Deck is empty");
-                quantity = deck.CardsInDeck.Count;
-            }
-            for (int i = 0; i < quantity; i++)
-            {
+                quantity--;
+                if (deck.CardsInDeck.Count == 0)
+                {
+                    Debug.Log("Deck is empty");
+                    deck.ResetDeck();
+                }
                 int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
                 cardSlotController.SpawnCard(deck.CardsInDeck[randomIndex]);
                 deck.CardsInDeck.RemoveAt(randomIndex);
@@ -95,8 +97,7 @@ namespace Controller
 
         private void DiscardHand()
         {
-            cardSlotController.DiscardHand();
-            //TODO add to discard
+            cardSlotController.DiscardHand(deck);
         }
 
         private void ResetCreatureZones()
@@ -164,7 +165,7 @@ namespace Controller
 
         private void Mulligan()
         {
-            int discardedQuantity = cardSlotController.DiscardSelectedForMulligan();
+            int discardedQuantity = cardSlotController.DiscardSelectedForMulligan(deck);
             DealCards(discardedQuantity);
         }
         
