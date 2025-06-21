@@ -10,7 +10,6 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using DG.Tweening;
-using Entity.Card.Ability;
 using Entity.Encounter.Battle;
 
 namespace Controller
@@ -31,6 +30,7 @@ namespace Controller
         
         [SerializeField] private int startHandCount = 5;
         [SerializeField] private Deck deck;
+        [SerializeField] private DeckSo deckSo;
         [SerializeField] private Battle currentBattle;
 
         [SerializeField] private float animationSpeed = 0.5f;
@@ -42,6 +42,12 @@ namespace Controller
         public float AnimationSpeed => animationSpeed;
         
         private CircularNode<TurnStep> currentStep;
+
+        override protected void Awake()
+        {
+            base.Awake();
+            deck.BasicDeck = deckSo;
+        }
 
         public void StartBattle(Battle newBattle)
         {

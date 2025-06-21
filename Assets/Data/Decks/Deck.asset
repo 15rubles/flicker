@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d5015076ad411b9524dfbf07c0be53, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c491ad32d8f4124486709bac2a2b2be, type: 3}
   m_Name: Deck
   m_EditorClassIdentifier: 
   healthCard: {fileID: 11400000, guid: 74b6fa66d7bcce74da5e07153bc02214, type: 2}
   allCards:
-  - {fileID: 11400000, guid: 50a33d1f89b7f0d47a3b86055d4224f0, type: 2}
+  - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
+  - {fileID: 11400000, guid: d0aaab2c1775028479b3c73b7466b521, type: 2}
+  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
+  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
   - {fileID: 11400000, guid: 8e82c6519a5b2bd43bec74eb07e89ab3, type: 2}
   - {fileID: 11400000, guid: ea60b489f6fab2d41a0409ce79f9ed0e, type: 2}
-  - {fileID: 11400000, guid: d0aaab2c1775028479b3c73b7466b521, type: 2}
   - {fileID: 11400000, guid: 3a556abae9d24444eb3e28345fadc1a7, type: 2}
-  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
-  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
-  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
+  - {fileID: 11400000, guid: 50a33d1f89b7f0d47a3b86055d4224f0, type: 2}
   - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}

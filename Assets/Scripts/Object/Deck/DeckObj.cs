@@ -21,7 +21,7 @@ namespace Object.Deck
             
             foreach (var card in deck.CardsInDeck)
             {
-                var cardInDeck = Instantiate(cardPrefab, deckGrid).GetComponent<CardInDeckObj>();
+                var cardInDeck = Instantiate(cardPrefab, deckGrid).GetComponent<CardVisualObj>();
                 cardInDeck.Card = card;
             }
         }

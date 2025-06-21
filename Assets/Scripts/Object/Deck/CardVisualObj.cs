@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Object.Deck
 {
-    public class CardInDeckObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class CardVisualObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private TextMeshProUGUI power;
         [SerializeField] private TextMeshProUGUI cardName;

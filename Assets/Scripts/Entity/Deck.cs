@@ -1,22 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Entity
 {
-    [CreateAssetMenu(fileName = "Deck", menuName = "SOs/Deck", order = 1)]
-    public class Deck: ScriptableObject
+    [Serializable]
+    public class Deck
     {
-        [SerializeField] private Card.Card healthCard;
-        
+        [SerializeField] private DeckSo basicDeck;
+
         [SerializeField] private List<Card.Card> allCards;
 
         [SerializeField] private List<Card.Card> cardsInDeck;
 
         [SerializeField] private List<Card.Card> cardsInDiscard;
 
-        public Deck(List<Card.Card> allCards)
+        public DeckSo BasicDeck
         {
-            this.allCards = allCards;
+            get => basicDeck;
+            set
+            {
+                basicDeck = value;
+                allCards = basicDeck.AllCards.ToList();
+            }
+            
         }
 
         public List<Card.Card> AllCards
@@ -25,12 +33,8 @@ namespace Entity
             set => allCards = value;
         }
         
-        public Card.Card HealthCard
-        {
-            get => healthCard;
-            set => healthCard = value;
-        }
-        
+        public Card.Card HealthCard => basicDeck.HealthCard;
+
         public List<Card.Card> CardsInDeck
         {
             get => cardsInDeck;

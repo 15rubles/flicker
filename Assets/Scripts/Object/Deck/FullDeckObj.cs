@@ -5,7 +5,7 @@ using Utils;
 
 namespace Object.Deck
 {
-    public class DiscardObj: MonoBehaviour, IPointerClickHandler
+    public class FullDeckObj: MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private GameObject cardPrefab;
         [SerializeField] private Transform deckGrid;
@@ -19,7 +19,7 @@ namespace Object.Deck
                 Destroy(card.gameObject);
             }
             
-            foreach (var card in deck.CardsInDiscard)
+            foreach (var card in deck.AllCards)
             {
                 var cardInDeck = Instantiate(cardPrefab, deckGrid).GetComponent<CardVisualObj>();
                 cardInDeck.Card = card;
