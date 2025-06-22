@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using DG.DemiLib;
 using Entity;
 using Object.Creature;
 using Object.Monster;
@@ -29,13 +28,18 @@ namespace Controller
         [SerializeField] private GameObject coverScreen;
         
         [SerializeField] private int startHandCount = 5;
-        [SerializeField] private Deck deck;
-        [SerializeField] private DeckSo deckSo;
         [SerializeField] private Battle currentBattle;
 
         [SerializeField] private float animationSpeed = 0.5f;
 
-        public Deck Deck => deck;
+        [SerializeField] private RunState runState;
+
+        public RunState RunState
+        {
+            set => runState = value;
+        }
+
+        public Deck Deck => runState.Deck;
         
         private bool isBattleWon = false;
 
@@ -43,11 +47,6 @@ namespace Controller
         
         private CircularNode<TurnStep> currentStep;
 
-        override protected void Awake()
-        {
-            base.Awake();
-            deck.BasicDeck = deckSo;
-        }
 
         public void StartBattle(Battle newBattle)
         {
@@ -57,7 +56,7 @@ namespace Controller
             StateController.IsMulliganStep = true;
             
             DealHand();
-            creatureController.SpawnHealthCard(deck.HealthCard);
+            creatureController.SpawnHealthCard(Deck.HealthCard);
 
             foreach (var monster in currentBattle.MonsterSet)
             {
@@ -70,7 +69,7 @@ namespace Controller
             isBattleWon = false;
             CreateTurnStepsOrder();
             UpdateStepsText();
-            deck.ResetDeck();
+            Deck.ResetDeck();
             nextStepButtonText.text = "Mulligan";
             turnText.text = "1";
             coverScreen.SetActive(false);
@@ -90,26 +89,26 @@ namespace Controller
             while (quantity > 0)
             {
                 quantity--;
-                if (deck.CardsInDeck.Count == 0)
+                if (Deck.CardsInDeck.Count == 0)
                 {
                     Debug.Log("Deck is empty");
-                    deck.ResetDeck();
+                    Deck.ResetDeck();
                 }
-                int randomIndex = Random.Range(0, deck.CardsInDeck.Count - 1);
-                cardSlotController.SpawnCard(deck.CardsInDeck[randomIndex]);
-                deck.CardsInDeck.RemoveAt(randomIndex);
+                int randomIndex = Random.Range(0, Deck.CardsInDeck.Count - 1);
+                cardSlotController.SpawnCard(Deck.CardsInDeck[randomIndex]);
+                Deck.CardsInDeck.RemoveAt(randomIndex);
             }
         }
 
         private void DiscardHand()
         {
-            cardSlotController.DiscardHand(deck);
+            cardSlotController.DiscardHand(Deck);
         }
 
         private void ResetCreatureZones()
         {
             creatureController.ResetZones();
-            creatureController.SpawnHealthCard(deck.HealthCard);
+            creatureController.SpawnHealthCard(Deck.HealthCard);
         }
 
         private void CreateTurnStepsOrder()
@@ -171,7 +170,7 @@ namespace Controller
 
         private void Mulligan()
         {
-            int discardedQuantity = cardSlotController.DiscardSelectedForMulligan(deck);
+            int discardedQuantity = cardSlotController.DiscardSelectedForMulligan(Deck);
             DealCards(discardedQuantity);
         }
         

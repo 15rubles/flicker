@@ -18,8 +18,9 @@ MonoBehaviour:
   cardAbility:
     rid: 3275667538002313292
   cardTypes: 
-  cardCost:
-    cost: 0
+  cardAttack:
+    rid: 3275667742645813343
+  cardCost: 6
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
   type: 0
   references:
@@ -30,3 +31,6 @@ MonoBehaviour:
       data:
         abilityType: 0
         description: Draw a card.
+    - rid: 3275667742645813343
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 

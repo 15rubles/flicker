@@ -14,7 +14,7 @@ namespace Entity.Card
         [SerializeReference] public CardAbility cardAbility;
         [SerializeField] public List<CardType> cardTypes = new List<CardType>();
         [SerializeReference] public CardAttack cardAttack = new DefaultAttack();
-        public CardCost cardCost;
+        public int cardCost;
         public Sprite visual;
         public CardType type;
 
