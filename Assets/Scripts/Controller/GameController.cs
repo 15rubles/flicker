@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entity;
 using Entity.Encounter.Battle;
+using Entity.Item;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -30,6 +31,11 @@ namespace Controller
                 runState.Money = value;
                 moneyText.text = value.ToString();
             }
+        }
+
+        public void AddItem(ItemSO item)
+        {
+            runState.AddItem(item);
         }
 
         public void UpdateMoneyText()

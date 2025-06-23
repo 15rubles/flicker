@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entity.Card;
+using Entity.Item;
 using Object.Shop;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Controller
     {
         [SerializeField] private GameObject cardsGrid;
         [SerializeField] private List<Card> allCards;
+        [SerializeField] private List<ItemSO> allItems;
         [SerializeField] private GameObject cardInShopPrefab;
         [SerializeField] private BattleController battleController;
         
@@ -32,6 +34,7 @@ namespace Controller
         public void PrepareShop()
         {
             PrepareCardsForSale();
+            PrepareItemsForSale();
         }
 
         public void PrepareCardsForSale()
@@ -41,6 +44,17 @@ namespace Controller
                 var cardInShop = Instantiate(cardInShopPrefab, cardsGrid.transform).GetComponent<CardInShopObj>();
                 int randomIndex = Random.Range(0, allCards.Count);
                 cardInShop.SetCard(allCards[randomIndex]);
+            }
+            
+        }
+        
+        public void PrepareItemsForSale()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var itemInShop = Instantiate(cardInShopPrefab, cardsGrid.transform).GetComponent<ItemObj>();
+                int randomIndex = Random.Range(0, allItems.Count);
+                itemInShop.SetItem(allItems[randomIndex]);
             }
             
         }

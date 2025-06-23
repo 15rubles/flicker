@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Entity.Item;
 using UnityEngine;
 
 namespace Entity
@@ -10,8 +12,14 @@ namespace Entity
         [SerializeField] private DeckSo deckSo;
         [SerializeField] private int money;
         [SerializeField] private int battleCounter = 1;
+        [SerializeField] private List<ItemSO> items = new List<ItemSO>();
+
+        public List<ItemSO> Items
+        {
+            get => items;
+            set => items = value;
+        }
         
-        //TODO add items list;
         public Deck Deck
         {
             get => deck;
@@ -34,6 +42,12 @@ namespace Entity
         {
             get => battleCounter;
             set => battleCounter = value;
+        }
+
+        public void AddItem(ItemSO item)
+        {
+            items.Add(item);
+            item.ability.EnableItem();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Entity.Card;
-using Object;
 using Object.Creature;
 using UnityEngine;
 using Utils;

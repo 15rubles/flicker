@@ -34,6 +34,12 @@ namespace Controller
 
         [SerializeField] private RunState runState;
 
+        public int StartHandCount
+        {
+            get => startHandCount;
+            set => startHandCount = value;
+        }
+
         public RunState RunState
         {
             set => runState = value;
