@@ -2,26 +2,27 @@
 using Entity.Item;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utils;
 
 namespace Object.Shop
 {
-    public class ItemObj : MonoBehaviour
+    public class ItemObj : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField]
-        private TextMeshProUGUI priceText;
+        [SerializeField] private TextMeshProUGUI priceText;
         
-        [SerializeField]
-        private TextMeshProUGUI nameText;
+        [SerializeField] private GameObject descriptionBox;
+        [SerializeField] private TextMeshProUGUI descriptionText;
         
-        //TODO dectiption obj popup
-
+        [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private ItemSO item;
 
         public void SetItem(ItemSO itemSo)
         {
             item = itemSo;
             priceText.text = "$" + item.price;
+            nameText.text = item.itemName;
+            descriptionText.text = item.description;
         }
         
         public void BuyItem()
@@ -39,6 +40,14 @@ namespace Object.Shop
                 Debug.Log("Not Enough Money :(");
             }
 
+        }
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            descriptionBox.SetActive(true);
+        }
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            descriptionBox.SetActive(false);
         }
     }
 }

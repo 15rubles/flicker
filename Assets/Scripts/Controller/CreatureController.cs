@@ -32,7 +32,7 @@ namespace Controller
 
         public void SpawnCreature(ZoneController zone, Card cardData)
         {
-            var creature = Instantiate(creatureSlotPrefab, gameObject.transform.parent);
+            var creature = Instantiate(creatureSlotPrefab, zone.transform);
             var creatureSlot = creature.GetComponent<CreatureSlot>();
             ChangeCreatureValuesAndEnable(creatureSlot, cardData, zone);
         }

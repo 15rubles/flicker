@@ -161,7 +161,7 @@ namespace Controller
                     await CreaturesAttack();
                     if (isBattleWon)
                     {
-                        gameController.StartNewBattle();
+                        gameController.StartNewEncounter();
                         return;
                     }
                    

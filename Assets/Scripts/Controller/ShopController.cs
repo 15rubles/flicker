@@ -11,9 +11,11 @@ namespace Controller
     public class ShopController : RegisteredMonoBehaviour
     {
         [SerializeField] private GameObject cardsGrid;
+        [SerializeField] private GameObject itemsGrid;
         [SerializeField] private List<Card> allCards;
         [SerializeField] private List<ItemSO> allItems;
         [SerializeField] private GameObject cardInShopPrefab;
+        [SerializeField] private GameObject itemInShopPrefab;
         [SerializeField] private BattleController battleController;
         
         [Required]
@@ -33,12 +35,18 @@ namespace Controller
 
         public void PrepareShop()
         {
+            gameController.UpdateMoneyText();
             PrepareCardsForSale();
             PrepareItemsForSale();
         }
 
         public void PrepareCardsForSale()
         {
+            foreach (Transform child in cardsGrid.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            
             for (int i = 0; i < 6; i++)
             {
                 var cardInShop = Instantiate(cardInShopPrefab, cardsGrid.transform).GetComponent<CardInShopObj>();
@@ -50,9 +58,14 @@ namespace Controller
         
         public void PrepareItemsForSale()
         {
+            foreach (Transform child in itemsGrid.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            
             for (int i = 0; i < 3; i++)
             {
-                var itemInShop = Instantiate(cardInShopPrefab, cardsGrid.transform).GetComponent<ItemObj>();
+                var itemInShop = Instantiate(itemInShopPrefab, itemsGrid.transform).GetComponent<ItemObj>();
                 int randomIndex = Random.Range(0, allItems.Count);
                 itemInShop.SetItem(allItems[randomIndex]);
             }
@@ -67,6 +80,11 @@ namespace Controller
             {
                 fullDeckForRemoveObj.TurnOn();
             }
+        }
+
+        public void CloseShop()
+        {
+            gameController.StartNewEncounter();
         }
     }
 }

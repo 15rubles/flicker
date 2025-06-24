@@ -41,7 +41,7 @@ namespace Controller
             }
             else
             {
-                var newCard = Instantiate(cardObjectPrefab, gameObject.transform.parent);
+                var newCard = Instantiate(cardObjectPrefab, cardSlot.transform);
                 var newCardObject = newCard.GetComponent<CardObject>();
                 cardsPool.Add(newCardObject);
                 ChangeCardValuesAndEnable(newCardObject, cardData, cardSlot, cardSlotNode);
@@ -60,7 +60,7 @@ namespace Controller
             cardObj.BlockCardZone = blockCardZone;
             cardObj.Card = cardData;
             cardObj.CardSlotNode = cardSlotNode;
-            cardObj.gameObject.transform.SetParent(cardSlot.transform);
+            // cardObj.gameObject.transform.SetParent(cardSlot.transform);
             cardObj.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             cardObj.gameObject.SetActive(true);
             cardSlot.Setup(cardObj);
