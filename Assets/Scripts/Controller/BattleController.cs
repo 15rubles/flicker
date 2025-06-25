@@ -83,8 +83,13 @@ namespace Controller
             monsterController.Reset();
             creatureController.ResetZones();
         }
-        
 
+
+        private void ResetDeck()
+        {
+            
+        }
+        
         private void DealHand()
         {
             DealCards(startHandCount);
@@ -98,7 +103,12 @@ namespace Controller
                 if (Deck.CardsInDeck.Count == 0)
                 {
                     Debug.Log("Deck is empty");
-                    Deck.ResetDeck();
+                    if (Deck.CardsInDiscard.Count == 0)
+                    {
+                        Debug.Log("Discard is empty");
+                        return;
+                    }
+                    Deck.ShuffleDiscardToDeck();
                 }
                 int randomIndex = Random.Range(0, Deck.CardsInDeck.Count - 1);
                 cardSlotController.SpawnCard(Deck.CardsInDeck[randomIndex]);
@@ -161,6 +171,7 @@ namespace Controller
                     await CreaturesAttack();
                     if (isBattleWon)
                     {
+                        ReceiveReward();
                         gameController.StartNewEncounter();
                         return;
                     }
@@ -172,6 +183,12 @@ namespace Controller
             }
             currentStep = nextStep;
             UpdateStepsText();
+        }
+
+        private void ReceiveReward()
+        {
+            gameController.Money += currentBattle.Reward.Money;
+            //TODO
         }
 
         private void Mulligan()

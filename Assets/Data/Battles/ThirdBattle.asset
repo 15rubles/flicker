@@ -20,3 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c7f9e1781c46eb4ca44ab02ebd3b552, type: 2}
   - {fileID: 11400000, guid: 8c7f9e1781c46eb4ca44ab02ebd3b552, type: 2}
   difficulty: 1
+  reward:
+    money: 10
+    items: []
+    cards: []

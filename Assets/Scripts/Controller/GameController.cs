@@ -17,7 +17,7 @@ namespace Controller
         [SerializeField] private GameObject shopCanvas;
         
         [SerializeField] private TextMeshProUGUI encounterText;
-        [SerializeField] private int encounterValue;
+        [SerializeField] private int encounterValue = 0;
         [SerializeField] private int shopEncounterTiming = 3;
 
         [SerializeField] private List<Battle> battles = new List<Battle>();
@@ -29,7 +29,7 @@ namespace Controller
         [Required]
         [SerializeField] private TextMeshProUGUI moneyText;
 
-        private int shopEncounterConter = 1;
+        private int shopEncounterConter = 0;
         
         public int Money
         {
@@ -79,7 +79,7 @@ namespace Controller
         public void StartNewEncounter()
         {
             IncreaseEncounterValue();
-            if (shopEncounterConter >= shopEncounterTiming)
+            if (shopEncounterConter > shopEncounterTiming)
             {
                 shopEncounterConter = 1;
                 battleCanvas.SetActive(false);
@@ -89,8 +89,8 @@ namespace Controller
             else
             {
                 shopCanvas.SetActive(false);
-                StartNewBattle();
                 battleCanvas.SetActive(true);
+                StartNewBattle();
             }
         }
 

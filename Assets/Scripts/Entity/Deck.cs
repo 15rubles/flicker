@@ -57,5 +57,11 @@ namespace Entity
             cardsInDiscard.Clear();
             cardsInDeck = new List<Card.Card>(allCards);
         }
+
+        public void ShuffleDiscardToDeck()
+        {
+            cardsInDeck = cardsInDeck.Concat(cardsInDiscard).ToList();
+            cardsInDiscard.Clear();
+        }
     }
 }
