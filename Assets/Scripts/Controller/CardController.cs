@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entity.Card;
-using Object;
 using Object.Card;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace Controller
@@ -25,8 +23,6 @@ namespace Controller
         
         [SerializeField] 
         private AttackZoneController attackCardZone;
-        [SerializeField] 
-        private BlockZoneController blockCardZone;
         
 
         [SerializeField] private CardSlotController cardSlotController;
@@ -57,7 +53,6 @@ namespace Controller
             LinkedListNode<CardSlot> cardSlotNode)
         {
             cardObj.AttackCardZone = attackCardZone;
-            cardObj.BlockCardZone = blockCardZone;
             cardObj.Card = cardData;
             cardObj.CardSlotNode = cardSlotNode;
             // cardObj.gameObject.transform.SetParent(cardSlot.transform);

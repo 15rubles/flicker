@@ -33,7 +33,7 @@ namespace Entity
             set => allCards = value;
         }
         
-        public Card.Card HealthCard => basicDeck.HealthCard;
+        public int ShieldValue => basicDeck.ShieldValue;
 
         public List<Card.Card> CardsInDeck
         {

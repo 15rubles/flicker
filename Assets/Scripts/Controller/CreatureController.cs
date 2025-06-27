@@ -10,15 +10,11 @@ namespace Controller
     {
         [SerializeField] 
         private AttackZoneController attackZone;
-        [SerializeField] 
-        private BlockZoneController blockZone;
         
         [SerializeField]
         private Dictionary<GameObject, CreatureSlot> gOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
         
         public AttackZoneController AttackZone => attackZone;
-
-        public BlockZoneController BlockZone => blockZone;
         
         [SerializeField] 
         private GameObject creatureSlotPrefab;
@@ -42,7 +38,6 @@ namespace Controller
             var creatureObj = creatureSlot.CreatureObj;
             creatureObj.Card = cardData;
             creatureObj.AttackCardZone = attackZone;
-            creatureObj.BlockCardZone = blockZone;
             AddCreature(zone, creatureSlot);
             creatureObj.UpdateText();
         }
@@ -53,18 +48,10 @@ namespace Controller
             GOsToCreatureSlots.Add(creatureSlot.gameObject, creatureSlot);
         }
         
-        public void SpawnHealthCard(Card healthCard)
-        {
-            SpawnCreature(blockZone, healthCard);
-        }
 
         public void ResetZones()
         {
             foreach (var creature in attackZone.CreatureSlots)
-            {
-                Destroy(creature.gameObject);
-            }
-            foreach (var creature in blockZone.CreatureSlots)
             {
                 Destroy(creature.gameObject);
             }

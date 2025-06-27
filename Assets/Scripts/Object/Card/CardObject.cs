@@ -4,6 +4,7 @@ using Entity.Card.Ability;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 namespace Object.Card
 {
@@ -18,6 +19,7 @@ namespace Object.Card
         [SerializeField] private CardSlot cardSlot;
 
         private RectTransform rectTransform;
+        private BattleController battleController;
 
         [SerializeField] private Vector2 selectedPosition;
 
@@ -29,6 +31,8 @@ namespace Object.Card
         {
             canvas = GetComponentInParent<Canvas>();
             rectTransform = gameObject.GetComponent<RectTransform>();
+            battleController = ControllerLocator.GetService<BattleController>();
+            ShieldZone = battleController.ShiedZone;
         }
 
         [SerializeField] private Entity.Card.Card card;
@@ -64,7 +68,7 @@ namespace Object.Card
 
         public AttackZoneController AttackCardZone { get; set; }
 
-        public BlockZoneController BlockCardZone { get; set; }
+        public RectTransform ShieldZone { get; set; }
         
         private void UpdateText()
         {
@@ -81,9 +85,10 @@ namespace Object.Card
             {
                 PlayCard(AttackCardZone);
             }
-            else if (BlockCardZone.rectTransform.rect.Contains(BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
+            else if (ShieldZone.rect.Contains(ShieldZone.InverseTransformPoint(eventData.position)))
             {
-                PlayCard(BlockCardZone);
+                battleController.UpdateShieldValue(card.power);
+                Discard();
             }
             else
             {
@@ -99,6 +104,11 @@ namespace Object.Card
                 Card.cardAbility.UseAbility(this);
             }
             Delete();
+        }
+
+        private void AddShield()
+        {
+            
         }
         
         public void OnDrag(PointerEventData eventData)
@@ -144,6 +154,12 @@ namespace Object.Card
         private void Delete()
         {
             cardSlot.Delete();
+        }
+        
+        private void Discard()
+        {
+            battleController.Deck.DiscardCard(card);
+            Delete();
         }
 
         public void OnPointerEnter(PointerEventData eventData)

@@ -34,6 +34,13 @@ namespace Controller
 
         [SerializeField] private RunState runState;
 
+        [SerializeField] private int shieldValue;
+        [SerializeField] private TextMeshProUGUI shieldText;
+        [SerializeField] private RectTransform shiedZone;
+        [SerializeField] private RectTransform monsterZoneRect;
+
+        public RectTransform ShiedZone => shiedZone;
+
         public int StartHandCount
         {
             get => startHandCount;
@@ -62,12 +69,24 @@ namespace Controller
             StateController.IsMulliganStep = true;
             
             DealHand();
-            creatureController.SpawnHealthCard(Deck.HealthCard);
+            ResetShieldValue();
 
             foreach (var monster in currentBattle.MonsterSet)
             {
                 monsterController.SpawnMonster(monster);
             }
+        }
+
+        private void ResetShieldValue()
+        {
+            shieldValue = Deck.ShieldValue;
+            shieldText.text = shieldValue.ToString();
+        }
+        
+        public void UpdateShieldValue(int increaseAmount)
+        {
+            shieldValue += increaseAmount;
+            shieldText.text = shieldValue.ToString();
         }
 
         public void ResetBattleScene()
@@ -124,7 +143,7 @@ namespace Controller
         private void ResetCreatureZones()
         {
             creatureController.ResetZones();
-            creatureController.SpawnHealthCard(Deck.HealthCard);
+            ResetShieldValue();
         }
 
         private void CreateTurnStepsOrder()
@@ -249,32 +268,34 @@ namespace Controller
         
         private async void MonstersAttack()
         {
-            CreatureSlot slot;
-            CreatureObj creature;
+            int originalIndex = monsterZoneRect.GetSiblingIndex();
+            monsterZoneRect.SetAsLastSibling();
             
             foreach (var monster in monsterController.MonstersPool)
             {
-                slot = creatureController.BlockZone.CreatureSlots.FirstOrDefault();
                 
-                if (slot == null)
+                
+                await monster.GetComponent<RectTransform>()
+                       .DOAnchorPos(UtilitiesFunctions.ConvertAnchoredPosition(shieldText.GetComponent<RectTransform>(),
+                           monster.GetComponent<RectTransform>()), animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
+                
+                UpdateShieldValue(-monster.Power);
+
+                await monster.GetComponent<RectTransform>()
+                            .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
+                
+                if (shieldValue <= 0)
                 {
+                    monsterZoneRect.SetSiblingIndex(originalIndex);
+                    
                     //TODO
                     Debug.Log("GAME OVER!!!");
                     return;
                 }
-                creature = slot.CreatureObj;
-                monster.GetComponent<RectTransform>()
-                       .DOAnchorPos(UtilitiesFunctions.ConvertAnchoredPosition(creature.GetComponent<RectTransform>(),
-                           monster.GetComponent<RectTransform>()), animationSpeed).SetEase(Ease.InOutExpo);
                 
-                await creature.GetComponent<RectTransform>()
-                              .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
                 
-                await monster.Attack(creature);
-                
-                monster.GetComponent<RectTransform>()
-                       .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }
+            monsterZoneRect.SetSiblingIndex(originalIndex);
         }
     }
 }

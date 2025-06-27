@@ -6,7 +6,7 @@ namespace Entity
     [CreateAssetMenu(fileName = "Deck", menuName = "SOs/Deck", order = 1)]
     public class DeckSo: ScriptableObject
     {
-        [SerializeField] private Card.Card healthCard;
+        [SerializeField] private int shieldValue;
         
         [SerializeField] private List<Card.Card> allCards;
 
@@ -20,13 +20,11 @@ namespace Entity
             get => allCards;
             set => allCards = value;
         }
-        
-        public Card.Card HealthCard
+
+        public int ShieldValue
         {
-            get => healthCard;
-            set => healthCard = value;
+            get => shieldValue;
+            set => shieldValue = value;
         }
-        
-    
     }
 }

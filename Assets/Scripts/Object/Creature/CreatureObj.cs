@@ -49,8 +49,6 @@ namespace Object.Creature
         }
         
         public AttackZoneController AttackCardZone { get; set; }
-
-        public BlockZoneController BlockCardZone { get; set; }
         
         private void Awake()
         {
@@ -99,11 +97,6 @@ namespace Object.Creature
             {
                 slot.transform.SetParent(AttackCardZone.transform);
             }
-            else if (BlockCardZone.rectTransform.rect.Contains(
-                         BlockCardZone.rectTransform.InverseTransformPoint(eventData.position)))
-            {
-                slot.transform.SetParent(BlockCardZone.transform);
-            }
         }
         public void OnEndDrag(PointerEventData eventData)
         {
@@ -115,7 +108,7 @@ namespace Object.Creature
 
         private List<GameObject> GetListOfAllCardSlotsGOs()
         {
-            return AttackCardZone.CreatureGOs.Concat(BlockCardZone.CreatureGOs).ToList();
+            return AttackCardZone.CreatureGOs.ToList();
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
