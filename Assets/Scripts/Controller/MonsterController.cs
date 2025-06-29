@@ -10,18 +10,19 @@ namespace Controller
 {
     public class MonsterController: RegisteredMonoBehaviour
     {
-        [SerializeField] 
-        private List<MonsterSlot> monsterSlots;
 
-        public List<MonsterSlot> MonsterSlots => monsterSlots;
+        [SerializeField]
+        private Dictionary<GameObject, MonsterSlot> gOsToMonsterSlots = new Dictionary<GameObject, MonsterSlot>();
+        
+        public List<MonsterSlot> MonsterSlots => monsterZoneController.MonsterSlots;
 
-        public List<MonsterObject> MonstersPool
+        public Dictionary<GameObject, MonsterSlot> GOsToMonsterSlots
         {
-            get
-            {
-                return monsterSlots.Select(slot => slot.MonsterObj).ToList();
-            }
+            get => gOsToMonsterSlots;
+            set => gOsToMonsterSlots = value;
         }
+
+        public List<MonsterObject> MonstersPool => monsterZoneController.Monsters;
 
         [SerializeField] 
         private GameObject monsterSlotPrefab;
@@ -30,24 +31,14 @@ namespace Controller
 
         public void RemoveSlotFromMonsterSlots(MonsterSlot monsterSlot)
         {
-            monsterSlots.Remove(monsterSlot);
+            MonsterSlots.Remove(monsterSlot);
         }
         
         public void SpawnMonster(Monster monsterData)
         {
-            var firstDisabled = monsterSlots
-                                .FirstOrDefault(monster => !monster.gameObject.activeInHierarchy);
-            if (firstDisabled is not null)
-            {
-                ChangeCardValuesAndEnable(firstDisabled, monsterData);
-            }
-            else
-            {
-                var newMonster = Instantiate(monsterSlotPrefab, gameObject.transform.parent);
-                var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
-                monsterSlots.Add(newMonsterSlot);
-                ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
-            }
+            var newMonster = Instantiate(monsterSlotPrefab, monsterZoneController.transform);
+            var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
+            ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
         }
 
         private void ChangeCardValuesAndEnable(MonsterSlot monsterSlot, Monster monsterData)
@@ -57,6 +48,7 @@ namespace Controller
             monster.Monster = monsterData;
             monster.MonsterController = this;
             monster.UpdateText();
+            GOsToMonsterSlots.Add(monsterSlot.gameObject, monsterSlot);
             SpawnMonsterAnimation(monsterSlot.gameObject);
         }
 
@@ -71,14 +63,15 @@ namespace Controller
             rectTransform.DOScale(Vector3.one, duration)
                          .SetEase(Ease.OutBack, overshoot);
         }
+        
 
         public void Reset()
         {
-            foreach (var monster in monsterSlots)
+            foreach (var monster in MonsterSlots)
             {
                 Destroy(monster);
             }
-            monsterSlots = new List<MonsterSlot>();
+            GOsToMonsterSlots = new Dictionary<GameObject, MonsterSlot>();
         }
     }
 }

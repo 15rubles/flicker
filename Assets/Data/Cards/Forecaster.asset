@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
-  m_Name: Wizard
+  m_Name: Forecaster
   m_EditorClassIdentifier: 
-  cardName: 1
+  cardName: Forecaster
   power: 2
   keywords: 
   cardAbility:
-    rid: 3275667538002313291
+    rid: 3275667538002313292
   cardTypes: 
   cardAttack:
-    rid: 3275667742645813336
-  cardCost: 1
+    rid: 3275667742645813343
+  cardCost: 6
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
   type: 0
   references:
     version: 2
     RefIds:
-    - rid: 3275667538002313291
-      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+    - rid: 3275667538002313292
+      type: {class: DrawCardAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: '!!description is undefined!!'
-    - rid: 3275667742645813336
+        description: Draw a card.
+    - rid: 3275667742645813343
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
       data: 

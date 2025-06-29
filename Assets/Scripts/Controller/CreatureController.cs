@@ -26,11 +26,11 @@ namespace Controller
         }
 
 
-        public void SpawnCreature(ZoneController zone, Card cardData)
+        public void SpawnCreature(Card cardData)
         {
-            var creature = Instantiate(creatureSlotPrefab, zone.transform);
+            var creature = Instantiate(creatureSlotPrefab, attackZone.transform);
             var creatureSlot = creature.GetComponent<CreatureSlot>();
-            ChangeCreatureValuesAndEnable(creatureSlot, cardData, zone);
+            ChangeCreatureValuesAndEnable(creatureSlot, cardData, attackZone);
         }
         
         private void ChangeCreatureValuesAndEnable(CreatureSlot creatureSlot, Card cardData, ZoneController zone)

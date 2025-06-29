@@ -13,6 +13,14 @@ namespace Entity
         [SerializeField] private int money;
         [SerializeField] private int battleCounter = 1;
         [SerializeField] private List<ItemSO> items = new List<ItemSO>();
+        [SerializeField] private int hp;
+        [SerializeField] private int maxHp;
+
+        public int Hp
+        {
+            get => hp;
+            set => hp = value > maxHp ? maxHp : value;
+        }
 
         public List<ItemSO> Items
         {

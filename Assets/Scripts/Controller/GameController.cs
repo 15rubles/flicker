@@ -28,8 +28,10 @@ namespace Controller
 
         [Required]
         [SerializeField] private TextMeshProUGUI moneyText;
+        [Required]
+        [SerializeField] private TextMeshProUGUI hpText;
 
-        private int shopEncounterConter = 0;
+        private int shopEncounterCounter = 0;
         
         public int Money
         {
@@ -38,6 +40,16 @@ namespace Controller
             {
                 runState.Money = value;
                 moneyText.text = value.ToString();
+            }
+        }
+        
+        public int Hp
+        {
+            get => runState.Hp;
+            set
+            {
+                runState.Hp = value;
+                hpText.text = value.ToString();
             }
         }
 
@@ -79,9 +91,9 @@ namespace Controller
         public void StartNewEncounter()
         {
             IncreaseEncounterValue();
-            if (shopEncounterConter > shopEncounterTiming)
+            if (shopEncounterCounter > shopEncounterTiming)
             {
-                shopEncounterConter = 1;
+                shopEncounterCounter = 1;
                 battleCanvas.SetActive(false);
                 shopController.PrepareShop();
                 shopCanvas.SetActive(true);
@@ -102,7 +114,7 @@ namespace Controller
 
         private void IncreaseEncounterValue()
         {
-            shopEncounterConter++;
+            shopEncounterCounter++;
             encounterValue++;
             encounterText.text = encounterValue.ToString();
         }

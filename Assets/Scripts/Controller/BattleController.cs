@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Entity;
-using Object.Creature;
 using Object.Monster;
 using TMPro;
 using UnityEngine;
@@ -27,7 +26,7 @@ namespace Controller
         [SerializeField] private TextMeshProUGUI nextStepButtonText;
         [SerializeField] private GameObject coverScreen;
         
-        [SerializeField] private int startHandCount = 5;
+        [SerializeField] private int startHandCount = 3;
         [SerializeField] private Battle currentBattle;
 
         [SerializeField] private float animationSpeed = 0.5f;
@@ -38,6 +37,10 @@ namespace Controller
         [SerializeField] private TextMeshProUGUI shieldText;
         [SerializeField] private RectTransform shiedZone;
         [SerializeField] private RectTransform monsterZoneRect;
+
+        [SerializeField] private int rewardMoneyTurnOne = 5;
+        [SerializeField] private int rewardMoneyTurnTwo = 4;
+        [SerializeField] private int rewardMoneyTurnThreePlus = 3;
 
         public RectTransform ShiedZone => shiedZone;
 
@@ -206,7 +209,20 @@ namespace Controller
 
         private void ReceiveReward()
         {
-            gameController.Money += currentBattle.Reward.Money;
+            switch (Int32.Parse(turnText.text))
+            {
+                case 1:
+                    gameController.Money += rewardMoneyTurnOne;
+                    gameController.Hp++;
+                    break;
+                case 2:
+                    gameController.Money += rewardMoneyTurnTwo;
+                    break;
+                default:
+                    gameController.Money += rewardMoneyTurnThreePlus;
+                    break;
+            }
+            
             //TODO
         }
 
@@ -287,7 +303,8 @@ namespace Controller
                 if (shieldValue <= 0)
                 {
                     monsterZoneRect.SetSiblingIndex(originalIndex);
-                    
+
+                    gameController.Hp--;
                     //TODO
                     Debug.Log("GAME OVER!!!");
                     return;

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: Army
+  m_EditorClassIdentifier: 
+  cardName: Army
+  power: 0
+  keywords: 
+  cardAbility:
+    rid: 3275667899223900235
+  cardTypes: 
+  cardAttack:
+    rid: 3275667899223900232
+  cardCost: 8
+  visual: {fileID: 0}
+  type: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3275667899223900232
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 3275667899223900235
+      type: {class: SpawnCreatureAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Spawn 5 Solders with power 1.
+        creaturesToSpawn:
+        - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
+        - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
+        - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
+        - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}
+        - {fileID: 11400000, guid: 2410bc001a651dd4abf10cbae22db6aa, type: 2}

@@ -42,6 +42,11 @@ namespace Object.Creature
             set
             {
                 card = value;
+                if (card.power <= 0)
+                {
+                    DestroyCreature();
+                    return;
+                }
                 Power = value.power;
                 cardHintLeft.Card = card;
                 cardHintRight.Card = card;
@@ -59,7 +64,7 @@ namespace Object.Creature
         public void UpdateText()
         {
             powerText.text = Power.ToString();
-            cardName.text = Card.cardName.ToString();
+            cardName.text = Card.cardName;
         }
         public void OnDrag(PointerEventData eventData)
         {

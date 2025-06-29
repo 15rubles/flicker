@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
-  m_Name: BasicSoldier
+  m_Name: Archer
   m_EditorClassIdentifier: 
-  cardName: Solder
+  cardName: Archer
   power: 1
   keywords: 
   cardAbility:
-    rid: 3275667538002313286
+    rid: 3275667899223900249
   cardTypes: 01000000
   cardAttack:
-    rid: 3275667742645813339
-  cardCost: 1
-  visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
+    rid: 3275667899223900248
+  cardCost: 5
+  visual: {fileID: 0}
   type: 0
   references:
     version: 2
     RefIds:
-    - rid: 3275667538002313286
-      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
-      data:
-        abilityType: 0
-        description: 
-    - rid: 3275667742645813339
+    - rid: 3275667899223900248
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
       data: 
+    - rid: 3275667899223900249
+      type: {class: DamageToAllMonstersAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Deal 1 damage to all monsters.
+        damageValue: 1

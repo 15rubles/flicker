@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
-  cardName: 2
+  cardName: Mage
   power: 1
   keywords: 00000000
   cardAbility:
@@ -30,7 +30,7 @@ MonoBehaviour:
       type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: '!!description is undefined!!'
+        description: 
     - rid: 3275667742645813341
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
       data: 

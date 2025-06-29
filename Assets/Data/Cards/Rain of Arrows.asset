@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
-  m_Name: HealthTower
+  m_Name: Rain of Arrows
   m_EditorClassIdentifier: 
-  cardName: 5
-  power: 5
-  keywords: 03000000
+  cardName: Rain of Arrows
+  power: 0
+  keywords: 
   cardAbility:
-    rid: 3275667538002313288
+    rid: 3275667899223900251
   cardTypes: 
   cardAttack:
-    rid: 3275667742645813342
-  cardCost: 3
-  visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
+    rid: 3275667899223900250
+  cardCost: 6
+  visual: {fileID: 0}
   type: 0
   references:
     version: 2
     RefIds:
-    - rid: 3275667538002313288
-      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
-      data:
-        abilityType: 0
-        description: '!!description is undefined!!'
-    - rid: 3275667742645813342
+    - rid: 3275667899223900250
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
       data: 
+    - rid: 3275667899223900251
+      type: {class: DamageToAllMonstersAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Deal 2 damage to all monsters.
+        damageValue: 2

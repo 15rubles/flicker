@@ -72,8 +72,8 @@ namespace Object.Card
         
         private void UpdateText()
         {
-            cardName.text = card.cardName.ToString();
-            power.text = card.power.ToString();
+            cardName.text = card.cardName;
+            power.text = card.power <= 0 ? "" : card.power.ToString();
             description.text = card.Description;
         }
         
@@ -83,7 +83,7 @@ namespace Object.Card
                 return;
             if (AttackCardZone.rectTransform.rect.Contains(AttackCardZone.rectTransform.InverseTransformPoint(eventData.position)))
             {
-                PlayCard(AttackCardZone);
+                PlayCard();
             }
             else if (ShieldZone.rect.Contains(ShieldZone.InverseTransformPoint(eventData.position)))
             {
@@ -96,9 +96,13 @@ namespace Object.Card
             }
         }
 
-        private void PlayCard(ZoneController cardZone)
+        private void PlayCard()
         {
-            cardZone.creatureController.SpawnCreature(cardZone, card);
+            if (card.power > 0)
+            {
+                AttackCardZone.creatureController.SpawnCreature(card);
+            }
+            
             if (Card.cardAbility.AbilityType == AbilityType.EnterTheBattlefield)
             {
                 Card.cardAbility.UseAbility(this);

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Controller;
 using DG.Tweening;
 using Entity.Card.Ability;
@@ -6,10 +7,11 @@ using Object.Creature;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 namespace Object.Monster
 {
-    public class MonsterObject: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class MonsterObject: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IEndDragHandler, IDragHandler, IBeginDragHandler
     {
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private TextMeshProUGUI cardName;
@@ -17,7 +19,8 @@ namespace Object.Monster
         [SerializeField] private MonsterSlot slot;
         [SerializeField] private RectTransform rect;
         private MonsterController monsterController;
-
+        private Canvas canvas;
+        
         public RectTransform Rect => rect;
 
         public MonsterController MonsterController
@@ -49,7 +52,10 @@ namespace Object.Monster
             
         }
         
-
+        private void Awake()
+        {
+            canvas = GetComponentInParent<Canvas>();
+        }
         public void UpdateText()
         {
             cardName.text = monster.MonsterName.ToString();
@@ -75,6 +81,47 @@ namespace Object.Monster
         public async Task<bool> Attack(CreatureObj creatureObj)
         {
             return await monster.MonsterAttack.Attack(this, creatureObj);
+        }
+        
+         public void OnDrag(PointerEventData eventData)
+        {
+
+            rect.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            List<MonsterSlot> list = monsterController.MonsterSlots;
+            for (int index = 0; index < list.Count; index++)
+            {
+                RectTransform monsterRect = list[index].GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(monsterRect, eventData.position, eventData.enterEventCamera))
+                {
+                    // Convert to local space
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        monsterRect, eventData.position, eventData.enterEventCamera, out Vector2 localPoint
+                    );
+
+                    UtilitiesFunctions.SetSameParent(slot.gameObject, monsterRect.gameObject);
+                    
+                    // Check which side
+                    if (localPoint.x < 0)
+                    {
+                        UtilitiesFunctions.MoveBefore(slot.gameObject, monsterRect.gameObject);
+                    }
+                    else
+                    {
+                        UtilitiesFunctions.MoveAfter(slot.gameObject, monsterRect.gameObject);
+                    }
+                    return;
+                }
+            }
+        }
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            transform.SetParent(slot.transform);
+            gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            transform.SetParent(canvas.transform);
         }
 
         public async Task DestroyMonster()
