@@ -3,6 +3,7 @@ using Entity.Card;
 using Entity.Item;
 using Object.Shop;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -25,6 +26,14 @@ namespace Controller
         [SerializeField] private FullDeckForRemoveObj fullDeckForRemoveObj;
 
         [SerializeField] private int removeCardPrice = 5;
+        
+        [SerializeField] private TextMeshProUGUI rerollItemsPriceText;
+        [SerializeField] private TextMeshProUGUI rerollCardsPriceText;
+        [SerializeField] private int firstPaidRerollPrice = 3;
+        [SerializeField] private int rerollPriceIncreaseStep = 1;
+
+        private int rerollItemsPrice = 0;
+        private int rerollCardsPrice = 0;
 
         override protected void Awake()
         {
@@ -35,6 +44,11 @@ namespace Controller
 
         public void PrepareShop()
         {
+            rerollItemsPrice = 0; 
+            rerollCardsPrice = 0;
+            rerollItemsPriceText.text = "free";
+            rerollCardsPriceText.text = "free";
+            
             gameController.UpdateMoneyText();
             PrepareCardsForSale();
             PrepareItemsForSale();
@@ -85,6 +99,51 @@ namespace Controller
         public void CloseShop()
         {
             gameController.StartNewEncounter();
+        }
+        
+        public void RerollItems()
+        {
+            if (!gameController.TryToBuy(rerollItemsPrice)) return;
+
+            if (rerollItemsPrice == 0)
+            {
+                UpdateRerollItemsPrice(firstPaidRerollPrice);
+            }
+            else
+            {
+                UpdateRerollItemsPrice(rerollItemsPrice + 1);
+            }
+            
+            PrepareItemsForSale();
+
+        }
+
+        private void UpdateRerollItemsPrice(int newPrice)
+        {
+            rerollItemsPrice = newPrice;
+            rerollItemsPriceText.text = "$" + rerollItemsPrice;
+        }
+        
+        private void UpdateRerollCardsPrice(int newPrice)
+        {
+            rerollCardsPrice = newPrice;
+            rerollCardsPriceText.text = "$" + rerollCardsPrice;
+        }
+
+        public void RerollCards()
+        {
+            if (!gameController.TryToBuy(rerollCardsPrice)) return;
+
+            if (rerollCardsPrice == 0)
+            {
+                UpdateRerollCardsPrice(firstPaidRerollPrice);
+            }
+            else
+            {
+                UpdateRerollCardsPrice(rerollCardsPrice + 1);
+            }
+            
+            PrepareCardsForSale();
         }
     }
 }

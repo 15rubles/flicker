@@ -6,16 +6,9 @@ namespace Entity.Encounter.Battle
     [CreateAssetMenu(fileName = "Battle", menuName = "SOs/Battle", order = 1)]
     public class Battle : ScriptableObject
     {
-        [SerializeField] private BattleName battleName;
         [SerializeField] private List<Monster.Monster> monsterSet;
-        [SerializeField] private int difficulty;
-        [SerializeField] private Reward reward;
-
-        public BattleName BattleName
-        {
-            get => battleName;
-            set => battleName = value;
-        }
+        [SerializeField] private int minEncounter;
+        [SerializeField] private int maxEncounter;
 
         public List<Monster.Monster> MonsterSet
         {
@@ -23,16 +16,16 @@ namespace Entity.Encounter.Battle
             set => monsterSet = value;
         }
 
-        public int Difficulty
+        public int MinEncounter
         {
-            get => difficulty;
-            set => difficulty = value;
+            get => minEncounter;
+            set => minEncounter = value;
         }
 
-        public Reward Reward
+        public int MaxEncounter
         {
-            get => reward;
-            set => reward = value;
+            get => maxEncounter;
+            set => maxEncounter = value;
         }
     }
 }

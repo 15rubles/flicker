@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entity;
 using Entity.Encounter.Battle;
 using Entity.Item;
@@ -19,6 +20,7 @@ namespace Controller
         [SerializeField] private TextMeshProUGUI encounterText;
         [SerializeField] private int encounterValue = 0;
         [SerializeField] private int shopEncounterTiming = 3;
+        [SerializeField] private int shopEncounterCounter = 0;
 
         [SerializeField] private List<Battle> battles = new List<Battle>();
 
@@ -31,7 +33,6 @@ namespace Controller
         [Required]
         [SerializeField] private TextMeshProUGUI hpText;
 
-        private int shopEncounterCounter = 0;
         
         public int Money
         {
@@ -49,7 +50,7 @@ namespace Controller
             set
             {
                 runState.Hp = value;
-                hpText.text = value.ToString();
+                hpText.text = runState.Hp.ToString();
             }
         }
 
@@ -93,7 +94,7 @@ namespace Controller
             IncreaseEncounterValue();
             if (shopEncounterCounter > shopEncounterTiming)
             {
-                shopEncounterCounter = 1;
+                shopEncounterCounter = 0;
                 battleCanvas.SetActive(false);
                 shopController.PrepareShop();
                 shopCanvas.SetActive(true);
@@ -108,8 +109,11 @@ namespace Controller
 
         private void StartNewBattle()
         {
-            int randomIndex = Random.Range(0, battles.Count);
-            battleController.StartBattle(battles[randomIndex]);
+            var list = battles.Where(battle => battle.MaxEncounter >= encounterValue 
+                                               && encounterValue >= battle.MinEncounter)
+                              .ToList();
+            int randomIndex = Random.Range(0, list.Count);
+            battleController.StartBattle(list[randomIndex]);
         }
 
         private void IncreaseEncounterValue()

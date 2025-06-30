@@ -198,9 +198,13 @@ namespace Controller
                         return;
                     }
                    
-                    MonstersAttack();
-                    coverScreen.SetActive(true);
-                    nextStepButtonText.text = "Next Turn";
+                    bool didNotLose = await MonstersAttack();
+                    if (didNotLose)
+                    {
+                        coverScreen.SetActive(true);
+                        nextStepButtonText.text = "Next Turn";
+                    }
+                    
                     break;
             }
             currentStep = nextStep;
@@ -213,7 +217,7 @@ namespace Controller
             {
                 case 1:
                     gameController.Money += rewardMoneyTurnOne;
-                    gameController.Hp++;
+                    gameController. Hp++;
                     break;
                 case 2:
                     gameController.Money += rewardMoneyTurnTwo;
@@ -282,7 +286,7 @@ namespace Controller
             }
         }
         
-        private async void MonstersAttack()
+        private async Task<bool> MonstersAttack()
         {
             int originalIndex = monsterZoneRect.GetSiblingIndex();
             monsterZoneRect.SetAsLastSibling();
@@ -305,14 +309,24 @@ namespace Controller
                     monsterZoneRect.SetSiblingIndex(originalIndex);
 
                     gameController.Hp--;
-                    //TODO
-                    Debug.Log("GAME OVER!!!");
-                    return;
+
+                    if (gameController.Hp <= 0)
+                    {
+                        //TODO
+                        Debug.Log("GAME OVER!!!");
+                    }
+                    else
+                    {
+                        StartBattle(currentBattle);
+                    }
+                    
+                    return false;
                 }
                 
                 
             }
             monsterZoneRect.SetSiblingIndex(originalIndex);
+            return true;
         }
     }
 }

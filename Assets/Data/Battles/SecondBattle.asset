@@ -15,7 +15,8 @@ MonoBehaviour:
   battleName: 1
   monsterSet:
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  difficulty: 0
+  minEncounter: 1
+  maxEncounter: 1
   reward:
     money: 8
     items: []

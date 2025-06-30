@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 939b0bff538c93f4195e3979051bbdac, type: 3}
-  m_Name: firstBattle
+  m_Name: Battle 4
   m_EditorClassIdentifier: 
   battleName: 0
   monsterSet:
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  minEncounter: 12
-  maxEncounter: 12
+  - {fileID: 11400000, guid: 8c7f9e1781c46eb4ca44ab02ebd3b552, type: 2}
+  - {fileID: 11400000, guid: 8c7f9e1781c46eb4ca44ab02ebd3b552, type: 2}
+  minEncounter: 3
+  maxEncounter: 3
   reward:
-    money: 15
+    money: 0
     items: []
     cards: []

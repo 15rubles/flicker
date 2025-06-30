@@ -19,7 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
   - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
-  difficulty: 0
+  minEncounter: 20
+  maxEncounter: 20
   reward:
     money: 10
     items: []

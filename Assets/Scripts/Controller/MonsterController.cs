@@ -67,9 +67,10 @@ namespace Controller
 
         public void Reset()
         {
-            foreach (var monster in MonsterSlots)
+            var list = MonsterSlots;
+            foreach (var monster in list)
             {
-                Destroy(monster);
+                Destroy(monster.gameObject);
             }
             GOsToMonsterSlots = new Dictionary<GameObject, MonsterSlot>();
         }
