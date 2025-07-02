@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: TrampleTest
+  m_EditorClassIdentifier: 
+  cardName: 
+  power: 5
+  keywords: 04000000
+  cardAbility:
+    rid: 8036186501003608211
+  cardTypes: 
+  cardAttack:
+    rid: 8036186501003608209
+  shieldCardAbility:
+    rid: 8036186501003608212
+  cardCost: 0
+  visual: {fileID: 0}
+  type: 0
+  rarity: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186501003608209
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186501003608211
+      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: '!!description is undefined!!'
+    - rid: 8036186501003608212
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 

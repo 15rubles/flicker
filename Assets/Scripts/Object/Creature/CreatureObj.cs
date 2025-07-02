@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Controller;
 using DG.Tweening;
+using Entity.Card;
 using Entity.Card.Ability;
 using Object.Monster;
 using TMPro;

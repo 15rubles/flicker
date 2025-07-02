@@ -20,7 +20,7 @@ namespace Object.Shop
         public void SetItem(ItemSO itemSo)
         {
             item = itemSo;
-            priceText.text = "$" + item.price;
+            priceText.text = "$" + item.Price;
             nameText.text = item.itemName;
             descriptionText.text = item.description;
         }
@@ -28,7 +28,7 @@ namespace Object.Shop
         public void BuyItem()
         {
             var gameController = ControllerLocator.GetService<GameController>();
-            bool result = gameController.TryToBuy(item.price);
+            bool result = gameController.TryToBuy(item.Price);
 
             if (result)
             {

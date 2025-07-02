@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Entity.Card;
 using Entity.Item.Ability;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -23,6 +24,28 @@ namespace Entity.Item
         public string itemName;
         
         public string description;
+
+        public Rarity rarity = Rarity.Common;
+
+        public int Price
+        {
+            get
+            {
+                if (price != 0)
+                    return price;
+
+                switch (rarity)
+                {
+                    case Rarity.Common:
+                        return 6;
+                    case Rarity.Rare:
+                        return 10;
+                    case Rarity.UltraRare:
+                        return 15;
+                }
+                return price;
+            }
+        }
 
         private IEnumerable<Type> GetCompatibleAbilityTypes()
         {

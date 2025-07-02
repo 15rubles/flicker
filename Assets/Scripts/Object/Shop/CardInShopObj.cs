@@ -16,13 +16,13 @@ namespace Object.Shop
         public void SetCard(Entity.Card.Card card)
         {
             Card = card;
-            priceText.text = "$" + Card.cardCost;
+            priceText.text = "$" + Card.Price;
         }
         
         public void BuyCard()
         {
             var gameController = ControllerLocator.GetService<GameController>();
-            bool result = gameController.TryToBuy(Card.cardCost);
+            bool result = gameController.TryToBuy(Card.Price);
 
             if (result)
             {

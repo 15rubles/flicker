@@ -22,7 +22,7 @@ namespace Controller
         [SerializeField] private int shopEncounterTiming = 3;
         [SerializeField] private int shopEncounterCounter = 0;
 
-        [SerializeField] private List<Battle> battles = new List<Battle>();
+        private List<Battle> battles = new List<Battle>();
 
         [SerializeField] private Battle currentBattle;
 
@@ -84,6 +84,7 @@ namespace Controller
         override protected void Awake()
         {
             base.Awake();
+            battles = Resources.LoadAll<Battle>("Data/Battles").ToList();
             runState.Deck.BasicDeck = runState.DeckSo;
             battleController.RunState = runState;
             StartNewEncounter();
@@ -95,6 +96,7 @@ namespace Controller
             if (shopEncounterCounter > shopEncounterTiming)
             {
                 shopEncounterCounter = 0;
+                encounterValue--;
                 battleCanvas.SetActive(false);
                 shopController.PrepareShop();
                 shopCanvas.SetActive(true);

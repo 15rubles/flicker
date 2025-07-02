@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Entity.Card.Ability;
 using Entity.Card.Attack;
+using Entity.Card.ShieldAbility;
 using UnityEngine;
 
 namespace Entity.Card
@@ -27,13 +28,34 @@ namespace Entity.Card
         [SerializeReference] public CardAbility cardAbility;
         [SerializeField] public List<CardType> cardTypes = new List<CardType>();
         [SerializeReference] public CardAttack cardAttack = new DefaultAttack();
-        public int cardCost;
+        [SerializeReference] public ShieldCardAbility shieldCardAbility = new DefaultShieldAbility();
+        public int cardCost = 0;
         public Sprite visual;
         public CardType type;
+        public Rarity rarity = Rarity.Common;
 
         public bool CheckKeyword(KeywordType keywordToCheck)
         {
             return keywords.Contains(keywordToCheck);
+        }
+
+        public int Price
+        {
+            get
+            {
+                if (cardCost != 0)
+                    return cardCost;
+                switch (rarity)
+                {
+                    case Rarity.Common:
+                        return 4;
+                    case Rarity.Rare:
+                        return 7;
+                    case Rarity.UltraRare:
+                        return 11;
+                }
+                return cardCost;
+            }
         }
 
         public string Description

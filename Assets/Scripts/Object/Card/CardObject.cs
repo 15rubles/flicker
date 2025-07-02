@@ -87,7 +87,7 @@ namespace Object.Card
             }
             else if (ShieldZone.rect.Contains(ShieldZone.InverseTransformPoint(eventData.position)))
             {
-                battleController.UpdateShieldValue(card.power);
+                card.shieldCardAbility.UpdateShieldValue(card);
                 Discard();
             }
             else
