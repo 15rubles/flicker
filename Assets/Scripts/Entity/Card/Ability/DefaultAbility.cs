@@ -7,7 +7,7 @@ namespace Entity.Card.Ability
     [Serializable]
     public class DefaultAbility : CardAbility
     {
-        public override CardAbility UseAbility(CardObject cardObject)
+        public override CardAbility UseAbility(Card cardObject)
         {
             Debug.Log("ability");
             return this;

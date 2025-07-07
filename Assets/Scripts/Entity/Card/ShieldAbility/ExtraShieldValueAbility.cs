@@ -1,11 +1,14 @@
-﻿using Controller;
+﻿using System;
+using Controller;
+using UnityEngine;
 using Utils;
 
 namespace Entity.Card.ShieldAbility
 {
+    [Serializable]
     public class ExtraShieldValueAbility : ShieldCardAbility
     {
-        public int extraShieldValue;
+        [SerializeField] private int extraShieldValue;
         
         public override void UpdateShieldValue(Card card)
         {

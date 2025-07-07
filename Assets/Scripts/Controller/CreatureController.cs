@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entity.Card;
+using Entity.Card.Ability;
 using Object.Creature;
 using UnityEngine;
 using Utils;
@@ -25,12 +26,25 @@ namespace Controller
             set => gOsToCreatureSlots = value;
         }
 
+        private CreatureSlot lastPlayedCardSlot;
+
+        public CreatureSlot LastPlayedCardSlot => lastPlayedCardSlot;
+
 
         public void SpawnCreature(Card cardData)
         {
-            var creature = Instantiate(creatureSlotPrefab, attackZone.transform);
-            var creatureSlot = creature.GetComponent<CreatureSlot>();
-            ChangeCreatureValuesAndEnable(creatureSlot, cardData, attackZone);
+            if (cardData.power != 0)
+            {
+                var creature = Instantiate(creatureSlotPrefab, attackZone.transform);
+                var creatureSlot = creature.GetComponent<CreatureSlot>();
+                lastPlayedCardSlot = creatureSlot;
+                ChangeCreatureValuesAndEnable(creatureSlot, cardData, attackZone);
+            }
+            
+            if (cardData.cardAbility.AbilityType == AbilityType.EnterTheBattlefield)
+            {
+                cardData.cardAbility.UseAbility(cardData);
+            }
         }
         
         private void ChangeCreatureValuesAndEnable(CreatureSlot creatureSlot, Card cardData, ZoneController zone)

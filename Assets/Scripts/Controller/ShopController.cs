@@ -35,6 +35,12 @@ namespace Controller
         private int rerollItemsPrice = 0;
         private int rerollCardsPrice = 0;
 
+        public List<Card> AllCards
+        {
+            get => allCards;
+            set => allCards = value;
+        }
+
         override protected void Awake()
         {
             base.Awake();

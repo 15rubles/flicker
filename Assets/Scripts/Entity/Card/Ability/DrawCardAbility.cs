@@ -9,7 +9,7 @@ namespace Entity.Card.Ability
     public class DrawCardAbility : CardAbility
     {
 
-        public override CardAbility UseAbility(CardObject cardObj)
+        public override CardAbility UseAbility(Card cardObj)
         {
             ControllerLocator.GetService<BattleController>().DealCards(1);
             return this;

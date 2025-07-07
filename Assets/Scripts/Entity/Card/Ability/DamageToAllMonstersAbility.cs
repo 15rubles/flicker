@@ -10,12 +10,15 @@ namespace Entity.Card.Ability
     public class DamageToAllMonstersAbility : CardAbility
     {
         [SerializeField] private int damageValue;
-        public override CardAbility UseAbility(CardObject cardObj)
+        [SerializeField] private int minMonstersPowerAfterDamage = 1;
+        public override CardAbility UseAbility(Card cardObj)
         {
             MonsterController monsterController = ControllerLocator.GetService<MonsterController>();
             foreach (var monster in monsterController.MonstersPool)
             {
-                monster.Power -= damageValue;
+                monster.Power = monster.Power - damageValue > minMonstersPowerAfterDamage ?
+                    monster.Power - damageValue : minMonstersPowerAfterDamage;
+                
                 monster.UpdateText();
                 if (monster.Power <= 0)
                 {

@@ -28,7 +28,18 @@ namespace Object.Creature
             get => slot;
             set => slot = value;
         }
-        public int Power { get; set; }
+
+        private int power;
+
+        public int Power
+        {
+            get => power;
+            set
+            {
+                power = value;
+                UpdateText();
+            }
+        }
 
         private Entity.Card.Card card;
         

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entity;
@@ -8,6 +9,7 @@ using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
 using DG.Tweening;
+using Entity.Card;
 using Entity.Encounter.Battle;
 
 namespace Controller
@@ -41,6 +43,14 @@ namespace Controller
         [SerializeField] private int rewardMoneyTurnOne = 5;
         [SerializeField] private int rewardMoneyTurnTwo = 4;
         [SerializeField] private int rewardMoneyTurnThreePlus = 3;
+
+        [SerializeField] private List<Card> extraCardsAtTheStartOfTheRound = new List<Card>();
+
+        public List<Card> ExtraCardsAtTheStartOfTheRound
+        {
+            get => extraCardsAtTheStartOfTheRound;
+            set => extraCardsAtTheStartOfTheRound = value;
+        }
 
         public RectTransform ShiedZone => shiedZone;
 
@@ -115,6 +125,12 @@ namespace Controller
         private void DealHand()
         {
             DealCards(startHandCount);
+            
+            foreach (var extraCard in extraCardsAtTheStartOfTheRound)
+            {
+                cardSlotController.SpawnCard(extraCard);
+            }
+            extraCardsAtTheStartOfTheRound = new List<Card>();
         }
         
         public void DealCards(int quantity)

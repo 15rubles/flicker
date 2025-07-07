@@ -20,7 +20,6 @@ namespace Entity.Card
     [CreateAssetMenu(fileName = "Card", menuName = "SOs/Card", order = 1)]
     public class Card : ScriptableObject
     {
-        
         public string cardName;
         [Header("if power is 0, card will be treated like spell")]
         public int power;

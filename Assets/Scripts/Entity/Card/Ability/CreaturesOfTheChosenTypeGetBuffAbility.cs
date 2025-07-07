@@ -12,7 +12,7 @@ namespace Entity.Card.Ability
         [SerializeField] private int buffValue;
         [SerializeField] private CardType cardType;
         
-        public override CardAbility UseAbility(CardObject cardObj)
+        public override CardAbility UseAbility(Card cardObj)
         {
             CreatureController creatureController = ControllerLocator.GetService<CreatureController>();
             foreach (var creature in creatureController.AttackZone.Creatures)

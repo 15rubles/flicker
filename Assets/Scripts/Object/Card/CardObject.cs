@@ -98,15 +98,7 @@ namespace Object.Card
 
         private void PlayCard()
         {
-            if (card.power > 0)
-            {
-                AttackCardZone.creatureController.SpawnCreature(card);
-            }
-            
-            if (Card.cardAbility.AbilityType == AbilityType.EnterTheBattlefield)
-            {
-                Card.cardAbility.UseAbility(this);
-            }
+            AttackCardZone.creatureController.SpawnCreature(card);
             Delete();
         }
 

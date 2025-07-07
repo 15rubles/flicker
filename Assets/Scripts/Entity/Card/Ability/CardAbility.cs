@@ -1,5 +1,4 @@
 ﻿using System;
-using Object.Card;
 using UnityEngine;
 
 namespace Entity.Card.Ability
@@ -14,6 +13,6 @@ namespace Entity.Card.Ability
         public AbilityType AbilityType => abilityType;
         public string Description => description;
 
-        public abstract CardAbility UseAbility(CardObject cardObj);
+        public abstract CardAbility UseAbility(Card card);
     }
 }
