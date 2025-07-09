@@ -7,6 +7,8 @@ namespace Entity.Card.Ability
     {
         EnterTheBattlefield,
         Aura,
-        DeathRattle
+        DeathRattle,
+        EndOfCombat,
+        BeginningOfCombat,
     }
 }

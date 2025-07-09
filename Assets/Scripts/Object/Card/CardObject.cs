@@ -98,8 +98,10 @@ namespace Object.Card
 
         private void PlayCard()
         {
-            AttackCardZone.creatureController.SpawnCreature(card);
-            Delete();
+            bool isNeededToBeDeleted = AttackCardZone.creatureController.SpawnCreature(card);
+            
+            if (isNeededToBeDeleted)
+                Delete();
         }
 
         private void AddShield()

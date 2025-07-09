@@ -39,6 +39,9 @@ namespace Controller
             get => runState.Money;
             set
             {
+                if (value < 0)
+                    value = 0;
+                
                 runState.Money = value;
                 moneyText.text = value.ToString();
             }
@@ -61,7 +64,6 @@ namespace Controller
 
         public void UpdateMoneyText()
         {
-            
             moneyText.text = Money.ToString();
         }
 
@@ -123,6 +125,24 @@ namespace Controller
             shopEncounterCounter++;
             encounterValue++;
             encounterText.text = encounterValue.ToString();
+        }
+
+        public void BeginningOfCombatItemTriggers()
+        {
+            foreach (var triggerItem in runState.Items
+                                                .FindAll(item => item.ability.ItemType == ItemType.TriggerBeginningOfCombat))
+            {
+                triggerItem.ability.Trigger();
+            }
+        }
+        
+        public void BattleWonTriggers()
+        {
+            foreach (var triggerItem in runState.Items
+                                                .FindAll(item => item.ability.ItemType == ItemType.BattleWon))
+            {
+                triggerItem.ability.Trigger();
+            }
         }
     }
 }

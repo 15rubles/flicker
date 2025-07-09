@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entity.Card;
 using Entity.Card.Ability;
 using Object.Creature;
@@ -31,7 +32,7 @@ namespace Controller
         public CreatureSlot LastPlayedCardSlot => lastPlayedCardSlot;
 
 
-        public void SpawnCreature(Card cardData)
+        public bool SpawnCreature(Card cardData)
         {
             if (cardData.power != 0)
             {
@@ -45,12 +46,14 @@ namespace Controller
             {
                 cardData.cardAbility.UseAbility(cardData);
             }
+            UpdateAuraCards();
+            return cardData.cardAbility.IsNeededToBeDeleted;
         }
         
         private void ChangeCreatureValuesAndEnable(CreatureSlot creatureSlot, Card cardData, ZoneController zone)
         {
             var creatureObj = creatureSlot.CreatureObj;
-            creatureObj.Card = cardData;
+            creatureObj.Card = Instantiate(cardData);
             creatureObj.AttackCardZone = attackZone;
             AddCreature(zone, creatureSlot);
             creatureObj.UpdateText();
@@ -71,6 +74,14 @@ namespace Controller
             }
             
             GOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
+        }
+        
+        public void UpdateAuraCards()
+        {
+            foreach (CreatureObj creature in AttackZone.Creatures.Where(creature => creature.Card.cardAbility.AbilityType == AbilityType.Aura))
+            {
+                creature.Card.cardAbility.UseAbility(creature.Card);
+            }
         }
     }
 }

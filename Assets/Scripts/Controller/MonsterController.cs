@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Entity.Card.Ability;
 using Entity.Monster;
 using Object.Monster;
 using UnityEngine;
@@ -45,7 +46,7 @@ namespace Controller
         {
             var monster = monsterSlot.MonsterObj;
             monsterSlot.transform.SetParent(monsterZoneController.transform);
-            monster.Monster = monsterData;
+            monster.Monster = Instantiate(monsterData);
             monster.MonsterController = this;
             monster.UpdateText();
             GOsToMonsterSlots.Add(monsterSlot.gameObject, monsterSlot);
@@ -73,6 +74,24 @@ namespace Controller
                 Destroy(monster.gameObject);
             }
             GOsToMonsterSlots = new Dictionary<GameObject, MonsterSlot>();
+        }
+
+        public void EndOfCombatTrigger()
+        {
+            foreach (var triggerMonster in MonstersPool
+                         .FindAll(monster => monster.Monster.Ability.AbilityType == AbilityType.EndOfCombat))
+            {
+                triggerMonster.Monster.Ability.UseAbility();
+            }
+        }
+        
+        public void BeginningOfCombatTrigger()
+        {
+            foreach (var triggerMonster in MonstersPool
+                         .FindAll(monster => monster.Monster.Ability.AbilityType == AbilityType.EndOfCombat))
+            {
+                triggerMonster.Monster.Ability.UseAbility();
+            }
         }
     }
 }

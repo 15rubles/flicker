@@ -38,6 +38,10 @@ namespace Object.Creature
             {
                 power = value;
                 UpdateText();
+                if (power <= 0)
+                {
+                    DestroyCreature();
+                }
             }
         }
 

@@ -7,6 +7,8 @@
         Passive,
         TriggerBeginningOfCombat,
         TriggerEndOfCombat,
-        TriggerCardPlayed
+        TriggerCardPlayed,
+        BattleWon,
+        BattleLost
     }
 }

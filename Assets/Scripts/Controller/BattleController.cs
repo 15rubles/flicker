@@ -11,6 +11,8 @@ using Random = UnityEngine.Random;
 using DG.Tweening;
 using Entity.Card;
 using Entity.Encounter.Battle;
+using JetBrains.Annotations;
+using Object.Creature;
 
 namespace Controller
 {
@@ -46,6 +48,12 @@ namespace Controller
 
         [SerializeField] private List<Card> extraCardsAtTheStartOfTheRound = new List<Card>();
 
+        public TextMeshProUGUI TurnText
+        {
+            get => turnText;
+            set => turnText = value;
+        }
+
         public List<Card> ExtraCardsAtTheStartOfTheRound
         {
             get => extraCardsAtTheStartOfTheRound;
@@ -73,6 +81,12 @@ namespace Controller
         
         private CircularNode<TurnStep> currentStep;
 
+        [CanBeNull]
+        public CreatureObj NextAttackingCreature
+        {
+            get;
+            set;
+        }
 
         public void StartBattle(Battle newBattle)
         {
@@ -206,9 +220,14 @@ namespace Controller
                     break;
                 case TurnStep.Attack:
                     DiscardHand();
+                    
+                    gameController.BeginningOfCombatItemTriggers();
+                    monsterController.BeginningOfCombatTrigger();
+                    
                     await CreaturesAttack();
                     if (isBattleWon)
                     {
+                        gameController.BattleWonTriggers();
                         ReceiveReward();
                         gameController.StartNewEncounter();
                         return;
@@ -221,6 +240,7 @@ namespace Controller
                         nextStepButtonText.text = "Next Turn";
                     }
                     
+                    monsterController.EndOfCombatTrigger();
                     break;
             }
             currentStep = nextStep;
@@ -271,17 +291,20 @@ namespace Controller
             MonsterObject monster = slot.MonsterObj;
             monster.Rect
                    .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo);
-            
-            foreach (var creature in creatureController.AttackZone.Creatures)
+
+            for (int index = 0; index < creatureController.AttackZone.Creatures.Count; index++)
             {
+                NextAttackingCreature = index + 1 < creatureController.AttackZone.Creatures.Count 
+                                                    ? creatureController.AttackZone.Creatures[index + 1] : null;
+                CreatureObj creature = creatureController.AttackZone.Creatures[index];
                 await creature.GetComponent<RectTransform>()
                               .DOAnchorPos(
                                   UtilitiesFunctions.ConvertAnchoredPosition(monster.GetComponent<RectTransform>(),
-                                                                                    creature.GetComponent<RectTransform>()),
+                                      creature.GetComponent<RectTransform>()),
                                   animationSpeed).SetEase(Ease.InOutExpo).AsyncWaitForCompletion();
 
                 bool isMonsterDied = await creature.Attack(monster);
-                
+
                 slot = monsterController.MonsterSlots.FirstOrDefault();
                 if (slot == null)
                 {
@@ -296,7 +319,7 @@ namespace Controller
                     monster.Rect
                            .DOAnchorPosY(50, animationSpeed).SetEase(Ease.InOutExpo);
                 }
-               
+
                 creature.GetComponent<RectTransform>()
                         .DOAnchorPos(Vector2.zero, animationSpeed).SetEase(Ease.InOutExpo);
             }

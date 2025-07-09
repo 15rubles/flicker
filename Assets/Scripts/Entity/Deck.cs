@@ -16,12 +16,15 @@ namespace Entity
 
         [SerializeField] private List<Card.Card> cardsInDiscard;
 
+        [SerializeField] private int shieldValue;
+
         public DeckSo BasicDeck
         {
             get => basicDeck;
             set
             {
                 basicDeck = value;
+                shieldValue = basicDeck.ShieldValue;
                 allCards = basicDeck.AllCards.ToList();
             }
             
@@ -32,8 +35,12 @@ namespace Entity
             get => allCards;
             set => allCards = value;
         }
-        
-        public int ShieldValue => basicDeck.ShieldValue;
+
+        public int ShieldValue
+        {
+            get => shieldValue;
+            set => shieldValue = value;
+        }
 
         public List<Card.Card> CardsInDeck
         {

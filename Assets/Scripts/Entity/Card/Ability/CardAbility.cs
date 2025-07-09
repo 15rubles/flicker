@@ -13,6 +13,14 @@ namespace Entity.Card.Ability
         public AbilityType AbilityType => abilityType;
         public string Description => description;
 
+        private bool isNeededToBeDeleted = true;
+        
+        public bool IsNeededToBeDeleted
+        {
+            get => isNeededToBeDeleted;
+            set => isNeededToBeDeleted = value;
+        }
+
         public abstract CardAbility UseAbility(Card card);
     }
 }

@@ -19,7 +19,7 @@ namespace Object.Shop
 
         public void SetItem(ItemSO itemSo)
         {
-            item = itemSo;
+            item = Instantiate(itemSo);
             priceText.text = "$" + item.Price;
             nameText.text = item.itemName;
             descriptionText.text = item.description;

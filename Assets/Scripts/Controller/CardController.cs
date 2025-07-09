@@ -53,7 +53,7 @@ namespace Controller
             LinkedListNode<CardSlot> cardSlotNode)
         {
             cardObj.AttackCardZone = attackCardZone;
-            cardObj.Card = cardData;
+            cardObj.Card = Instantiate(cardData);
             cardObj.CardSlotNode = cardSlotNode;
             // cardObj.gameObject.transform.SetParent(cardSlot.transform);
             cardObj.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;

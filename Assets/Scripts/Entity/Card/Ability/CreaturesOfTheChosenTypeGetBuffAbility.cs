@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Controller;
 using Object.Card;
+using Object.Creature;
 using UnityEngine;
 using Utils;
 
@@ -15,13 +17,11 @@ namespace Entity.Card.Ability
         public override CardAbility UseAbility(Card cardObj)
         {
             CreatureController creatureController = ControllerLocator.GetService<CreatureController>();
-            foreach (var creature in creatureController.AttackZone.Creatures)
+            foreach (CreatureObj creature in creatureController.AttackZone.Creatures
+                                                               .Where(creature => creature.Card.cardTypes.Contains(cardType)))
             {
-                if (creature.Card.cardTypes.Contains(cardType))
-                {
-                    creature.Power += buffValue;
-                    creature.UpdateText();
-                }
+                creature.Power = creature.Card.power + buffValue;
+                creature.UpdateText();
             }
             return this;
         }

@@ -32,6 +32,18 @@ namespace Controller
         [SerializeField] private int firstPaidRerollPrice = 3;
         [SerializeField] private int rerollPriceIncreaseStep = 1;
 
+        public int FirstPaidRerollPrice
+        {
+            get => firstPaidRerollPrice;
+            set => firstPaidRerollPrice = value;
+        }
+
+        public int RerollPriceIncreaseStep
+        {
+            get => rerollPriceIncreaseStep;
+            set => rerollPriceIncreaseStep = value;
+        }
+
         private int rerollItemsPrice = 0;
         private int rerollCardsPrice = 0;
 
