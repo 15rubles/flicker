@@ -2890,6 +2890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackZone: {fileID: 1081224449}
+  gameController: {fileID: 786262279}
   creatureSlotPrefab: {fileID: 527353725685524961, guid: 010917abafa7fc4438cc2a13c455fccd, type: 3}
 --- !u!114 &786262276
 MonoBehaviour:
@@ -2951,6 +2952,7 @@ MonoBehaviour:
       allCards: []
       cardsInDeck: []
       cardsInDiscard: []
+      shieldValue: 0
     deckSo: {fileID: 11400000, guid: 67d5486d2fa983746a51b6613c7b7c0a, type: 2}
     money: 0
     battleCounter: 1
@@ -2992,6 +2994,7 @@ MonoBehaviour:
       allCards: []
       cardsInDeck: []
       cardsInDiscard: []
+      shieldValue: 0
     deckSo: {fileID: 11400000, guid: ad4b1774f36656b48bd15aeaf5993b2c, type: 2}
     money: 10
     battleCounter: 1

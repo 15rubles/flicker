@@ -144,5 +144,14 @@ namespace Controller
                 triggerItem.ability.Trigger();
             }
         }
+
+        public void CardPlayedTriggers()
+        {
+            foreach (var triggerItem in runState.Items
+                                                .FindAll(item => item.ability.ItemType == ItemType.TriggerCardPlayed))
+            {
+                triggerItem.ability.Trigger();
+            }
+        }
     }
 }

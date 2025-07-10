@@ -5,6 +5,7 @@ using Entity.Card;
 using Entity.Item.Ability;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 namespace Entity.Item
 {
@@ -37,11 +38,11 @@ namespace Entity.Item
                 switch (rarity)
                 {
                     case Rarity.Common:
-                        return 6;
+                        return Constants.CommonItemBasePrice;
                     case Rarity.Rare:
-                        return 10;
+                        return Constants.RareItemBasePrice;
                     case Rarity.UltraRare:
-                        return 15;
+                        return Constants.UltraRareItemBasePrice;
                 }
                 return price;
             }

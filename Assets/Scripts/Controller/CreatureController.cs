@@ -12,6 +12,8 @@ namespace Controller
     {
         [SerializeField] 
         private AttackZoneController attackZone;
+
+        [SerializeField] private GameController gameController;
         
         [SerializeField]
         private Dictionary<GameObject, CreatureSlot> gOsToCreatureSlots = new Dictionary<GameObject, CreatureSlot>();
@@ -47,6 +49,7 @@ namespace Controller
                 cardData.cardAbility.UseAbility(cardData);
             }
             UpdateAuraCards();
+            gameController.CardPlayedTriggers();
             return cardData.cardAbility.IsNeededToBeDeleted;
         }
         
