@@ -12,8 +12,15 @@ namespace Entity.Monster
         [SerializeField] private MonsterName monsterName;
         [SerializeField] private int power;
         [SerializeField] [SerializeReference] private List<MonsterAbility> abilities;
+        [SerializeField] [SerializeReference] private List<MonsterType> monsterTypes;
         [SerializeField] private Sprite visual;
         [SerializeField] [SerializeReference] private MonsterAttack monsterAttack = new DefaultAttack();
+
+        public List<MonsterType> MonsterTypes
+        {
+            get => monsterTypes;
+            set => monsterTypes = value;
+        }
 
         public MonsterName MonsterName
         {

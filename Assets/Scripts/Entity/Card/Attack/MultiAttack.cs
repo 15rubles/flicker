@@ -11,7 +11,6 @@ namespace Entity.Card.Attack
     [Serializable]
     public class MultiAttack : CardAttack
     {
-
         public int attackQuantity = 2;
 
         public override async Task<bool> Attack(CreatureObj creature, MonsterObject monster)
@@ -27,8 +26,8 @@ namespace Entity.Card.Attack
                 {
                     GameObject targetSlot = parent.GetChild(0).gameObject;
                     var monsterObj = monsterController.GOsToMonsterSlots[targetSlot].MonsterObj;
-                    
-                    if (monsterObj.Power - creature.Power <= 0 || creature.Card.CheckKeyword(KeywordType.Poison))
+                    monsterObj.Power -= creature.Power;
+                    if (monsterObj.Power <= 0 || creature.Card.CheckKeyword(KeywordType.Poison) && monsterObj.LastDamage > 0)
                     {
                         await monsterObj.DestroyMonster();
                         await Task.Yield();
@@ -36,7 +35,6 @@ namespace Entity.Card.Attack
                     }
                     else
                     {
-                        monsterObj.Power -= creature.Power;
                         monsterObj.UpdateText();
                     }
                 }

@@ -12,14 +12,22 @@ namespace Entity.Monster.Ability
     {
         [SerializeField] private List<Monster> monstersToSpawn = new List<Monster>();
 
-        public List<Monster> MonstersToSpawn => monstersToSpawn;
-        
+        [SerializeField] private List<MonsterSlot> spawnedMonsters = new List<MonsterSlot>();
+
+        public List<MonsterSlot> SpawnedMonsters
+        {
+            get
+            {
+                spawnedMonsters.RemoveAll(item => item == null);
+                return spawnedMonsters;
+            }
+        }
         public override MonsterAbility UseAbility(MonsterObject monsterObject)
         {
             MonsterController monsterController = ControllerLocator.GetService<MonsterController>();
             foreach (var monster in monstersToSpawn)
             {
-                monsterController.SpawnMonster(monster);
+                spawnedMonsters.Add(monsterController.SpawnMonster(monster));
             }
             return this;
         }

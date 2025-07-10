@@ -45,6 +45,8 @@ namespace Object.Monster
             get;
             set;
         }
+
+        public int LastDamage => PreviousPower - power;
         
         public int Power
         {

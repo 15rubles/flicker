@@ -26,8 +26,8 @@ namespace Entity.Card.Attack
                     {
                         GameObject targetSlot = parent.GetChild(0).gameObject;
                         var monsterObj = monsterController.GOsToMonsterSlots[targetSlot].MonsterObj;
-                        
-                        if (monsterObj.Power - power <= 0 || creature.Card.CheckKeyword(KeywordType.Poison))
+                        monsterObj.Power -= power;
+                        if (monsterObj.Power <= 0 || (creature.Card.CheckKeyword(KeywordType.Poison) && monsterObj.LastDamage > 0))
                         {
                             await monsterObj.DestroyMonster();
                             await Task.Yield();
@@ -35,10 +35,9 @@ namespace Entity.Card.Attack
                         }
                         else
                         {
-                            monsterObj.Power -= power;
                             monsterObj.UpdateText();
                         }
-
+                        //TODO poison dont work with trample and reduced damage
                         power = creature.Card.CheckKeyword(KeywordType.Poison) ? power - 1 : power - monsterObj.Power;
                     }
                     else
@@ -48,15 +47,13 @@ namespace Entity.Card.Attack
                 }
                 return isMonsterDied;
             }
-            
-            if (monster.Power - creature.Power <= 0 || creature.Card.CheckKeyword(KeywordType.Poison))
+            monster.Power -= creature.Power;
+            if (monster.Power <= 0 || (creature.Card.CheckKeyword(KeywordType.Poison) && monster.LastDamage > 0))
             {
                 await monster.DestroyMonster();
                 await Task.Yield();
                 return true;
             }
-
-            monster.Power -= creature.Power;
             monster.UpdateText();
             return false;
         }

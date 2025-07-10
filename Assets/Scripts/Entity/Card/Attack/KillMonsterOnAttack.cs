@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Controller;
+using Entity.Monster;
 using Object.Creature;
 using Object.Monster;
+using UnityEngine;
 using Utils;
 
 namespace Entity.Card.Attack
@@ -11,6 +13,7 @@ namespace Entity.Card.Attack
     [Serializable]
     public class KillMonsterOnAttack : CardAttack
     {
+        [Header("Not working on bosses")]
         public MonsterTarget monsterTarget = MonsterTarget.Weakest;
         public override async Task<bool> Attack(CreatureObj creature, MonsterObject monster)
         {
@@ -19,7 +22,8 @@ namespace Entity.Card.Attack
             switch (monsterTarget)
             {
                 case MonsterTarget.Weakest:
-                    var weakestMonster = monsters.OrderBy(monst => monst.Power).FirstOrDefault();
+                    var weakestMonster = monsters.FindAll(m => !m.Monster.MonsterTypes.Contains(MonsterType.Boss))
+                                                 .OrderBy(monst => monst.Power).FirstOrDefault();
                     if (weakestMonster != null)
                     {
                         await weakestMonster.DestroyMonster();
@@ -27,7 +31,8 @@ namespace Entity.Card.Attack
                     }
                     break;
                 case MonsterTarget.Strongest:
-                    var strongestMonster = monsters.OrderByDescending(monst => monst.Power).FirstOrDefault();
+                    var strongestMonster = monsters.FindAll(m => !m.Monster.MonsterTypes.Contains(MonsterType.Boss))
+                                                   .OrderByDescending(monst => monst.Power).FirstOrDefault();
                     if (strongestMonster != null)
                     {
                         await strongestMonster.DestroyMonster();
