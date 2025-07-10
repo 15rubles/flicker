@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Entity.Card.Ability;
+using Entity.Monster.Ability;
+using Object.Monster;
+using UnityEngine;
 
 namespace Utils
 {
@@ -50,6 +54,25 @@ namespace Utils
             }
 
             return true;
+        }
+
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = Random.Range(0, n + 1);
+                (list[k], list[n]) = (list[n], list[k]);
+            }
+        }
+        
+        public static void UseAbilitiesOfType(this List<MonsterAbility> list, AbilityType abilityType, MonsterObject monsterObject)
+        {
+            foreach (var ability in list.FindAll(a => a.AbilityType == abilityType))
+            {
+                ability.UseAbility(monsterObject);
+            }
         }
 
     }

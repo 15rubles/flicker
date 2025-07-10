@@ -38,8 +38,34 @@ namespace Object.Monster
         [SerializeField]
         private Entity.Monster.Monster monster;
 
-        public int Power { get; set; }
+        private int power;
 
+        public int PreviousPower
+        {
+            get;
+            set;
+        }
+        
+        public int Power
+        {
+            get => power;
+            set
+            {
+                PreviousPower = power;
+                power = value;
+
+                if (PreviousPower > power)
+                {
+                    monster.Abilities.UseAbilitiesOfType(AbilityType.DamageDealt, this);
+                }
+            }
+        }
+
+        public void SetPowerWithoutTrigger(int newPower)
+        {
+            power = newPower;
+        }
+        
         public Entity.Monster.Monster Monster
         {
             get => monster;
@@ -47,7 +73,8 @@ namespace Object.Monster
             {
                 monster = value;
                 Power = value.Power;
-                monsterDescription.Description = monster.Ability.Description;
+                // TODO TODO TODO TODO TODO make may descriptions for each ability
+                monsterDescription.Description = monster.Abilities[0].Description;
             }
             
         }
@@ -64,10 +91,7 @@ namespace Object.Monster
 
         private void OnDestroy()
         {
-            if (monster.Ability.AbilityType == AbilityType.DeathRattle)
-            {
-                monster.Ability.UseAbility();
-            }
+            monster.Abilities.UseAbilitiesOfType(AbilityType.DeathRattle, this);
         }
         public void OnPointerEnter(PointerEventData eventData)
         {

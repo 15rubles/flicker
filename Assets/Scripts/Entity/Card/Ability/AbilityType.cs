@@ -10,5 +10,6 @@ namespace Entity.Card.Ability
         DeathRattle,
         EndOfCombat,
         BeginningOfCombat,
+        DamageDealt
     }
 }

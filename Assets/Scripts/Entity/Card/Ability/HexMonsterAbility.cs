@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Controller;
+using Entity.Monster.Ability;
 using Object.Monster;
 using Utils;
 
@@ -23,7 +25,7 @@ namespace Entity.Card.Ability
                     monsterObject = monsterController.MonstersPool.Last();
                     break;
             }
-            monsterObject.Monster.Ability = new Monster.Ability.DefaultAbility();
+            monsterObject.Monster.Abilities = new List<MonsterAbility>();
             return this;
         }
 

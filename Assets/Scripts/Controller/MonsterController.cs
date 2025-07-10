@@ -35,11 +35,12 @@ namespace Controller
             MonsterSlots.Remove(monsterSlot);
         }
         
-        public void SpawnMonster(Monster monsterData)
+        public MonsterSlot SpawnMonster(Monster monsterData)
         {
             var newMonster = Instantiate(monsterSlotPrefab, monsterZoneController.transform);
             var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
             ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
+            return newMonsterSlot;
         }
 
         private void ChangeCardValuesAndEnable(MonsterSlot monsterSlot, Monster monsterData)
@@ -78,19 +79,17 @@ namespace Controller
 
         public void EndOfCombatTrigger()
         {
-            foreach (var triggerMonster in MonstersPool
-                         .FindAll(monster => monster.Monster.Ability.AbilityType == AbilityType.EndOfCombat))
+            foreach (var triggerMonster in MonstersPool)
             {
-                triggerMonster.Monster.Ability.UseAbility();
+                triggerMonster.Monster.Abilities.UseAbilitiesOfType(AbilityType.EndOfCombat, triggerMonster);
             }
         }
         
         public void BeginningOfCombatTrigger()
         {
-            foreach (var triggerMonster in MonstersPool
-                         .FindAll(monster => monster.Monster.Ability.AbilityType == AbilityType.EndOfCombat))
+            foreach (var triggerMonster in MonstersPool)
             {
-                triggerMonster.Monster.Ability.UseAbility();
+                triggerMonster.Monster.Abilities.UseAbilitiesOfType(AbilityType.EndOfCombat, triggerMonster);
             }
         }
     }

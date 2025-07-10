@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Controller;
 using Object.Creature;
+using Object.Monster;
 using Utils;
 
 namespace Entity.Monster.Ability
@@ -15,7 +16,7 @@ namespace Entity.Monster.Ability
         public bool assignDebuffValueToPower = false;
         public int debuffValue = 1;
 
-        public override MonsterAbility UseAbility()
+        public override MonsterAbility UseAbility(MonsterObject monsterObject)
         {
             var creatureController = ControllerLocator.GetService<CreatureController>();
             List<CreatureObj> creatures = new List<CreatureObj>();

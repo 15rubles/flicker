@@ -1,5 +1,6 @@
 ﻿using System;
 using Entity.Card.Ability;
+using Object.Monster;
 using UnityEngine;
 
 namespace Entity.Monster.Ability
@@ -14,6 +15,6 @@ namespace Entity.Monster.Ability
         public AbilityType AbilityType => abilityType;
         public string Description => description;
         
-        public abstract MonsterAbility UseAbility();
+        public abstract MonsterAbility UseAbility(MonsterObject monsterObject);
     }
 }

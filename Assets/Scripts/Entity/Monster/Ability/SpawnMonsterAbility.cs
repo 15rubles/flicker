@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Controller;
+using Object.Monster;
 using UnityEngine;
 using Utils;
 
@@ -13,7 +14,7 @@ namespace Entity.Monster.Ability
 
         public List<Monster> MonstersToSpawn => monstersToSpawn;
         
-        public override MonsterAbility UseAbility()
+        public override MonsterAbility UseAbility(MonsterObject monsterObject)
         {
             MonsterController monsterController = ControllerLocator.GetService<MonsterController>();
             foreach (var monster in monstersToSpawn)
