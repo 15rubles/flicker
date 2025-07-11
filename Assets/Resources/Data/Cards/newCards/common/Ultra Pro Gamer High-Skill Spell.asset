@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: Ultra Pro Gamer High-Skill Spell
+  m_EditorClassIdentifier: 
+  cardName: Ultra Pro Gamer High-Skill Spell
+  power: 0
+  keywords: 
+  cardAbility:
+    rid: 8036186703037988983
+  cardTypes: 
+  cardAttack:
+    rid: 8036186703037988981
+  shieldCardAbility:
+    rid: 8036186703037988982
+  cardCost: 0
+  visual: {fileID: 0}
+  rarity: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186703037988981
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037988982
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037988983
+      type: {class: SummonRandomCardAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Summon random Common card
+        summonCardRarity: 0
+        quantityToSpawn: 1

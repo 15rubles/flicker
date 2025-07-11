@@ -20,10 +20,12 @@ namespace Entity.Item
         // [InlineProperty, HideLabel]
         public ItemAbility ability;
 
+        [Header("If price == 0 will use default value")]
         public int price;
         
         public string itemName;
         
+        [TextArea]
         public string description;
 
         public Rarity rarity = Rarity.Common;

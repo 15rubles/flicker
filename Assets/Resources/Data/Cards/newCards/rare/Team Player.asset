@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: Team Player
+  m_EditorClassIdentifier: 
+  cardName: Team Player
+  power: 1
+  keywords: 
+  cardAbility:
+    rid: 8036186703037989025
+  cardTypes: 02000000
+  cardAttack:
+    rid: 8036186703037989023
+  shieldCardAbility:
+    rid: 8036186703037989026
+  cardCost: 0
+  visual: {fileID: 0}
+  rarity: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186703037989023
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037989025
+      type: {class: PowerBonusForEachCreatureOfChosenTypeAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 1
+        description: Gains +1 power for each other player type card on the battle.
+        creatureType: 2
+    - rid: 8036186703037989026
+      type: {class: PowerBonusForEachCreatureOfChosenTypeShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data:
+        creatureType: 2

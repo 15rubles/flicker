@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: High Ping
+  m_EditorClassIdentifier: 
+  cardName: High Ping
+  power: 0
+  keywords: 
+  cardAbility:
+    rid: 8036186703037989017
+  cardTypes: 
+  cardAttack:
+    rid: 8036186703037989015
+  shieldCardAbility:
+    rid: 8036186703037989016
+  cardCost: 0
+  visual: {fileID: 0}
+  rarity: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186703037989015
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037989016
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037989017
+      type: {class: MultipleCardPlayAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Summon Player with power 1. Returns to hand 3 times until goes
+          to discard.
+        playsLeft: 4

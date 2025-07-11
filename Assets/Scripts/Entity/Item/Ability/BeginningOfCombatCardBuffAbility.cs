@@ -43,6 +43,13 @@ namespace Entity.Item.Ability
                     if (modifiedCreature != null)
                         modifiedCreature.Power += buffValue;
                     break;
+                case CreatureTarget.Random:
+                    var list = creatureController.AttackZone.Creatures;
+                    list.Shuffle();
+                    modifiedCreature = list.First();
+                    if (modifiedCreature != null)
+                        modifiedCreature.Power += buffValue;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -54,7 +61,8 @@ namespace Entity.Item.Ability
             Weakest,
             Strongest,
             LeftMost,
-            RightMost
+            RightMost,
+            Random
         }
     }
 }

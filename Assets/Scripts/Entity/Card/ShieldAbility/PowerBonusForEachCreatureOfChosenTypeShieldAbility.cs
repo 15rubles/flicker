@@ -2,21 +2,20 @@
 using Controller;
 using Utils;
 
-namespace Entity.Card.Ability
+namespace Entity.Card.ShieldAbility
 {
     [Serializable]
-    public class PowerBonusForEachCreatureOfChosenTypeAbility : CardAbility
+    public class PowerBonusForEachCreatureOfChosenTypeShieldAbility : ShieldCardAbility
     {
+        
         public CardType creatureType;
-        public override CardAbility UseAbility(Card card)
+        public override void UpdateShieldValue(Card card)
         {
             var creatureController = ControllerLocator.GetService<CreatureController>();
-            var creatureObj = creatureController.LastPlayedCardSlot.CreatureObj;
             int powerUp = creatureController.AttackZone.Creatures
                                             .FindAll(creature => creature.Card.cardTypes.Contains(creatureType))
                                             .Count;
-            creatureObj.Power = card.power + powerUp;
-            return this;
+            ControllerLocator.GetService<BattleController>().UpdateShieldValue(card.power + powerUp);
         }
     }
 }

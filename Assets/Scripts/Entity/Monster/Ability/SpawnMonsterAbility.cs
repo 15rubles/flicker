@@ -12,7 +12,7 @@ namespace Entity.Monster.Ability
     {
         [SerializeField] private List<Monster> monstersToSpawn = new List<Monster>();
 
-        [SerializeField] private List<MonsterSlot> spawnedMonsters = new List<MonsterSlot>();
+        private List<MonsterSlot> spawnedMonsters = new List<MonsterSlot>();
 
         public List<MonsterSlot> SpawnedMonsters
         {

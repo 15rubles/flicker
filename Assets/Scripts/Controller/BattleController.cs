@@ -119,6 +119,7 @@ namespace Controller
         public void ResetBattleScene()
         {
             isBattleWon = false;
+            extraCardsAtTheStartOfTheRound = new List<Card>();
             CreateTurnStepsOrder();
             UpdateStepsText();
             Deck.ResetDeck();

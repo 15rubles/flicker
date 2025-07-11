@@ -10,6 +10,7 @@ namespace Entity.Monster.Ability
     {
         [SerializeField] private AbilityType abilityType;
         
+        [TextArea]
         [SerializeField] private string description = "!!description is undefined!!";
         
         public AbilityType AbilityType => abilityType;

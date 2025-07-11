@@ -28,9 +28,10 @@ namespace Entity.Card
         [SerializeField] public List<CardType> cardTypes = new List<CardType>();
         [SerializeReference] public CardAttack cardAttack = new DefaultAttack();
         [SerializeReference] public ShieldCardAbility shieldCardAbility = new DefaultShieldAbility();
+        
+        [Header("If price == 0 will use default value")]
         public int cardCost = 0;
         public Sprite visual;
-        public CardType type;
         public Rarity rarity = Rarity.Common;
 
         public bool CheckKeyword(KeywordType keywordToCheck)

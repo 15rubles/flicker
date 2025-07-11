@@ -9,10 +9,10 @@ namespace Entity.Monster
     [CreateAssetMenu(fileName = "Monster", menuName = "SOs/Monster", order = 1)]
     public class Monster: ScriptableObject
     {
-        [SerializeField] private MonsterName monsterName;
+        [SerializeField] private string monsterName;
         [SerializeField] private int power;
-        [SerializeField] [SerializeReference] private List<MonsterAbility> abilities;
-        [SerializeField] [SerializeReference] private List<MonsterType> monsterTypes;
+        [SerializeField] [SerializeReference] private List<MonsterAbility> abilities = new List<MonsterAbility>();
+        [SerializeField] [SerializeReference] private List<MonsterType> monsterTypes = new List<MonsterType>();
         [SerializeField] private Sprite visual;
         [SerializeField] [SerializeReference] private MonsterAttack monsterAttack = new DefaultAttack();
 
@@ -22,7 +22,7 @@ namespace Entity.Monster
             set => monsterTypes = value;
         }
 
-        public MonsterName MonsterName
+        public string MonsterName
         {
             get => monsterName;
             set => monsterName = value;

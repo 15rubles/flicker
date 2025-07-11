@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
+  m_Name: Ban
+  m_EditorClassIdentifier: 
+  cardName: BANNNNN
+  power: 0
+  keywords: 
+  cardAbility:
+    rid: 8036186703037989014
+  cardTypes: 
+  cardAttack:
+    rid: 8036186703037989012
+  shieldCardAbility:
+    rid: 8036186703037989013
+  cardCost: 0
+  visual: {fileID: 0}
+  rarity: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186703037989012
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037989013
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037989014
+      type: {class: HexMonsterAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: Removes all abilities from the left most monster.
+        hexMonsterPosition: 0
