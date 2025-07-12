@@ -60,6 +60,7 @@ namespace Object.Monster
                 {
                     monster.Abilities.UseAbilitiesOfType(AbilityType.DamageDealt, this);
                 }
+                UpdateText();
             }
         }
 
@@ -76,9 +77,9 @@ namespace Object.Monster
                 monster = value;
                 Power = value.Power;
                 // TODO TODO TODO TODO TODO make may descriptions for each ability
-                monsterDescription.Description = monster.Abilities[0].Description;
+                if (monster.Abilities.Count > 0)
+                    monsterDescription.Description = monster.Abilities[0].Description;
             }
-            
         }
         
         private void Awake()
@@ -87,8 +88,20 @@ namespace Object.Monster
         }
         public void UpdateText()
         {
-            cardName.text = monster.MonsterName.ToString();
+            cardName.text = monster.MonsterName;
             powerText.text = Power.ToString();
+            
+            if (Power > monster.Power)
+            {
+                powerText.color = Constants.ExtraPowerColor;
+            } else if (Power < monster.Power)
+            {
+                powerText.color = Constants.DamagedPowerColor;
+            }
+            else
+            {
+                powerText.color = Constants.BasePowerColor;
+            }
         }
 
         private void OnDestroy()

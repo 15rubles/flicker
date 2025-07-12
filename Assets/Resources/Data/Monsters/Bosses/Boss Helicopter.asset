@@ -16,7 +16,7 @@ MonoBehaviour:
   power: 4
   abilities:
   - rid: 8036186703037989075
-  - rid: 8036186703037989078
+  - rid: 8036186703037989081
   monsterTypes: 00000000
   visual: {fileID: 0}
   monsterAttack:
@@ -35,9 +35,14 @@ MonoBehaviour:
         monstersToSpawn:
         - {fileID: 11400000, guid: 75424adb5eab2cb4eb4e2e7ecfa00d47, type: 2}
         - {fileID: 11400000, guid: 75424adb5eab2cb4eb4e2e7ecfa00d47, type: 2}
-    - rid: 8036186703037989078
-      type: {class: SpawnMonsterAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
+    - rid: 8036186703037989081
+      type: {class: ReduceDamageIfRelatedSpawnedCreaturesAliveAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: Summons Power Shield
-        monstersToSpawn: []
+        description: Summons Power Shield. While this monster alive, any dammage
+          that delt to Boss Helicopter reduced by 2.
+        spawnMonsterAbility:
+          abilityType: 0
+          description: '!!description is undefined!!'
+          monstersToSpawn: []
+        damageReductionAmount: 2

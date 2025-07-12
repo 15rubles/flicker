@@ -26,7 +26,10 @@ namespace Entity.Item
         public string itemName;
         
         [TextArea]
-        public string description;
+        [SerializeField]
+        private string description;
+
+        public string Description => ability.ItemType.GetDescription() + Constants.TRIGGER_TO_DESCRIPTION_CONNECTOR + description;
 
         public Rarity rarity = Rarity.Common;
 
@@ -40,11 +43,11 @@ namespace Entity.Item
                 switch (rarity)
                 {
                     case Rarity.Common:
-                        return Constants.CommonItemBasePrice;
+                        return Constants.COMMON_ITEM_BASE_PRICE;
                     case Rarity.Rare:
-                        return Constants.RareItemBasePrice;
+                        return Constants.RARE_ITEM_BASE_PRICE;
                     case Rarity.UltraRare:
-                        return Constants.UltraRareItemBasePrice;
+                        return Constants.ULTRA_RARE_ITEM_BASE_PRICE;
                 }
                 return price;
             }

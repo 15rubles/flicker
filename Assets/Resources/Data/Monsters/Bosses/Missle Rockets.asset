@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Missle Rockets
   power: 1
-  abilities: []
+  abilities:
+  - rid: 8036186725642403918
   monsterTypes: 
   visual: {fileID: 0}
   monsterAttack:
@@ -25,3 +26,8 @@ MonoBehaviour:
     - rid: 8036186703037989076
       type: {class: DefaultAttack, ns: Entity.Monster.Attack, asm: Assembly-CSharp}
       data: 
+    - rid: 8036186725642403918
+      type: {class: KillCreatureOnDamageAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 5
+        description: Kills any creature that deals dammage to this monster.

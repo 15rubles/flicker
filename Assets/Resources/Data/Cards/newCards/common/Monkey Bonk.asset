@@ -16,7 +16,7 @@ MonoBehaviour:
   power: 5
   keywords: 
   cardAbility:
-    rid: -2
+    rid: 8036186725642403921
   cardTypes: 
   cardAttack:
     rid: 8036186703037988998
@@ -28,11 +28,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 8036186703037988998
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
       data: 
     - rid: 8036186703037988999
       type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data: 
+    - rid: 8036186725642403921
+      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+      data:
+        abilityType: 0
+        description: 

@@ -22,7 +22,7 @@ namespace Object.Shop
             item = Instantiate(itemSo);
             priceText.text = "$" + item.Price;
             nameText.text = item.itemName;
-            descriptionText.text = item.description;
+            descriptionText.text = item.Description;
         }
         
         public void BuyItem()

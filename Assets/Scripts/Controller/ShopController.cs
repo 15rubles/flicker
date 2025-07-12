@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entity.Card;
 using Entity.Item;
 using Object.Shop;
@@ -56,6 +57,8 @@ namespace Controller
         override protected void Awake()
         {
             base.Awake();
+            allItems = Resources.LoadAll<ItemSO>("Data/Items").ToList();
+            allCards = Resources.LoadAll<Card>("Data/Cards/newCards").ToList();
             PrepareShop();
             gameController.UpdateMoneyText();
         }

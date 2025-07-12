@@ -53,6 +53,13 @@ namespace Controller
             get => turnText;
             set => turnText = value;
         }
+        
+        [CanBeNull]
+        public CreatureObj CurrentAttackingCreatureObj
+        {
+            get;
+            set;
+        }
 
         public List<Card> ExtraCardsAtTheStartOfTheRound
         {

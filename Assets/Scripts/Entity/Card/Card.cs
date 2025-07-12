@@ -67,7 +67,7 @@ namespace Entity.Card
                 {
                     keywordStr += keyword.ToString() + '\n';
                 }
-                return keywordStr + '\n' + cardAbility.Description;
+                return cardAbility != null ? keywordStr + '\n' + cardAbility.Description : keywordStr;
             }
         }
     }

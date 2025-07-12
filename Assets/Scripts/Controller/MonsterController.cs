@@ -40,6 +40,7 @@ namespace Controller
             var newMonster = Instantiate(monsterSlotPrefab, monsterZoneController.transform);
             var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
             ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
+            monsterData.Abilities.UseAbilitiesOfType(AbilityType.EnterTheBattlefield, newMonsterSlot.MonsterObj);
             return newMonsterSlot;
         }
 

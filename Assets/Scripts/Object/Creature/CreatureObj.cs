@@ -79,8 +79,20 @@ namespace Object.Creature
 
         public void UpdateText()
         {
-            powerText.text = Power.ToString();
             cardName.text = Card.cardName;
+            powerText.text = Power.ToString();
+            
+            if (Power > card.power)
+            {
+                powerText.color = Constants.ExtraPowerColor;
+            } else if (Power < card.power)
+            {
+                powerText.color = Constants.DamagedPowerColor;
+            }
+            else
+            {
+                powerText.color = Constants.BasePowerColor;
+            }
         }
         public void OnDrag(PointerEventData eventData)
         {

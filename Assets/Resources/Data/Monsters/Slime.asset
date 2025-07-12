@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  monsterName: 
+  monsterName: Slime
   power: 1
   abilities:
   - rid: 8036186703037989057

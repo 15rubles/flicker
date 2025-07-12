@@ -118,6 +118,7 @@ namespace Controller
                               .ToList();
             int randomIndex = Random.Range(0, list.Count);
             battleController.StartBattle(list[randomIndex]);
+            list.RemoveAt(randomIndex);
         }
 
         private void IncreaseEncounterValue()
