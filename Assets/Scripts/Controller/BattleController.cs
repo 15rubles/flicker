@@ -128,7 +128,6 @@ namespace Controller
             isBattleWon = false;
             extraCardsAtTheStartOfTheRound = new List<Card>();
             CreateTurnStepsOrder();
-            UpdateStepsText();
             Deck.ResetDeck();
             nextStepButtonText.text = "Mulligan";
             turnText.text = "1";
@@ -196,14 +195,6 @@ namespace Controller
             middleNode.Next = lastNode;
             lastNode.Next = firstNode;
             currentStep = firstNode;
-
-            UpdateStepsText();
-        }
-
-        private void UpdateStepsText()
-        {
-            currStepText.text = "current: " + currentStep.Value;
-            nextStepText.text = "next: " + currentStep.Next?.Value;
         }
         
         public async void NextStep()
@@ -217,7 +208,6 @@ namespace Controller
                     ResetCreatureZones();
                     turnText.text = (Int32.Parse(turnText.text) + 1).ToString();
                     DealHand();
-                    coverScreen.SetActive(true);
                     nextStepButtonText.text = "Mulligan";
                     break;
                 case TurnStep.PlayCards:
@@ -227,6 +217,7 @@ namespace Controller
                     nextStepButtonText.text = "Next Step";
                     break;
                 case TurnStep.Attack:
+                    coverScreen.SetActive(true);
                     DiscardHand();
                     
                     gameController.BeginningOfCombatItemTriggers();
@@ -252,7 +243,6 @@ namespace Controller
                     break;
             }
             currentStep = nextStep;
-            UpdateStepsText();
         }
 
         private void ReceiveReward()

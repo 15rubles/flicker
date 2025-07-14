@@ -3,6 +3,7 @@ using System.Linq;
 using Entity;
 using Entity.Encounter.Battle;
 using Entity.Item;
+using Object.Item;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace Controller
         [SerializeField] private ShopController shopController;
         [SerializeField] private GameObject battleCanvas;
         [SerializeField] private GameObject shopCanvas;
+        [SerializeField] private GameObject boughtItemsGrid;
+        
+        [SerializeField] private GameObject boughtItemsPrefab;
         
         [SerializeField] private TextMeshProUGUI encounterText;
         [SerializeField] private int encounterValue = 0;
@@ -60,6 +64,14 @@ namespace Controller
         public void AddItem(ItemSO item)
         {
             runState.AddItem(item);
+            var itemObj = Instantiate(boughtItemsPrefab, boughtItemsGrid.transform).GetComponent<BoughtItemObj>();
+            itemObj.SetItem(item);
+        }
+
+        public void SellItem(ItemSO item, int sellPrice)
+        {
+            runState.Items.Remove(item);
+            Money += sellPrice;
         }
 
         public void UpdateMoneyText()

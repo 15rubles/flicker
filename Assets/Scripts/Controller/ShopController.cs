@@ -100,7 +100,7 @@ namespace Controller
             
             for (int i = 0; i < 3; i++)
             {
-                var itemInShop = Instantiate(itemInShopPrefab, itemsGrid.transform).GetComponent<ItemObj>();
+                var itemInShop = Instantiate(itemInShopPrefab, itemsGrid.transform).GetComponent<ItemShopObj>();
                 int randomIndex = Random.Range(0, allItems.Count);
                 itemInShop.SetItem(allItems[randomIndex]);
             }
