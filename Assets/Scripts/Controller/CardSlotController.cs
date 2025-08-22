@@ -26,6 +26,10 @@ namespace Controller
             get => cardsInHand;
             set => cardsInHand = value;
         }
+        
+        public bool IsCardCanBeSelectedForMulligan => 
+            ControllerLocator.GetService<BattleController>().MaxMulliganCount >
+            CountCardsSelectedForMulligan();
 
         public void SpawnCard(Card card)
         {
@@ -64,6 +68,19 @@ namespace Controller
             cardsInHand = new LinkedList<CardSlot>();
             cardSlotsPool = new List<CardSlot>();
             cardController.CardsPool = new List<CardObject>();
+        }
+        
+        private int CountCardsSelectedForMulligan()
+        {
+            int discardedQuantity = 0;
+            foreach (var card in CardsInHand)
+            {
+                if (card.CardObject.IsSelected)
+                {
+                    discardedQuantity++;
+                }
+            }
+            return discardedQuantity;
         }
         
         public int DiscardSelectedForMulligan(Deck deck)

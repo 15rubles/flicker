@@ -7,16 +7,17 @@ namespace Entity.Card.Ability
     public enum AbilityType
     {
         EnterTheBattlefield,
+        None,
         Aura,
         DeathRattle,
         EndOfCombat,
         BeginningOfCombat,
-        DamageDealt
+        DamageDealt,
     }
     
     public static class AbilityTypeData
     {
-        private readonly static Dictionary<AbilityType, string> Descriptions = new Dictionary<AbilityType, string>
+        private static readonly Dictionary<AbilityType, string> Descriptions = new Dictionary<AbilityType, string>
         {
             { AbilityType.EnterTheBattlefield, "Enter the Battlefield"},
             { AbilityType.Aura, "Aura"},

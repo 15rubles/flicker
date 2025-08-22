@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reinhardt
   m_EditorClassIdentifier: 
   cardName: Reinhardt
-  power: 2
+  power: 1
   keywords: 
   cardAbility:
     rid: 8036186703037988881
@@ -39,4 +39,4 @@ MonoBehaviour:
     - rid: 8036186703037988882
       type: {class: ExtraShieldValueAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data:
-        extraShieldValue: 2
+        extraShieldValue: 1

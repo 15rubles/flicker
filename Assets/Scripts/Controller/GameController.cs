@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Entity;
 using Entity.Encounter.Battle;
@@ -8,6 +9,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace Controller
 {
@@ -95,12 +97,16 @@ namespace Controller
         }
         
 
-        override protected void Awake()
+        protected override void Awake()
         {
             base.Awake();
             battles = Resources.LoadAll<Battle>("Data/Battles").ToList();
             runState.Deck.BasicDeck = runState.DeckSo;
             battleController.RunState = runState;
+        }
+
+        private void Start()
+        {
             StartNewEncounter();
         }
 

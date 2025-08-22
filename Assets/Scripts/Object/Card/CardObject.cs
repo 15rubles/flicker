@@ -20,6 +20,7 @@ namespace Object.Card
 
         private RectTransform rectTransform;
         private BattleController battleController;
+        private CardSlotController cardSlotController;
 
         [SerializeField] private Vector2 selectedPosition;
 
@@ -32,6 +33,7 @@ namespace Object.Card
             canvas = GetComponentInParent<Canvas>();
             rectTransform = gameObject.GetComponent<RectTransform>();
             battleController = ControllerLocator.GetService<BattleController>();
+            cardSlotController =  ControllerLocator.GetService<CardSlotController>();
             ShieldZone = battleController.ShiedZone;
         }
 
@@ -139,6 +141,9 @@ namespace Object.Card
         public void Select()
         {
             if (!StateController.IsMulliganStep)
+                return;
+            
+            if (!IsSelected && !cardSlotController.IsCardCanBeSelectedForMulligan)
                 return;
                 
             IsSelected = !IsSelected;

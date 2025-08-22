@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c491ad32d8f4124486709bac2a2b2be, type: 3}
   m_Name: Deck
   m_EditorClassIdentifier: 
-  shieldValue: 3
+  shieldValue: 1
   allCards:
   - {fileID: 11400000, guid: 3526a7343b9f3e54db8a19b02fb19173, type: 2}
   - {fileID: 11400000, guid: 3526a7343b9f3e54db8a19b02fb19173, type: 2}

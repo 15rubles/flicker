@@ -15,6 +15,13 @@ namespace Entity
         [SerializeField] private List<ItemSO> items = new List<ItemSO>();
         [SerializeField] private int hp;
         [SerializeField] private int maxHp;
+        [SerializeField] private int maxMulliganCount = 1;
+
+        public int MaxMulliganCount
+        {
+            get => maxMulliganCount;
+            set => maxMulliganCount = value;
+        }
 
         public int Hp
         {

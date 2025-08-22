@@ -23,9 +23,8 @@ namespace Controller
         [SerializeField] private CardSlotController cardSlotController;
         [SerializeField] private MonsterController monsterController;
         [SerializeField] private CreatureController creatureController;
-                
-        [SerializeField] private TextMeshProUGUI currStepText;
-        [SerializeField] private TextMeshProUGUI nextStepText;
+
+        [SerializeField] private TextMeshProUGUI rewardText;
         [SerializeField] private TextMeshProUGUI turnText;
         [SerializeField] private TextMeshProUGUI nextStepButtonText;
         [SerializeField] private GameObject coverScreen;
@@ -79,6 +78,8 @@ namespace Controller
         {
             set => runState = value;
         }
+
+        public int MaxMulliganCount => runState.MaxMulliganCount;
 
         public Deck Deck => runState.Deck;
         
@@ -246,6 +247,24 @@ namespace Controller
         }
 
         private void ReceiveReward()
+        {
+            switch (Int32.Parse(turnText.text))
+            {
+                case 1:
+                    gameController.Money += rewardMoneyTurnOne;
+                    gameController. Hp++;
+                    break;
+                case 2:
+                    gameController.Money += rewardMoneyTurnTwo;
+                    break;
+                default:
+                    gameController.Money += rewardMoneyTurnThreePlus;
+                    break;
+            }
+            
+            //TODO
+        }
+        private void UpdateRewardText()
         {
             switch (Int32.Parse(turnText.text))
             {
