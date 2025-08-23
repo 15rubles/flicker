@@ -43,6 +43,17 @@ namespace Controller
             monsterData.Abilities.UseAbilitiesOfType(AbilityType.EnterTheBattlefield, newMonsterSlot.MonsterObj);
             return newMonsterSlot;
         }
+        
+        public MonsterSlot SpawnMonsterAfter(Monster monsterData, Transform instantiateAfter)
+        {
+            var newMonster = Instantiate(monsterSlotPrefab, monsterZoneController.transform);
+            int index = instantiateAfter.GetSiblingIndex();
+            newMonster.transform.SetSiblingIndex(index + 1);
+            var newMonsterSlot = newMonster.GetComponent<MonsterSlot>();
+            ChangeCardValuesAndEnable(newMonsterSlot, monsterData);
+            monsterData.Abilities.UseAbilitiesOfType(AbilityType.EnterTheBattlefield, newMonsterSlot.MonsterObj);
+            return newMonsterSlot;
+        }
 
         private void ChangeCardValuesAndEnable(MonsterSlot monsterSlot, Monster monsterData)
         {

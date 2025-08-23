@@ -34,7 +34,7 @@ MonoBehaviour:
     - rid: 8036186703037988881
       type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 0
+        abilityType: 6
         description: ' +2 to shield value'
     - rid: 8036186703037988882
       type: {class: ExtraShieldValueAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}

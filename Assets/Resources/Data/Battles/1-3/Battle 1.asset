@@ -15,5 +15,6 @@ MonoBehaviour:
   monsterSet:
   - {fileID: 11400000, guid: c5b5e7525f4336a4a85612e237699281, type: 2}
   - {fileID: 11400000, guid: c5b5e7525f4336a4a85612e237699281, type: 2}
+  - {fileID: 11400000, guid: c5b5e7525f4336a4a85612e237699281, type: 2}
   minEncounter: 1
   maxEncounter: 1

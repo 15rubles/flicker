@@ -27,7 +27,7 @@ namespace Entity.Monster.Ability
             MonsterController monsterController = ControllerLocator.GetService<MonsterController>();
             foreach (var monster in monstersToSpawn)
             {
-                spawnedMonsters.Add(monsterController.SpawnMonster(monster));
+                spawnedMonsters.Add(monsterController.SpawnMonsterAfter(monster, monsterObject.Slot.transform));
             }
             return this;
         }

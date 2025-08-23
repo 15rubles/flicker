@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Battle 4
   m_EditorClassIdentifier: 
   monsterSet:
-  - {fileID: 11400000, guid: 52a1afbc209fd2a4b879d5c39f4e5bcb, type: 2}
+  - {fileID: 11400000, guid: c5b5e7525f4336a4a85612e237699281, type: 2}
+  - {fileID: 11400000, guid: c5b5e7525f4336a4a85612e237699281, type: 2}
   - {fileID: 11400000, guid: 23fdba6eccbd88d43b62eebffc656039, type: 2}
   minEncounter: 2
   maxEncounter: 3

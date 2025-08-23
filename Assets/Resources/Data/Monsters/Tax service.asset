@@ -30,5 +30,5 @@ MonoBehaviour:
       type: {class: SubtractMoneyAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 3
-        description: -1 money at the end of combat
-        subtractMoneyValue: 1
+        description: -2 money at the end of combat
+        subtractMoneyValue: 2

@@ -7,12 +7,12 @@ namespace Entity.Card.Ability
     public enum AbilityType
     {
         EnterTheBattlefield,
-        None,
         Aura,
         DeathRattle,
         EndOfCombat,
         BeginningOfCombat,
         DamageDealt,
+        None,
     }
     
     public static class AbilityTypeData
