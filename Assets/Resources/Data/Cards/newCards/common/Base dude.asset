@@ -10,35 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
-  m_Name: Duo
+  m_Name: Base dude
   m_EditorClassIdentifier: 
-  cardName: Duo
-  power: 0
+  cardName: Barbarian
+  power: 2
   keywords: 
   cardAbility:
-    rid: 8036186703037988873
+    rid: 8036186703037988881
   cardTypes: 
   cardAttack:
-    rid: 8036186703037988871
+    rid: 8036186703037988875
   shieldCardAbility:
-    rid: 8036186703037988872
+    rid: 4488049801073000528
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: 9093361847857877592, guid: 3efae1f974e964a4498d9425d2956188, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 8036186703037988871
-      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
-      data: 
-    - rid: 8036186703037988872
+    - rid: 4488049801073000528
       type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data: 
-    - rid: 8036186703037988873
-      type: {class: SpawnCreatureAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
+    - rid: 8036186703037988875
+      type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 8036186703037988881
+      type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 0
-        description: Spawn two Player with power 1
-        creaturesToSpawn:
-        - {fileID: 11400000, guid: d07657d304934f4499daaa8b725bc4e5, type: 2}
-        - {fileID: 11400000, guid: d07657d304934f4499daaa8b725bc4e5, type: 2}
+        abilityType: 6
+        description: 

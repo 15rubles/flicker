@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 1
+  sprite: {fileID: 538513131370383185, guid: 84a255169d66e3f42888ca897c4e3ee6, type: 3}
   references:
     version: 2
     RefIds:
@@ -38,7 +39,7 @@ MonoBehaviour:
       type: {class: SpawnCreatureAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: Summon 5 Players with power 1.
+        description: Summon 5 Solders with power 1.
         creaturesToSpawn:
         - {fileID: 11400000, guid: d07657d304934f4499daaa8b725bc4e5, type: 2}
         - {fileID: 11400000, guid: d07657d304934f4499daaa8b725bc4e5, type: 2}

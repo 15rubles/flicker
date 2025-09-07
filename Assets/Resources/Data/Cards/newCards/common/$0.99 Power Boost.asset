@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: $0.99 Power Boost
   m_EditorClassIdentifier: 
-  cardName: $0.99 Power Boost
+  cardName: Power Potion
   power: 0
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: -7145104043123571981, guid: 5e692cfc61fc09b49bff3dc77e9c9a72, type: 3}
   references:
     version: 2
     RefIds:

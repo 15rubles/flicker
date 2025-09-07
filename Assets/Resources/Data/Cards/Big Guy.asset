@@ -20,9 +20,12 @@ MonoBehaviour:
   cardTypes: 
   cardAttack:
     rid: 3275667742645813338
+  shieldCardAbility:
+    rid: 3778102434695741669
   cardCost: 5
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
-  type: 0
+  rarity: 0
+  sprite: {fileID: -5491632663426174961, guid: 5f4c0e685efa5934e981f83354400ab9, type: 3}
   references:
     version: 2
     RefIds:
@@ -33,4 +36,7 @@ MonoBehaviour:
         description: 
     - rid: 3275667742645813338
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 3778102434695741669
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data: 

@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Power Shield
   m_EditorClassIdentifier: 
-  monsterName: 
+  monsterName: Power Orb
   power: 6
   abilities: []
   monsterTypes: 
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989079
+  sprite: {fileID: -3393669804764342910, guid: d869c7443b1a9524b8aa7d99e14c9e26, type: 3}
   references:
     version: 2
     RefIds:

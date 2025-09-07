@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Missle Rockets
   m_EditorClassIdentifier: 
-  monsterName: Missle Rockets
+  monsterName: Tentacle
   power: 1
   abilities:
   - rid: 8036186725642403918
@@ -20,6 +20,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989076
+  sprite: {fileID: -2293287565930242739, guid: 1cf4d3e1e1d654d4fb605ab23c3a524a, type: 3}
   references:
     version: 2
     RefIds:

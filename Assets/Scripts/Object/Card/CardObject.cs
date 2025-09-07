@@ -4,6 +4,7 @@ using Entity.Card.Ability;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Utils;
 
 namespace Object.Card
@@ -13,6 +14,7 @@ namespace Object.Card
         [SerializeField] private TextMeshProUGUI power;
         [SerializeField] private TextMeshProUGUI cardName;
         [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private Image icon;
 
         private Canvas canvas;
 
@@ -55,6 +57,7 @@ namespace Object.Card
                     newKeyword.SetActive(false);
                 }
                 UpdateText();
+                icon.sprite = card.sprite;
             }
         }
 

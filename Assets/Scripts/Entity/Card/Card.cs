@@ -3,6 +3,7 @@ using Entity.Card.Ability;
 using Entity.Card.Attack;
 using Entity.Card.ShieldAbility;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Entity.Card
 {
@@ -33,6 +34,8 @@ namespace Entity.Card
         public int cardCost = 0;
         public Sprite visual;
         public Rarity rarity = Rarity.Common;
+
+        public Sprite sprite;
 
         public bool CheckKeyword(KeywordType keywordToCheck)
         {

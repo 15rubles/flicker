@@ -13,6 +13,7 @@ namespace Entity.Card.Ability
         BeginningOfCombat,
         DamageDealt,
         None,
+        DescriptionNeeded
     }
     
     public static class AbilityTypeData

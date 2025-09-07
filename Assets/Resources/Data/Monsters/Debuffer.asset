@@ -20,6 +20,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989066
+  sprite: {fileID: -1504733587676658999, guid: f7f858824c9e9fa4f8d6b35e7fa53f17, type: 3}
   references:
     version: 2
     RefIds:

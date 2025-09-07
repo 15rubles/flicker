@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: bugger Card
   m_EditorClassIdentifier: 
-  cardName: '//TODO fix bug: attack twice'
+  cardName: Griffin
   power: 3
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 2
+  sprite: {fileID: -8744361999528005354, guid: 5773e494eebb88340bb6e1766d08e6d0, type: 3}
   references:
     version: 2
     RefIds:

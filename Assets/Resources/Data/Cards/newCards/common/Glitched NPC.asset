@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: -5067751389849610160, guid: 82d0fea1e3bf7ae4ab40c65b5a9656ad, type: 3}
   references:
     version: 2
     RefIds:

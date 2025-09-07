@@ -13,6 +13,7 @@ using Entity.Card;
 using Entity.Encounter.Battle;
 using JetBrains.Annotations;
 using Object.Creature;
+using UnityEngine.UI;
 
 namespace Controller
 {
@@ -28,6 +29,7 @@ namespace Controller
         [SerializeField] private TextMeshProUGUI turnText;
         [SerializeField] private TextMeshProUGUI nextStepButtonText;
         [SerializeField] private GameObject coverScreen;
+        [SerializeField] private Button nextStepButton;
         
         [SerializeField] private int startHandCount = 3;
         [SerializeField] private Battle currentBattle;
@@ -126,6 +128,8 @@ namespace Controller
 
         public void ResetBattleScene()
         {
+            UpdateRewardText();
+            nextStepButton.interactable = true;
             isBattleWon = false;
             extraCardsAtTheStartOfTheRound = new List<Card>();
             CreateTurnStepsOrder();
@@ -205,6 +209,7 @@ namespace Controller
             switch (nextStep?.Value)
             {
                 case TurnStep.Mulligan:
+                    UpdateRewardText();
                     StateController.IsMulliganStep = true;
                     ResetCreatureZones();
                     turnText.text = (Int32.Parse(turnText.text) + 1).ToString();
@@ -218,6 +223,7 @@ namespace Controller
                     nextStepButtonText.text = "Next Step";
                     break;
                 case TurnStep.Attack:
+                    nextStepButton.interactable = false;
                     coverScreen.SetActive(true);
                     DiscardHand();
                     
@@ -241,6 +247,7 @@ namespace Controller
                     }
                     
                     monsterController.EndOfCombatTrigger();
+                    nextStepButton.interactable = true;
                     break;
             }
             currentStep = nextStep;
@@ -261,26 +268,21 @@ namespace Controller
                     gameController.Money += rewardMoneyTurnThreePlus;
                     break;
             }
-            
-            //TODO
         }
         private void UpdateRewardText()
         {
             switch (Int32.Parse(turnText.text))
             {
                 case 1:
-                    gameController.Money += rewardMoneyTurnOne;
-                    gameController. Hp++;
+                    rewardText.text = Constants.FirstTurnWin;
                     break;
                 case 2:
-                    gameController.Money += rewardMoneyTurnTwo;
+                    rewardText.text = Constants.SecondTurnWin;
                     break;
                 default:
-                    gameController.Money += rewardMoneyTurnThreePlus;
+                    rewardText.text = Constants.ThirdPlusTurnWin;
                     break;
             }
-            
-            //TODO
         }
 
         private void Mulligan()

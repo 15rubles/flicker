@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Tax service
   m_EditorClassIdentifier: 
-  monsterName: Tax service
-  power: 2
+  monsterName: Dragon and fire
+  power: 1
   abilities:
   - rid: 8036186703037989063
   monsterTypes: 
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989062
+  sprite: {fileID: -87951857334250037, guid: 83ed2167155c1234bb0950d8e5a6234e, type: 3}
   references:
     version: 2
     RefIds:

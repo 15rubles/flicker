@@ -7,6 +7,7 @@ using Object.Creature;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Utils;
 
 namespace Object.Monster
@@ -20,6 +21,7 @@ namespace Object.Monster
         [SerializeField] private RectTransform rect;
         private MonsterController monsterController;
         private Canvas canvas;
+        [SerializeField] private Image image;
         
         public RectTransform Rect => rect;
 
@@ -79,6 +81,7 @@ namespace Object.Monster
                 // TODO TODO TODO TODO TODO make may descriptions for each ability
                 if (monster.Abilities.Count > 0)
                     monsterDescription.Description = monster.Abilities[0].Description;
+                image.sprite = monster.sprite;
             }
         }
         

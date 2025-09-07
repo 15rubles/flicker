@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Monkey Bonk
   m_EditorClassIdentifier: 
-  cardName: Monkey Bonk
+  cardName: Big Guy
   power: 5
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: -5491632663426174961, guid: 5f4c0e685efa5934e981f83354400ab9, type: 3}
   references:
     version: 2
     RefIds:

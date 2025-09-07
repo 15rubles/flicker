@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Object.Creature
 {
@@ -14,7 +15,7 @@ namespace Object.Creature
         [SerializeField] private GameObject keywordExplainPrefab;
         [SerializeField] private GameObject keywordExplainPool;
         [SerializeField] private RectTransform boundaries;
-
+        [SerializeField] private Image icon;
         public RectTransform Boundaries => boundaries;
         
         private Entity.Card.Card card;
@@ -34,6 +35,7 @@ namespace Object.Creature
                     newKeyword.GetComponent<KeywordExplain>().UpdateText(keyword);
                 }
                 UpdateText();
+                icon.sprite = card.sprite;
             }
         }
         

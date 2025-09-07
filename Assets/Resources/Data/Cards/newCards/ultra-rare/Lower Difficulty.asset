@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Lower Difficulty
   m_EditorClassIdentifier: 
-  cardName: Lower Difficulty
+  cardName: Poison for all
   power: 0
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 2
+  sprite: {fileID: -9005769944389503070, guid: ca8a62f2aaaf89f42a4e7f9cf5908619, type: 3}
   references:
     version: 2
     RefIds:

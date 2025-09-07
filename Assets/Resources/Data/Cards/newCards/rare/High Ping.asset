@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 1
+  sprite: {fileID: 8453890923445766294, guid: 71155b730dd7f2040a71d4aab5fcc934, type: 3}
   references:
     version: 2
     RefIds:
@@ -38,6 +39,6 @@ MonoBehaviour:
       type: {class: MultipleCardPlayAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: Summon Player with power 1. Returns to hand 3 times until goes
+        description: Summon Solder with power 1. Returns to hand 3 times until goes
           to discard.
         playsLeft: 4

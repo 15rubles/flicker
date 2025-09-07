@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Object.Item
 {
@@ -12,12 +13,14 @@ namespace Object.Item
         
         [SerializeField] protected TextMeshProUGUI nameText;
         [SerializeField] protected ItemSO item;
+        [SerializeField] private Image icon;
 
         public void SetItem(ItemSO itemSo)
         {
             item = Instantiate(itemSo);
             nameText.text = item.itemName;
             descriptionText.text = item.Description;
+            icon.sprite = item.sprite;
         }
 
         public void OnPointerEnter(PointerEventData eventData)

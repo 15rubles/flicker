@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Boss Helicopter
   m_EditorClassIdentifier: 
-  monsterName: Boss Helicopter
+  monsterName: Kraken
   power: 4
   abilities:
   - rid: 8036186703037989075
@@ -21,6 +21,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989074
+  sprite: {fileID: 5119971492981962814, guid: 911e760f704c57f418900d1bb484297c, type: 3}
   references:
     version: 2
     RefIds:

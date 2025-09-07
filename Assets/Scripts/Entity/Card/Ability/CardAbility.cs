@@ -14,7 +14,23 @@ namespace Entity.Card.Ability
         private string description = "!!description is undefined!!";
         
         public AbilityType AbilityType => abilityType;
-        public string Description => abilityType.GetDescription() + Constants.TRIGGER_TO_DESCRIPTION_CONNECTOR +  description;
+
+        public string Description
+        {
+            get
+            {
+                if (abilityType == AbilityType.DescriptionNeeded)
+                {
+                    return description;
+                }
+                
+                if (abilityType == AbilityType.None)
+                {
+                    return "";
+                }
+                return abilityType.GetDescription() + Constants.TRIGGER_TO_DESCRIPTION_CONNECTOR +  description;
+            }
+        }
 
         private bool isNeededToBeDeleted = true;
         

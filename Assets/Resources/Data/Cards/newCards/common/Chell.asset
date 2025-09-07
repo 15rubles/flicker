@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Chell
   m_EditorClassIdentifier: 
-  cardName: Chell
+  cardName: Genie
   power: 2
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: -5829726057563536327, guid: e8c9caaf405beb24fb5e247161d69da2, type: 3}
   references:
     version: 2
     RefIds:

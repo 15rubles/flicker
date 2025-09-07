@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Reinhardt
   m_EditorClassIdentifier: 
-  cardName: Reinhardt
+  cardName: Knight
   power: 1
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 0
+  sprite: {fileID: 1216040433499766831, guid: 28a16efcc1eaa5144b72a154d22c2f36, type: 3}
   references:
     version: 2
     RefIds:
@@ -34,9 +35,9 @@ MonoBehaviour:
     - rid: 8036186703037988881
       type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 6
-        description: ' +2 to shield value'
+        abilityType: 7
+        description: ' +2 extra shield value'
     - rid: 8036186703037988882
       type: {class: ExtraShieldValueAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data:
-        extraShieldValue: 1
+        extraShieldValue: 2

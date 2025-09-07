@@ -16,7 +16,8 @@ MonoBehaviour:
   ability:
     rid: 8036186703037989045
   price: 0
-  itemName: Merch T-shirt
+  itemName: One more shield
+  sprite: {fileID: 8498233211031668556, guid: 880c28c651757d14bbdf9b0390095362, type: 3}
   description: ' +1 to base shield value'
   rarity: 0
   references:

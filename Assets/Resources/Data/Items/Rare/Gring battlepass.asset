@@ -17,6 +17,7 @@ MonoBehaviour:
     rid: 8036186703037989049
   price: 0
   itemName: Gring Battlepass
+  sprite: {fileID: -8139247677639316835, guid: 7b7b37957c4f0d241a736ba212bf3d82, type: 3}
   description: every 10th card played gives +1 money
   rarity: 1
   references:

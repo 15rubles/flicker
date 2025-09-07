@@ -17,6 +17,7 @@ MonoBehaviour:
     rid: 8036186703037989048
   price: 0
   itemName: Card Charp
+  sprite: {fileID: -643388138587257216, guid: 718de63e3eba8c14fbdfd34fab981306, type: 3}
   description: ' +1 to max hand size'
   rarity: 0
   references:

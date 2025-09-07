@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  cardName: Archer
+  cardName: Wizard
   power: 1
   keywords: 
   cardAbility:
@@ -20,9 +20,12 @@ MonoBehaviour:
   cardTypes: 01000000
   cardAttack:
     rid: 3275667899223900248
+  shieldCardAbility:
+    rid: 3778102434695741663
   cardCost: 5
   visual: {fileID: 0}
-  type: 0
+  rarity: 0
+  sprite: {fileID: 9157969803310431562, guid: 1c11725df83749e49b6354d2afafc5b4, type: 3}
   references:
     version: 2
     RefIds:
@@ -35,3 +38,7 @@ MonoBehaviour:
         abilityType: 0
         description: Deal 1 damage to all monsters.
         damageValue: 1
+        minMonstersPowerAfterDamage: 1
+    - rid: 3778102434695741663
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 

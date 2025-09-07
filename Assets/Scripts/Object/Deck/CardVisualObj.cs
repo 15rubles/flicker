@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Object.Deck
 {
@@ -16,6 +17,7 @@ namespace Object.Deck
         [SerializeField] private GameObject keywordExplainPool;
         
         [SerializeField] private Entity.Card.Card card;
+        [SerializeField] private Image icon;
 
         public Entity.Card.Card Card
         {
@@ -33,6 +35,7 @@ namespace Object.Deck
                     newKeyword.SetActive(false);
                 }
                 UpdateText();
+                icon.sprite = card.sprite;
             }
         }
         

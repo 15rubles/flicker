@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
   m_Name: Monster in textures
   m_EditorClassIdentifier: 
-  monsterName: Monster in textures
+  monsterName: Golem
   power: 2
   abilities:
   - rid: 8036186703037989065
@@ -20,6 +20,7 @@ MonoBehaviour:
   visual: {fileID: 0}
   monsterAttack:
     rid: 8036186703037989064
+  sprite: {fileID: -5454188878937622727, guid: 1880c4f3535fcfb479ced56583dea887, type: 3}
   references:
     version: 2
     RefIds:

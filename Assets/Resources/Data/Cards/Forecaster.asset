@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Forecaster
   m_EditorClassIdentifier: 
-  cardName: Forecaster
+  cardName: Genie
   power: 2
   keywords: 
   cardAbility:
@@ -20,9 +20,12 @@ MonoBehaviour:
   cardTypes: 
   cardAttack:
     rid: 3275667742645813343
+  shieldCardAbility:
+    rid: 3778102434695741667
   cardCost: 6
   visual: {fileID: 5189691121816951081, guid: 949b9a822ec65024ba50e253b06ebfca, type: 3}
-  type: 0
+  rarity: 0
+  sprite: {fileID: -5829726057563536327, guid: e8c9caaf405beb24fb5e247161d69da2, type: 3}
   references:
     version: 2
     RefIds:
@@ -33,4 +36,7 @@ MonoBehaviour:
         description: Draw a card.
     - rid: 3275667742645813343
       type: {class: DefaultAttack, ns: Entity.Card.Attack, asm: Assembly-CSharp}
+      data: 
+    - rid: 3778102434695741667
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
       data: 

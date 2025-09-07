@@ -20,9 +20,12 @@ MonoBehaviour:
   cardTypes: 01000000
   cardAttack:
     rid: 3275667899223900230
+  shieldCardAbility:
+    rid: 3778102434695741665
   cardCost: 8
   visual: {fileID: 0}
-  type: 0
+  rarity: 0
+  sprite: {fileID: 1216040433499766831, guid: 28a16efcc1eaa5144b72a154d22c2f36, type: 3}
   references:
     version: 2
     RefIds:
@@ -36,3 +39,6 @@ MonoBehaviour:
         description: All solders +1
         buffValue: 1
         cardType: 1
+    - rid: 3778102434695741665
+      type: {class: DefaultShieldAbility, ns: Entity.Card.ShieldAbility, asm: Assembly-CSharp}
+      data: 

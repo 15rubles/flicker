@@ -29,6 +29,7 @@ namespace Controller
         [SerializeField] private int shopEncounterCounter = 0;
 
         private List<Battle> battles = new List<Battle>();
+        private List<Battle> battlesToPickFrom = new List<Battle>();
 
         [SerializeField] private Battle currentBattle;
 
@@ -101,6 +102,7 @@ namespace Controller
         {
             base.Awake();
             battles = Resources.LoadAll<Battle>("Data/Battles").ToList();
+            battlesToPickFrom = battles.ToList();
             runState.Deck.BasicDeck = runState.DeckSo;
             battleController.RunState = runState;
         }
@@ -131,12 +133,17 @@ namespace Controller
 
         private void StartNewBattle()
         {
-            var list = battles.Where(battle => battle.MaxEncounter >= encounterValue 
-                                               && encounterValue >= battle.MinEncounter)
-                              .ToList();
+            var list = battlesToPickFrom.Where(battle => battle.MaxEncounter >= encounterValue 
+                                               && encounterValue >= battle.MinEncounter).ToList();
+            if (list.Count == 0)
+            {
+                battlesToPickFrom = battles.ToList();
+                list = battlesToPickFrom.Where(battle => battle.MaxEncounter >= encounterValue 
+                                                         && encounterValue >= battle.MinEncounter).ToList();
+            }
             int randomIndex = Random.Range(0, list.Count);
             battleController.StartBattle(list[randomIndex]);
-            list.RemoveAt(randomIndex);
+            battlesToPickFrom.RemoveAt(randomIndex);
         }
 
         private void IncreaseEncounterValue()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Ban
   m_EditorClassIdentifier: 
-  cardName: BANNNNN
+  cardName: BAN
   power: 0
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 1
+  sprite: {fileID: 4031564604880626460, guid: dec8c35a3902e80409d8d3bef0b2667b, type: 3}
   references:
     version: 2
     RefIds:

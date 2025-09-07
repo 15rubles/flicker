@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
+  m_Name: Big guy
+  m_EditorClassIdentifier: 
+  monsterName: Big Guy
+  power: 3
+  abilities: []
+  monsterTypes: 
+  visual: {fileID: 0}
+  monsterAttack:
+    rid: 8036186703037989052
+  sprite: {fileID: -5491632663426174961, guid: 5f4c0e685efa5934e981f83354400ab9, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 8036186703037989052
+      type: {class: DefaultAttack, ns: Entity.Monster.Attack, asm: Assembly-CSharp}
+      data: 

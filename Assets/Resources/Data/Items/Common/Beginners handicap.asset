@@ -16,7 +16,8 @@ MonoBehaviour:
   ability:
     rid: 8036186703037989046
   price: 0
-  itemName: Beginners handicap
+  itemName: Power potion
+  sprite: {fileID: -2056126039432432040, guid: a8dbcd13cd6f3d54d971bb72f7421931, type: 3}
   description: Random card gets +2 power
   rarity: 0
   references:

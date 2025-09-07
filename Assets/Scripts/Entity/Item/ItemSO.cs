@@ -5,6 +5,7 @@ using Entity.Card;
 using Entity.Item.Ability;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Entity.Item
@@ -24,6 +25,8 @@ namespace Entity.Item
         public int price;
         
         public string itemName;
+        
+        public Sprite sprite;
         
         [TextArea]
         [SerializeField]

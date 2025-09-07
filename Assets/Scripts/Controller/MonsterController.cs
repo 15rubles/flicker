@@ -101,7 +101,7 @@ namespace Controller
         {
             foreach (var triggerMonster in MonstersPool)
             {
-                triggerMonster.Monster.Abilities.UseAbilitiesOfType(AbilityType.EndOfCombat, triggerMonster);
+                triggerMonster.Monster.Abilities.UseAbilitiesOfType(AbilityType.BeginningOfCombat, triggerMonster);
             }
         }
     }

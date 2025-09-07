@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  cardName: Player
+  cardName: Solder
   power: 1
   keywords: 
   cardAbility:
@@ -24,8 +24,8 @@ MonoBehaviour:
     rid: 8036186501003608168
   cardCost: 0
   visual: {fileID: 0}
-  type: 0
   rarity: 0
+  sprite: {fileID: -4409446715219994729, guid: b0318c9521a071848b7cb412957852c5, type: 3}
   references:
     version: 2
     RefIds:

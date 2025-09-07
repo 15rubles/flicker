@@ -17,6 +17,7 @@ MonoBehaviour:
     rid: 8036186703037989050
   price: 0
   itemName: Reroll Jenkins
+  sprite: {fileID: -3974215247870688558, guid: b8f2009864927d841a2d731d69e22c72, type: 3}
   description: After first free reroll, paid reroll starts at 1 money
   rarity: 1
   references:

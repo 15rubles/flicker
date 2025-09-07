@@ -9,6 +9,7 @@ using Object.Monster;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Utils;
 
 namespace Object.Creature
@@ -22,6 +23,7 @@ namespace Object.Creature
         
         [SerializeField] private CardHint cardHintLeft;
         [SerializeField] private CardHint cardHintRight;
+        [SerializeField] private Image icon;
 
         public CreatureSlot Slot
         {
@@ -66,6 +68,7 @@ namespace Object.Creature
                 Power = value.power;
                 cardHintLeft.Card = card;
                 cardHintRight.Card = card;
+                icon.sprite = card.sprite;
             }
         }
         

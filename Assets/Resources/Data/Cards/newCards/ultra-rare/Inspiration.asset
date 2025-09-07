@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: Inspiration
   m_EditorClassIdentifier: 
-  cardName: Online Motivation Guru Courses
+  cardName: Weapons for all
   power: 0
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 2
+  sprite: {fileID: -2524709661943058933, guid: 8b36f662782b06344ac8b0577e82cd47, type: 3}
   references:
     version: 2
     RefIds:
@@ -38,6 +39,6 @@ MonoBehaviour:
       type: {class: CreaturesOfTheChosenTypeGetBuffAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 0
-        description: All creatures with Human type gets +1 power.
+        description: All creatures  gets +1 power.
         buffValue: 1
         cardType: 2

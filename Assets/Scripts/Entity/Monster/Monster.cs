@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Entity.Monster.Ability;
 using Entity.Monster.Attack;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Entity.Monster
 {
@@ -15,6 +16,7 @@ namespace Entity.Monster
         [SerializeField] [SerializeReference] private List<MonsterType> monsterTypes = new List<MonsterType>();
         [SerializeField] private Sprite visual;
         [SerializeField] [SerializeReference] private MonsterAttack monsterAttack = new DefaultAttack();
+        public Sprite sprite;
 
         public List<MonsterType> MonsterTypes
         {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c4737119254f4b8564d8fc42c9559a, type: 3}
   m_Name: ctr + c = ctr + v
   m_EditorClassIdentifier: 
-  cardName: CTRL+C => CTRL+V
+  cardName: Fairy
   power: 2
   keywords: 
   cardAbility:
@@ -25,6 +25,7 @@ MonoBehaviour:
   cardCost: 0
   visual: {fileID: 0}
   rarity: 1
+  sprite: {fileID: -2538740904411443012, guid: 53a7cb14396285543b60d8922a42735c, type: 3}
   references:
     version: 2
     RefIds:

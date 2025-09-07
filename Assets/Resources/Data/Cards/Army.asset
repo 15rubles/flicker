@@ -24,8 +24,8 @@ MonoBehaviour:
     rid: 8036186522926972929
   cardCost: 8
   visual: {fileID: 0}
-  type: 0
   rarity: 0
+  sprite: {fileID: 538513131370383185, guid: 84a255169d66e3f42888ca897c4e3ee6, type: 3}
   references:
     version: 2
     RefIds:

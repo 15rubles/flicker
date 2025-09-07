@@ -17,6 +17,7 @@ MonoBehaviour:
     rid: 8036186703037989047
   price: 0
   itemName: Donate for skill
+  sprite: {fileID: -1417361314930368456, guid: d17c7538fdcdc5a4084dba9442863dbd, type: 3}
   description: ' +1 money in won at first turn.'
   rarity: 0
   references:
