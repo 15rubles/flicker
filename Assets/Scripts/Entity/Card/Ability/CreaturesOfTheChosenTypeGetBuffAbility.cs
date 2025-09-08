@@ -17,10 +17,9 @@ namespace Entity.Card.Ability
         public override CardAbility UseAbility(Card cardObj)
         {
             CreatureController creatureController = ControllerLocator.GetService<CreatureController>();
-            foreach (CreatureObj creature in creatureController.AttackZone.Creatures
-                                                               .Where(creature => creature.Card.cardTypes.Contains(cardType)))
+            foreach (CreatureObj creature in creatureController.AttackZone.Creatures)
             {
-                creature.Power = creature.Card.power + buffValue;
+                creature.Power += buffValue;
                 creature.UpdateText();
             }
             return this;

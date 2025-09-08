@@ -143,6 +143,7 @@ MonoBehaviour:
   cardHintLeft: {fileID: 256685598097578041}
   cardHintRight: {fileID: 8483192250906888590}
   icon: {fileID: 3694483395430608605}
+  targetHeight: 86
 --- !u!1 &240275528955579719
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +898,7 @@ MonoBehaviour:
   keywordExplainPool: {fileID: 5074339821148222027}
   boundaries: {fileID: 2098072753142742241}
   icon: {fileID: 221804622884558269}
+  targetHeight: 72
 --- !u!114 &3385682098932121796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3081787139797507857, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}
@@ -1096,6 +1098,7 @@ MonoBehaviour:
   keywordExplainPool: {fileID: 4955074801173929924}
   boundaries: {fileID: 2946032207773465818}
   icon: {fileID: 125073059706861618}
+  targetHeight: 72
 --- !u!114 &3194178618475490635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3081787139797507857, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}

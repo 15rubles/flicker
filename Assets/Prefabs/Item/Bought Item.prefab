@@ -384,6 +384,7 @@ MonoBehaviour:
   nameText: {fileID: 3527038141838438487}
   item: {fileID: 0}
   icon: {fileID: 4971874969552594457}
+  targetHeight: 62
   sellPriceText: {fileID: 5764514968253444793}
   sellButton: {fileID: 9129024681666403397}
 --- !u!1 &2313912670656218083

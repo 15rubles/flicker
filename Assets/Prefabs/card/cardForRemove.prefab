@@ -326,6 +326,7 @@ MonoBehaviour:
   keywordExplainPool: {fileID: 756837981232011227}
   card: {fileID: 0}
   icon: {fileID: 5764461485529100333}
+  targetHeight: 72
   removeButton: {fileID: 6266712716883957531}
 --- !u!1001 &5247705056239942213
 PrefabInstance:

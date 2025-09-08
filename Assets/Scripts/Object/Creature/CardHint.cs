@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utils;
 
 namespace Object.Creature
 {
@@ -16,6 +17,7 @@ namespace Object.Creature
         [SerializeField] private GameObject keywordExplainPool;
         [SerializeField] private RectTransform boundaries;
         [SerializeField] private Image icon;
+        [SerializeField] private int targetHeight;
         public RectTransform Boundaries => boundaries;
         
         private Entity.Card.Card card;
@@ -36,6 +38,7 @@ namespace Object.Creature
                 }
                 UpdateText();
                 icon.sprite = card.sprite;
+                UtilitiesFunctions.SetNativeThenScaleToHeight(icon, targetHeight);
             }
         }
         

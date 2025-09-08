@@ -46,6 +46,8 @@ namespace Controller
         [SerializeField] private int rewardMoneyTurnOne = 5;
         [SerializeField] private int rewardMoneyTurnTwo = 4;
         [SerializeField] private int rewardMoneyTurnThreePlus = 3;
+        
+        [SerializeField] private TextMeshProUGUI hintText;
 
         [SerializeField] private List<Card> extraCardsAtTheStartOfTheRound = new List<Card>();
 
@@ -128,6 +130,7 @@ namespace Controller
 
         public void ResetBattleScene()
         {
+            hintText.text = Constants.MulliganCardHint;
             UpdateRewardText();
             nextStepButton.interactable = true;
             isBattleWon = false;
@@ -209,17 +212,19 @@ namespace Controller
             switch (nextStep?.Value)
             {
                 case TurnStep.Mulligan:
-                    UpdateRewardText();
                     StateController.IsMulliganStep = true;
                     ResetCreatureZones();
                     turnText.text = (Int32.Parse(turnText.text) + 1).ToString();
+                    UpdateRewardText();
                     DealHand();
+                    hintText.text = Constants.MulliganCardHint;
                     nextStepButtonText.text = "Mulligan";
                     break;
                 case TurnStep.PlayCards:
                     Mulligan();
                     StateController.IsMulliganStep = false;
                     coverScreen.SetActive(false);
+                    hintText.text = Constants.PlayCardsHint;
                     nextStepButtonText.text = "Next Step";
                     break;
                 case TurnStep.Attack:

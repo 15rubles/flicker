@@ -26,6 +26,7 @@ namespace Entity.Card.Attack
                     {
                         GameObject targetSlot = parent.GetChild(0).gameObject;
                         var monsterObj = monsterController.GOsToMonsterSlots[targetSlot].MonsterObj;
+                        int monsterPower = monsterObj.Power;
                         monsterObj.Power -= power;
                         if (monsterObj.Power <= 0 || (creature.Card.CheckKeyword(KeywordType.Poison) && monsterObj.LastDamage > 0))
                         {
@@ -38,7 +39,7 @@ namespace Entity.Card.Attack
                             monsterObj.UpdateText();
                         }
                         //TODO poison dont work with trample and reduced damage
-                        power = creature.Card.CheckKeyword(KeywordType.Poison) ? power - 1 : power - monsterObj.Power;
+                        power = creature.Card.CheckKeyword(KeywordType.Poison) ? power - 1 : power - monsterPower;
                     }
                     else
                     {

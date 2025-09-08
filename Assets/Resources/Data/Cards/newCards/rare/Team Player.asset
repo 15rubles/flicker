@@ -35,7 +35,7 @@ MonoBehaviour:
     - rid: 8036186703037989025
       type: {class: PowerBonusForEachCreatureOfChosenTypeAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 1
+        abilityType: 0
         description: Gains +1 power for each other player type card on the battle.
         creatureType: 2
     - rid: 8036186703037989026

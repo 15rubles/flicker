@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c491ad32d8f4124486709bac2a2b2be, type: 3}
   m_Name: Test Deck
   m_EditorClassIdentifier: 
-  shieldValue: 3
+  shieldValue: 30
   allCards:
-  - {fileID: 11400000, guid: e9e4af98ab4945a49b6857bc56385bc5, type: 2}
-  - {fileID: 11400000, guid: 5dc07e882de26ba4f9c60ccb60202172, type: 2}
-  - {fileID: 11400000, guid: 3833b955a8ea914419c42290c70bbee1, type: 2}
-  - {fileID: 11400000, guid: 3a556abae9d24444eb3e28345fadc1a7, type: 2}
-  - {fileID: 11400000, guid: ec58226fa60f94a48ac1bff40d9512d2, type: 2}
-  - {fileID: 11400000, guid: 08d15054daab91141a58cb435ea0e44c, type: 2}
+  - {fileID: 11400000, guid: e565f8396a4158a4d8d50fda132794cd, type: 2}
+  - {fileID: 11400000, guid: deac9215fc280754d84398303f08d811, type: 2}
+  - {fileID: 11400000, guid: c315a50dc3d90fb4ba273d10be3756ae, type: 2}
+  - {fileID: 11400000, guid: 990a1fe17a60ac44ea7759641821a0be, type: 2}
+  - {fileID: 11400000, guid: 4e1f435043ceafd4c8f2c6b99e809939, type: 2}

@@ -98,6 +98,7 @@ MonoBehaviour:
   cardName: {fileID: 3081787139797507857}
   description: {fileID: 531292626168671276}
   icon: {fileID: 517048487101205096}
+  targetHeight: 72
   cardSlot: {fileID: 0}
   selectedPosition: {x: 0, y: 60}
   keywordExplainPrefab: {fileID: 3768802908802107724, guid: 5c9aed4e0b34db1489f8e00006a09dac, type: 3}

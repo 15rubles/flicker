@@ -18,7 +18,8 @@ namespace Entity.Card.Ability
             var creatureController = ControllerLocator.GetService<CreatureController>();
             var shopController = ControllerLocator.GetService<ShopController>();
 
-            var listOfCards = shopController.AllCards.Where(cardInList => cardInList.rarity == summonCardRarity).ToList();
+            var listOfCards = shopController.AllCards.Where(cardInList => cardInList.rarity == summonCardRarity)
+                .Where(cardInList => cardInList.power > 0).ToList();
             for (int i = 0; i < quantityToSpawn; i++)
             {
                 int randomIndex = Random.Range(0, listOfCards.Count);

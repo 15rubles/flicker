@@ -15,6 +15,7 @@ namespace Object.Card
         [SerializeField] private TextMeshProUGUI cardName;
         [SerializeField] private TextMeshProUGUI description;
         [SerializeField] private Image icon;
+        [SerializeField] private int targetHeight;
 
         private Canvas canvas;
 
@@ -23,6 +24,7 @@ namespace Object.Card
         private RectTransform rectTransform;
         private BattleController battleController;
         private CardSlotController cardSlotController;
+        private Transform parentTransform;
 
         [SerializeField] private Vector2 selectedPosition;
 
@@ -58,6 +60,8 @@ namespace Object.Card
                 }
                 UpdateText();
                 icon.sprite = card.sprite;
+                UtilitiesFunctions.SetNativeThenScaleToHeight(icon, targetHeight);
+                parentTransform = transform.parent;
             }
         }
 
@@ -116,6 +120,7 @@ namespace Object.Card
         
         public void OnDrag(PointerEventData eventData)
         {
+            transform.SetParent(parentTransform);
             if (StateController.IsMulliganStep) 
                 return;
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
@@ -150,7 +155,8 @@ namespace Object.Card
                 return;
                 
             IsSelected = !IsSelected;
-
+            
+            transform.SetParent(parentTransform);
             rectTransform.anchoredPosition = 
                 IsSelected 
                     ? selectedPosition 
@@ -170,6 +176,7 @@ namespace Object.Card
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            transform.SetParent(parentTransform.parent.parent);
             foreach (Transform child in keywordExplainPool.transform)
             {
                 child.gameObject.SetActive(true);
@@ -177,6 +184,7 @@ namespace Object.Card
         }
         public void OnPointerExit(PointerEventData eventData)
         {
+            transform.SetParent(parentTransform);
             foreach (Transform child in keywordExplainPool.transform)
             {
                 child.gameObject.SetActive(false);

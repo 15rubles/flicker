@@ -24,6 +24,7 @@ namespace Object.Creature
         [SerializeField] private CardHint cardHintLeft;
         [SerializeField] private CardHint cardHintRight;
         [SerializeField] private Image icon;
+        [SerializeField] private int targetHeight;
 
         public CreatureSlot Slot
         {
@@ -69,6 +70,7 @@ namespace Object.Creature
                 cardHintLeft.Card = card;
                 cardHintRight.Card = card;
                 icon.sprite = card.sprite;
+                UtilitiesFunctions.SetNativeThenScaleToHeight(icon, targetHeight);
             }
         }
         

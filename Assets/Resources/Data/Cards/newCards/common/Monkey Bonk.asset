@@ -38,5 +38,5 @@ MonoBehaviour:
     - rid: 8036186725642403921
       type: {class: DefaultAbility, ns: Entity.Card.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 0
+        abilityType: 6
         description: 

@@ -20,7 +20,7 @@ namespace Entity.Card.Ability
     {
         private static readonly Dictionary<AbilityType, string> Descriptions = new Dictionary<AbilityType, string>
         {
-            { AbilityType.EnterTheBattlefield, "Enter the Battlefield"},
+            { AbilityType.EnterTheBattlefield, ""},
             { AbilityType.Aura, "Aura"},
             { AbilityType.DeathRattle, "Death Rattle"},
             { AbilityType.EndOfCombat, "End of Combat"},

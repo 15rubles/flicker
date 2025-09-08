@@ -384,6 +384,7 @@ MonoBehaviour:
   nameText: {fileID: 3527038141838438487}
   item: {fileID: 0}
   icon: {fileID: 5832797993114250836}
+  targetHeight: 96
   priceText: {fileID: 5764514968253444793}
 --- !u!1 &2313912670656218083
 GameObject:

@@ -3,6 +3,7 @@ using Entity.Card.Ability;
 using Entity.Monster.Ability;
 using Object.Monster;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Utils
 {
@@ -73,6 +74,34 @@ namespace Utils
             {
                 ability.UseAbility(monsterObject);
             }
+        }
+        
+        public static void SetNativeThenScaleToHeight(Image img, float targetHeight)
+        {
+            // if (img == null) throw new System.ArgumentNullException(nameof(img));
+            // if (img.sprite == null) throw new System.InvalidOperationException("Image has no sprite.");
+            // if (targetHeight <= 0f) throw new System.ArgumentOutOfRangeException(nameof(targetHeight));
+
+            // 1) Snap to native size (sprite pixels / pixelsPerUnit).
+            img.SetNativeSize();
+
+            // 2) Compute aspect from the sprite (robust even if anchors are weird).
+            var s = img.sprite;
+            float wPx = s.rect.width;
+            float hPx = s.rect.height;
+            float ppu = s.pixelsPerUnit;
+
+            float nativeW = wPx / ppu;      // in UI units
+            float nativeH = hPx / ppu;      // in UI units
+            if (nativeH <= 0f) return;
+
+            float scale = targetHeight / nativeH;
+            float newW  = nativeW * scale;
+
+            // 3) Apply size while respecting current anchors.
+            var rt = img.rectTransform;
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,   targetHeight);
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newW);
         }
 
     }

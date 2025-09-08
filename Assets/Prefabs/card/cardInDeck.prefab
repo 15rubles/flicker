@@ -148,6 +148,7 @@ MonoBehaviour:
   keywordExplainPool: {fileID: 5752232984693592789}
   card: {fileID: 0}
   icon: {fileID: 768891109627147555}
+  targetHeight: 72
 --- !u!114 &2829386107901534298 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3081787139797507857, guid: 7ee941740898fe3429000ac6bedcff03, type: 3}

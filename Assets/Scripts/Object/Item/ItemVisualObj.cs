@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils;
 
 namespace Object.Item
 {
@@ -14,6 +15,7 @@ namespace Object.Item
         [SerializeField] protected TextMeshProUGUI nameText;
         [SerializeField] protected ItemSO item;
         [SerializeField] private Image icon;
+        [SerializeField] private int targetHeight;
 
         public void SetItem(ItemSO itemSo)
         {
@@ -21,6 +23,8 @@ namespace Object.Item
             nameText.text = item.itemName;
             descriptionText.text = item.Description;
             icon.sprite = item.sprite;
+            UtilitiesFunctions.SetNativeThenScaleToHeight(icon, targetHeight);
+            
         }
 
         public void OnPointerEnter(PointerEventData eventData)

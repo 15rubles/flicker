@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils;
 
 namespace Object.Deck
 {
@@ -18,6 +19,7 @@ namespace Object.Deck
         
         [SerializeField] private Entity.Card.Card card;
         [SerializeField] private Image icon;
+        [SerializeField] private int targetHeight;
 
         public Entity.Card.Card Card
         {
@@ -36,6 +38,7 @@ namespace Object.Deck
                 }
                 UpdateText();
                 icon.sprite = card.sprite;
+                UtilitiesFunctions.SetNativeThenScaleToHeight(icon, targetHeight);
             }
         }
         

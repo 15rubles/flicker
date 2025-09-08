@@ -13,9 +13,8 @@ namespace Entity.Card.Ability
             var creatureController = ControllerLocator.GetService<CreatureController>();
             var creatureObj = creatureController.LastPlayedCardSlot.CreatureObj;
             int powerUp = creatureController.AttackZone.Creatures
-                                            .FindAll(creature => creature.Card.cardTypes.Contains(creatureType))
                                             .Count;
-            creatureObj.Power = card.power + powerUp;
+            creatureObj.Power = card.power + powerUp - 1;
             return this;
         }
     }
