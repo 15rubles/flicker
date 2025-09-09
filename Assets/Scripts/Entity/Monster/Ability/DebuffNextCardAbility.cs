@@ -14,7 +14,7 @@ namespace Entity.Monster.Ability
             var nextCreature = ControllerLocator.GetService<BattleController>().NextAttackingCreature;
             if (nextCreature != null)
             {
-                nextCreature.Power -= debuffValue;
+                nextCreature.Power = debuffValue;
             }
             return this;
         }

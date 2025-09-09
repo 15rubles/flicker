@@ -17,6 +17,7 @@ namespace Object.Monster
         [SerializeField] private TextMeshProUGUI powerText;
         [SerializeField] private TextMeshProUGUI cardName;
         [SerializeField] private MonsterDescription monsterDescription;
+        [SerializeField] private MonsterDescription monsterDescription2;
         [SerializeField] private MonsterSlot slot;
         [SerializeField] private RectTransform rect;
         private MonsterController monsterController;
@@ -69,6 +70,7 @@ namespace Object.Monster
         public void SetPowerWithoutTrigger(int newPower)
         {
             power = newPower;
+            UpdateText();
         }
         
         public Entity.Monster.Monster Monster
@@ -81,6 +83,8 @@ namespace Object.Monster
                 // TODO TODO TODO TODO TODO make may descriptions for each ability
                 if (monster.Abilities.Count > 0)
                     monsterDescription.Description = monster.Abilities[0].Description;
+                if (monster.Abilities.Count > 1)
+                    monsterDescription2.Description = monster.Abilities[1].Description;
                 image.sprite = monster.sprite;
             }
         }
@@ -114,10 +118,13 @@ namespace Object.Monster
         public void OnPointerEnter(PointerEventData eventData)
         {
             monsterDescription.gameObject.SetActive(true);
+            if (monster.Abilities.Count > 1)
+                monsterDescription2.gameObject.SetActive(true);
         }
         public void OnPointerExit(PointerEventData eventData)
         {
             monsterDescription.gameObject.SetActive(false);
+            monsterDescription2.gameObject.SetActive(false);
         }
         
         public async Task<bool> Attack(CreatureObj creatureObj)
@@ -127,7 +134,6 @@ namespace Object.Monster
         
          public void OnDrag(PointerEventData eventData)
         {
-
             rect.anchoredPosition += eventData.delta / canvas.scaleFactor;
             List<MonsterSlot> list = monsterController.MonsterSlots;
             for (int index = 0; index < list.Count; index++)

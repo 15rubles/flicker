@@ -13,6 +13,7 @@ using Entity.Card;
 using Entity.Encounter.Battle;
 using JetBrains.Annotations;
 using Object.Creature;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Controller
@@ -48,6 +49,7 @@ namespace Controller
         [SerializeField] private int rewardMoneyTurnThreePlus = 3;
         
         [SerializeField] private TextMeshProUGUI hintText;
+        [SerializeField] private string loseSceneScreen;
 
         [SerializeField] private List<Card> extraCardsAtTheStartOfTheRound = new List<Card>();
 
@@ -131,7 +133,6 @@ namespace Controller
         public void ResetBattleScene()
         {
             hintText.text = Constants.MulliganCardHint;
-            UpdateRewardText();
             nextStepButton.interactable = true;
             isBattleWon = false;
             extraCardsAtTheStartOfTheRound = new List<Card>();
@@ -143,6 +144,7 @@ namespace Controller
             cardSlotController.Reset();
             monsterController.Reset();
             creatureController.ResetZones();
+            UpdateRewardText();
         }
 
 
@@ -170,11 +172,6 @@ namespace Controller
                 if (Deck.CardsInDeck.Count == 0)
                 {
                     Debug.Log("Deck is empty");
-                    if (Deck.CardsInDiscard.Count == 0)
-                    {
-                        Debug.Log("Discard is empty");
-                        return;
-                    }
                     Deck.ShuffleDiscardToDeck();
                 }
                 int randomIndex = Random.Range(0, Deck.CardsInDeck.Count - 1);
@@ -231,7 +228,8 @@ namespace Controller
                     nextStepButton.interactable = false;
                     coverScreen.SetActive(true);
                     DiscardHand();
-                    
+                    NextAttackingCreature = 0 < creatureController.AttackZone.Creatures.Count 
+                        ? creatureController.AttackZone.Creatures[0] : null;
                     gameController.BeginningOfCombatItemTriggers();
                     monsterController.BeginningOfCombatTrigger();
                     
@@ -247,7 +245,7 @@ namespace Controller
                     bool didNotLose = await MonstersAttack();
                     if (didNotLose)
                     {
-                        coverScreen.SetActive(true);
+                        coverScreen.SetActive(false);
                         nextStepButtonText.text = "Next Turn";
                     }
                     
@@ -375,8 +373,8 @@ namespace Controller
 
                     if (gameController.Hp <= 0)
                     {
-                        //TODO
                         Debug.Log("GAME OVER!!!");
+                        SceneManager.LoadScene("GameOver");
                     }
                     else
                     {

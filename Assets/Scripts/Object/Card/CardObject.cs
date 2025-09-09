@@ -110,7 +110,7 @@ namespace Object.Card
             bool isNeededToBeDeleted = AttackCardZone.creatureController.SpawnCreature(card);
             
             if (isNeededToBeDeleted)
-                Delete();
+                Discard();
         }
 
         private void AddShield()

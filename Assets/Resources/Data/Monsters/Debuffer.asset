@@ -31,5 +31,5 @@ MonoBehaviour:
       type: {class: DebuffNextCardAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 4
-        description: First two cards power becomes 1
+        description: First card power becomes 1
         debuffValue: 1

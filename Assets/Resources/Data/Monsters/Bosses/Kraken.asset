@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bca5da94f4046cab97e07df776c16fa, type: 3}
-  m_Name: Boss Helicopter
+  m_Name: Kraken
   m_EditorClassIdentifier: 
   monsterName: Kraken
-  power: 4
+  power: 10
   abilities:
   - rid: 8036186703037989075
   - rid: 8036186703037989081
@@ -32,18 +32,18 @@ MonoBehaviour:
       type: {class: SpawnMonsterAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
         abilityType: 4
-        description: Summons 2 Missle rockets
+        description: Summons 2 Tentacles.
         monstersToSpawn:
         - {fileID: 11400000, guid: 75424adb5eab2cb4eb4e2e7ecfa00d47, type: 2}
         - {fileID: 11400000, guid: 75424adb5eab2cb4eb4e2e7ecfa00d47, type: 2}
     - rid: 8036186703037989081
       type: {class: ReduceDamageIfRelatedSpawnedCreaturesAliveAbility, ns: Entity.Monster.Ability, asm: Assembly-CSharp}
       data:
-        abilityType: 0
-        description: Summons Power Shield. While this monster alive, any dammage
-          that delt to Boss Helicopter reduced by 2.
+        abilityType: 5
+        description: 'Summons Power Orb. '
         spawnMonsterAbility:
           abilityType: 0
-          description: '!!description is undefined!!'
-          monstersToSpawn: []
-        damageReductionAmount: 2
+          description: 
+          monstersToSpawn:
+          - {fileID: 11400000, guid: cb197baa0c1ab7a40bda7230064d1df9, type: 2}
+        damageReductionAmount: 1

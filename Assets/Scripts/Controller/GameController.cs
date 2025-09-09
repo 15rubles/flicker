@@ -8,6 +8,7 @@ using Object.Item;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 using Random = UnityEngine.Random;
 
@@ -150,6 +151,10 @@ namespace Controller
         {
             shopEncounterCounter++;
             encounterValue++;
+            if (encounterValue > 10)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
             encounterText.text = encounterValue.ToString();
         }
 
